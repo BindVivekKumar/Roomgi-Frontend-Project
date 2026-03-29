@@ -42,13 +42,13 @@ const CardBlock = ({ title, icon: Icon, children, className = "" }) => (
 ========================= */
 const InfoItem = ({ label, value, icon: Icon }) => {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 hover:border-orange-200 transition">
+    <div className="flex items-center gap-3 p-3 w-full rounded-xl bg-slate-50 border border-slate-100 hover:border-orange-200 transition">
 
       {Icon && (
         <Icon className="w-4 h-4 text-orange-500 flex-shrink-0" />
       )}
 
-      <div className="min-w-0">
+      <div className="min-w-0 w-full">
         <p className="text-[10px] font-bold text-slate-500 uppercase">
           {label}
         </p>
