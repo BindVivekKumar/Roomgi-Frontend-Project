@@ -80,7 +80,7 @@ const navLinks = [
 
   const adminMenuItems = [
     { label: "Properties", path: "/admin/properties", icon: <Home size={18} /> },
-    { label: "Tenants", path: "/admin/tenants", icon: <User size={18} /> },
+    // { label: "Tenants", path: "/admin/tenants", icon: <User size={18} /> },
     { label: "Payments", path: "/admin/payments", icon: <Briefcase size={18} /> },
     { label: "Rooms", path: "/admin/showrooms", icon: <Home size={18} /> },
     { label: "Complaints", path: "/admin/complaints", icon: <MessageSquare size={18} /> },

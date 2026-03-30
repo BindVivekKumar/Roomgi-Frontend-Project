@@ -177,7 +177,7 @@ function AddRoomForm() {
     }
   };
 
-  const isNextDisabled = validateStep();
+  const isNextDisabled = !validateStep();
 
   // --- HANDLERS ---
   const handleCheckboxArray = (field, value) => {

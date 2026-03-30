@@ -37,12 +37,10 @@ export default function AdminApp() {
 
           <Route path="payments" element={<Payments />} />
           <Route path="add-payment" element={<AddPayment />} />
-
-          <Route path="complaints" element={<Complaints />} />
+{/* 
+          <Route path="complaints" element={<Complaints />} /> */}
           <Route path="subscription" element={<Subscription />} />
 
-          {/* fallback */}
-          <Route path="*" element={<Navigate to="properties" replace />} />
         </Route>
    
 
