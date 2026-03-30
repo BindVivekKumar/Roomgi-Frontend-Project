@@ -3,7 +3,7 @@ import axios from "axios";
 import sharePG from "./component/sharepg"
 import {
     Phone, Navigation, Share2, CalendarIcon, Users, Minus, Plus,
-    Shield, CheckCircle, Sparkles, X, Info
+    Shield, CheckCircle, X, Info
 } from "lucide-react";
 import Calendar from "react-calendar";
 import { toast } from "react-hot-toast";
@@ -58,8 +58,9 @@ const IconButton = ({ icon: Icon, label, onClick, variant = "secondary" }) => {
     );
 };
 
-const RightInformationdescription = ({ pg,Number }) => {
-    console.log("PG Data: ", Number);
+const RightInformationdescription = ({ pg, N }) => {
+    console.log(pg)
+
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [form, setForm] = useState({ checkIn: "", checkOut: "", adults: 1 });
 
@@ -70,26 +71,80 @@ const RightInformationdescription = ({ pg,Number }) => {
         date.setMonth(date.getMonth() + 2);
         return date;
     }, []);
+    const normalizeDate = (date) => new Date(date).setHours(0, 0, 0, 0);
 
+    // ✅ Get dynamic price for a specific date
     const getPriceForDate = useCallback((date) => {
-        const current = new Date(date);
-        const found = pg.dynamicpricing?.find(d =>
-            current >= new Date(d.startDate) && current <= new Date(d.endDate)
-        );
+        const current = normalizeDate(date);
+
+        const found = pg.dynamicPricing?.find(d => {
+            const start = normalizeDate(d.startDate);
+            const end = normalizeDate(d.endDate);
+            return current >= start && current <= end;
+        });
+
         return found ? Number(found.price) : Number(pg.base_price || pg.price || 0);
     }, [pg]);
 
+    // ✅ Only return dynamic price (for calendar highlight)
+    const getDynamicPrice = useCallback((date) => {
+        const current = normalizeDate(date);
+
+        const found = pg.dynamicPricing?.find(d => {
+            const start = normalizeDate(d.startDate);
+            const end = normalizeDate(d.endDate);
+            return current >= start && current <= end;
+        });
+
+        return found ? Number(found.price) : null;
+    }, [pg]);
+
+    // ✅ Calculate total price
     const calculateTotalPrice = useCallback(() => {
         if (!form.checkIn || !form.checkOut) return 0;
+
         let total = 0;
         let current = new Date(form.checkIn);
         const end = new Date(form.checkOut);
+
         while (current < end) {
             total += getPriceForDate(current);
             current.setDate(current.getDate() + 1);
         }
+
         return total * form.adults;
     }, [form, getPriceForDate]);
+
+    // ✅ Daily breakdown (IMPORTANT 🔥)
+    const priceBreakdown = useMemo(() => {
+        if (!form.checkIn || !form.checkOut) return [];
+
+        let breakdown = [];
+        let current = new Date(form.checkIn);
+        const end = new Date(form.checkOut);
+
+        while (current < end) {
+            breakdown.push({
+                date: new Date(current),
+                price: getPriceForDate(current),
+                isDynamic: getDynamicPrice(current) !== null
+            });
+
+            current.setDate(current.getDate() + 1);
+        }
+
+        return breakdown;
+    }, [form, getPriceForDate, getDynamicPrice]);
+
+
+    // const getPriceForDate = useCallback((date) => {
+    //     const current = new Date(date);
+    //     const found = pg.dynamicpricing?.find(d =>
+    //         current >= new Date(d.startDate) && current <= new Date(d.endDate)
+    //     );
+    //     return found ? Number(found.price) : Number(pg.base_price || pg.price || 0);
+    // }, [pg]);
+
 
     const totalAmount = useMemo(() => {
         if (pg.category === "Pg") {
@@ -242,9 +297,9 @@ const RightInformationdescription = ({ pg,Number }) => {
                     label="WhatsApp"
                     variant="emerald"
                     onClick={() => {
-                      const message = `Hello 👋 I saw your PG on Roomgi App. I’d like to know more about availability, rent, and facilities. Please share details 🙏`;
+                        const message = `Hello 👋 I saw your PG on Roomgi App. I’d like to know more about availability, rent, and facilities. Please share details 🙏`;
                         window.open(
-                            `https://wa.me/${Number}?text=${encodeURIComponent(message)}`,
+                            `https://wa.me/${N}?text=${encodeURIComponent(message)}`,
                             "_blank",
                             "noopener,noreferrer"
                         );
@@ -280,21 +335,56 @@ const RightInformationdescription = ({ pg,Number }) => {
                         </div>
 
                         <div className="p-4">
-                            <Calendar
-                                minDate={today}
-                                maxDate={maxDate}
-                                selectRange={true}
-                                onChange={(value) => {
-                                    if (value[0] && value[1]) {
-                                        setForm({
-                                            ...form,
-                                            checkIn: value[0].toISOString().split("T")[0],
-                                            checkOut: value[1].toISOString().split("T")[0],
-                                        });
-                                    }
-                                }}
-                            />
-                        </div>
+<Calendar
+  minDate={today}
+  maxDate={maxDate}
+  selectRange={true}
+  className="custom-modern-calendar"
+
+  // ✅ Always stay in month (date) view
+  view="month"
+
+  // ❌ Disable switching to year/decade view
+  maxDetail="month"
+  minDetail="month"
+
+    showNeighboringMonth={false}
+
+  onChange={(value) => {
+    if (value[0] && value[1]) {
+      setForm({
+        ...form,
+        checkIn: value[0].toISOString().split("T")[0],
+        checkOut: value[1].toISOString().split("T")[0],
+      });
+    }
+  }}
+
+  // ❌ Remove navigation to jump months/years fast
+  prev2Label={null}
+  next2Label={null}
+
+  // Optional: remove top label click (extra safety)
+  navigationLabel={({ date }) => (
+    <span className="font-bold">
+      {date.toLocaleDateString("en-IN", { month: "long", year: "numeric" })}
+    </span>
+  )}
+
+  tileClassName={({ date }) => {
+    const price = getDynamicPrice(date);
+    return `relative transition-all active:scale-90 ${
+      price ? "has-dynamic-price" : ""
+    }`;
+  }}
+
+  tileContent={({ date }) => {
+    const price = getDynamicPrice(date);
+    return price ? (
+      <div className="price-tag">₹{price}</div>
+    ) : null;
+  }}
+/>              </div>
 
                         <div className="p-4 bg-slate-50">
                             <button

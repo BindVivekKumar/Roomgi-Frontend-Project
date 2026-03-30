@@ -154,7 +154,7 @@ const RoomCard = memo(function RoomCard({
                   </p>
 
                   <p className="text-sm font-black text-gray-900">
-                    ₹{room.price}
+                    ₹{room.category==="Pg" ? room.price : room.base_price}
                     <span className="text-[10px] text-gray-500">/mo</span>
                   </p>
                 </div>

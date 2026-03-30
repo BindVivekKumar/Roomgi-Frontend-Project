@@ -164,11 +164,10 @@ function AddRoomForm() {
         if (!Array.isArray(roomData.facilities) || roomData.facilities.length === 0)
           return false;
         if (roomData.category != "Hotel") {
-          if (!Array.isArray(roomData.rules) || roomData.rules.length === 0)
-            return false;
-
+           if (!Array.isArray(roomData.rules) || roomData.rules.length === 0)
+          return false;
         }
-
+      
         // if (!isNonEmpty(roomData.description)) return false;
 
         return true;
