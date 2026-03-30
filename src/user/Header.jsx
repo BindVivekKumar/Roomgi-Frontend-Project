@@ -23,6 +23,7 @@ export default function Header() {
   const location = useLocation();
 
   const { user, isAuthenticated } = useSelector((state) => state.auth);
+  console.log(user);
 
   const [openDropdown, setOpenDropdown] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -33,6 +34,8 @@ export default function Header() {
 
   const isAdmin =
     user?.role === "owner" || user?.role === "branch-manager";
+
+   const isHotelOwner = user?.role === "HotelOwner";
 
   /* Scroll Effect */
   useEffect(() => {
@@ -78,12 +81,16 @@ const navLinks = [
     { label: "Complaints", path: "/mycomplain", icon: <MessageSquare size={18} /> },
   ];
 
-  const adminMenuItems = [
+  const hotelOwnerLinks = [
     { label: "Properties", path: "/admin/properties", icon: <Home size={18} /> },
-    // { label: "Tenants", path: "/admin/tenants", icon: <User size={18} /> },
     { label: "Payments", path: "/admin/payments", icon: <Briefcase size={18} /> },
     { label: "Rooms", path: "/admin/showrooms", icon: <Home size={18} /> },
-    { label: "Complaints", path: "/admin/complaints", icon: <MessageSquare size={18} /> },
+    // { label: "Complaints", path: "/admin/complaints", icon: <MessageSquare size={18} /> },
+];
+
+  const adminMenuItems = [
+    { label: "Properties", path: "/admin/properties", icon: <Home size={18} /> },
+    { label: "Rooms", path: "/admin/showrooms", icon: <Home size={18} /> },
   ];
 
   return (
@@ -184,35 +191,53 @@ const navLinks = [
           </div>
         </button>
 
-        {openDropdown && (
-          <div className="absolute right-0 mt-4 w-64 bg-white rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95">
-            {(isAdmin ? adminMenuItems : userLinks).map((u) => (
-              <button
-                key={u.label}
-                onClick={() => {
-                  navigate(u.path);
-                  setOpenDropdown(false);
-                }}
-                className="w-full px-5 py-3 flex items-center gap-3 text-sm font-medium hover:bg-slate-50 transition"
-              >
-                {u.icon}
-                {u.label}
-              </button>
-            ))}
+     {openDropdown && (
+  <div className="absolute right-0 mt-4 w-64 bg-white rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95">
 
-            <button
-              onClick={handleLogout}
-              className="w-full px-5 py-3 flex items-center gap-3 text-sm font-semibold text-red-500 hover:bg-red-50 transition"
-            >
-              {isLoading ? (
-                <Loader2 className="animate-spin" />
-              ) : (
-                <LogOut />
-              )}
-              Logout
-            </button>
-          </div>
-        )}
+    {/* Admin OR User Links */}
+    {(isAdmin && adminMenuItems ).map((u) => (
+      <button
+        key={u.label}
+        onClick={() => {
+          navigate(u.path);
+          setOpenDropdown(false);
+        }}
+        className="w-full px-5 py-3 flex items-center gap-3 text-sm font-medium hover:bg-slate-50 transition"
+      >
+        {u.icon}
+        {u.label}
+      </button>
+    ))}
+
+    {/* Hotel Owner Links */}
+    {isHotelOwner && hotelOwnerLinks.map((u) => (
+      <button
+        key={u.label}
+        onClick={() => {
+          navigate(u.path);
+          setOpenDropdown(false);
+        }}
+        className="w-full px-5 py-3 flex items-center gap-3 text-sm font-medium hover:bg-slate-50 transition"
+      >
+        {u.icon}
+        {u.label}
+      </button>
+    ))}
+
+    {/* Logout */}
+    <button
+      onClick={handleLogout}
+      className="w-full px-5 py-3 flex items-center gap-3 text-sm font-semibold text-red-500 hover:bg-red-50 transition"
+    >
+      {isLoading ? (
+        <Loader2 className="animate-spin" />
+      ) : (
+        <LogOut />
+      )}
+      Logout
+    </button>
+  </div>
+)}
       </div>
     )}
   </div>
