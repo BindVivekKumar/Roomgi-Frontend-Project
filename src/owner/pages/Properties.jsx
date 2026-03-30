@@ -28,7 +28,7 @@ export default function Properties() {
   const navigate = useNavigate();
 
   const { data: allbranchowner, refetch: refetchAllBranchOwner, isLoading: loadingAllBranchOwner } =
-    useGetAllBranchByOwnerQuery(undefined, { skip: user?.role !== "owner" });
+    useGetAllBranchByOwnerQuery(undefined, { skip: user?.role !== "owner" && user?.role !== "HotelOwner"});
 
   const { data: branchmanagerdata, refetch: refetchBranchManagerData, isLoading: loadingBranchManagerData } =
     useGetAllBranchbybranchIdQuery();
@@ -108,8 +108,9 @@ export default function Properties() {
       toast.success("Property added successfully.");
       setShowAddModal(false);
       setFormData({ name: "", address: "", city: "", state: "", pincode: "", streetAdress: "", landmark: "", images: [], previewImages: [] });
-      user?.role === "owner" ? refetchAllBranchOwner?.() : (refetchAllBranch?.(), refetchBranchManagerData?.());
+      user?.role === "owner"||user?.role === "HotelOwner" ? refetchAllBranchOwner?.() : (refetchAllBranch?.(), refetchBranchManagerData?.());
     } catch (err) {
+      console.log(err)
       toast.error(err?.data?.message || "Failed to add property.");
     }
   }, [formData, addbranch, user?.role, refetchAllBranchOwner, refetchBranchManagerData]);

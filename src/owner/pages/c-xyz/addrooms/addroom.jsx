@@ -131,11 +131,11 @@ function AddRoomForm() {
       /* ================= STEP 2 ================= */
       case 2: {
 
-        if (!isPositiveNumber(roomData.advancedmonth)) return false;
-
+       
         /* -------- PG -------- */
         if (roomData.category === "Pg") {
           if (!isNonEmpty(roomData.type)) return false;
+           if (!isPositiveNumber(roomData.advancedmonth)) return false;
           if (!isNonNegativeNumber(roomData.price)) return false;
           return true;
         }
@@ -167,7 +167,7 @@ function AddRoomForm() {
         if (!Array.isArray(roomData.rules) || roomData.rules.length === 0)
           return false;
 
-        if (!isNonEmpty(roomData.description)) return false;
+        // if (!isNonEmpty(roomData.description)) return false;
 
         return true;
       }
@@ -196,17 +196,7 @@ function AddRoomForm() {
     setRoomData(prev => ({ ...prev, images: prev.images.filter((_, i) => i !== index) }));
   };
 
-  // const handleServiceChange = (index, field, value) => {
-  //   const updatedServices = [...roomData.services];
-  //   updatedServices[index][field] = value;
-  //   // Calculate total if category is PG
-  //   const total = updatedServices.reduce((sum, s) => sum + Number(s.price || 0), 0);
-  //   setRoomData(prev => ({ 
-  //     ...prev, 
-  //     services: updatedServices, 
-  //     price: prev.category === "Pg" ? total : prev.price 
-  //   }));
-  // };
+
 
   const handleAddRoom = async () => {
     const formData = new FormData();

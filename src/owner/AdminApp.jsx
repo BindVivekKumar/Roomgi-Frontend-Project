@@ -22,7 +22,7 @@ export default function AdminApp() {
   return (
     <Routes>
       {/* 🔒 PROTECTED ADMIN ROUTES */}
-      <Route element={<ProtectedRoute allowedRoles={["branch-manager", "owner"]} />}>
+      <Route element={<ProtectedRoute allowedRoles={["HotelOwner", "owner"]} />}>
         
           <Route index element={<Navigate to="properties" replace />} />
 

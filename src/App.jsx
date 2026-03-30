@@ -83,9 +83,6 @@ function App() {
     }
   }, [dispatch]);
 
-  const isAdminRoute = Array.isArray(user?.role)
-    ? user.role.includes("owner") || user.role.includes("branch-manager")
-    : ["owner", "branch-manager"].includes(user?.role);
 
   return (
     <div className="flex flex-col min-h-screen">
