@@ -131,11 +131,11 @@ function AddRoomForm() {
       /* ================= STEP 2 ================= */
       case 2: {
 
-       
+
         /* -------- PG -------- */
         if (roomData.category === "Pg") {
           if (!isNonEmpty(roomData.type)) return false;
-           if (!isPositiveNumber(roomData.advancedmonth)) return false;
+          if (!isPositiveNumber(roomData.advancedmonth)) return false;
           if (!isNonNegativeNumber(roomData.price)) return false;
           return true;
         }
@@ -163,9 +163,11 @@ function AddRoomForm() {
 
         if (!Array.isArray(roomData.facilities) || roomData.facilities.length === 0)
           return false;
+        if (roomData.category != "Hotel") {
+          if (!Array.isArray(roomData.rules) || roomData.rules.length === 0)
+            return false;
 
-        if (!Array.isArray(roomData.rules) || roomData.rules.length === 0)
-          return false;
+        }
 
         // if (!isNonEmpty(roomData.description)) return false;
 
@@ -211,7 +213,7 @@ function AddRoomForm() {
     });
     try {
       // console.log("Submittig room data :" ,roomData)
-       await addRoom(formData).unwrap();
+      await addRoom(formData).unwrap();
     } catch (err) {
       toast.error(err?.data?.message || "Failed to list property");
     }
