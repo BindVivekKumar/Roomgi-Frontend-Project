@@ -151,7 +151,7 @@ export default function AuthModal() {
               <p className="text-slate-600 font-semibold text-sm">
                 {isSignUp
                   ? "Create free account with verified owners"
-                  : "Access 10L+ verified properties instantly"
+                  : "Access 1000+ verified properties instantly"
                 }
               </p>
             </div>
