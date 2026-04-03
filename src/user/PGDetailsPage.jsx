@@ -153,7 +153,7 @@ export default function PGDetailsPage() {
           <div className="lg:col-span-4 relative">
             <div className="lg:sticky lg:top-28">
               <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-slate-200/50 overflow-hidden transition-all duration-300 hover:shadow-orange-200/40">
-                <RightInformationdescription pg={pg} Number={Number} />
+                <RightInformationdescription pg={pg} N={Number} />
                 
                 {/* Security Badge */}
                 <div className="bg-slate-50 p-4 flex items-center justify-center gap-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest border-t border-slate-100">

@@ -292,19 +292,33 @@ const RightInformationdescription = ({ pg, N }) => {
             {/* ================= ACTION BUTTONS ================= */}
             <div className="grid grid-cols-2 gap-2">
 
-                <IconButton
-                    icon={Phone}
-                    label="WhatsApp"
-                    variant="emerald"
-                    onClick={() => {
-                        const message = `Hello 👋 I saw your PG on Roomgi App. I’d like to know more about availability, rent, and facilities. Please share details 🙏`;
-                        window.open(
-                            `https://wa.me/${N}?text=${encodeURIComponent(message)}`,
-                            "_blank",
-                            "noopener,noreferrer"
-                        );
-                    }}
-                />
+             <IconButton
+    icon={Phone}
+    label="WhatsApp"
+    variant="emerald"
+  // r.jsx - WhatsApp onClick
+onClick={() => {
+    const digits = String(N).replace(/\D/g, "");
+    const finalNumber = digits.length === 10 ? `91${digits}` : digits;
+    const message = `Hello 👋
+
+Greetings from RoomGi.
+
+I recently viewed your property on the RoomGi platform and found it quite appealing.
+
+I am interested in knowing more about the current availability, rental details, facilities, and booking process. Kindly share the relevant details at your convenience.
+
+Thank you very much 🙏
+Looking forward to your response.
+
+Regards,
+Interested Tenant via RoomGi`;
+    window.open(
+        `https://api.whatsapp.com/send?phone=${finalNumber}&text=${encodeURIComponent(message)}`,
+        "_blank"
+    );
+}}
+/>
                 <IconButton
                     icon={Share2}
                     label="Share"
