@@ -7,7 +7,7 @@ export const user_PgApi = createApi({
      🌍 BASE QUERY
   ======================= */
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1/property/user",
+    baseUrl: import.meta.env.VITE_API_BASE_URL + "/v1/property/user",
     credentials: "include",
     prepareHeaders: (headers) => {
       headers.set("Cache-Control", "no-store");
