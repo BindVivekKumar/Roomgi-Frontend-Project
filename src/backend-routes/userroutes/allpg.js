@@ -7,7 +7,7 @@ export const user_PgApi = createApi({
      🌍 BASE QUERY
   ======================= */
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://roomgi-backend-project-7pjg.onrender.com/api/v1/property/user",
+    baseUrl: "http://localhost:5000/api/v1/property/user",
     credentials: "include",
     prepareHeaders: (headers) => {
       headers.set("Cache-Control", "no-store");
@@ -31,20 +31,29 @@ export const user_PgApi = createApi({
     /* =======================
        🏠 GET ALL PGs
     ======================= */
-  getAllListedPg: builder.query({
-  query: (params = {}) => ({
-    url: "/allpg",
-    method: "GET",
-    params, // 👈 send everything dynamically
-  }),
-  providesTags: ["Pg"],
-  keepUnusedDataFor: 60,
-}),
-    getAllhotelsroom:builder.query({
-      query:()=>({
-        url:"/allhotelrooms",
-        method:"GET"
+    getAllListedPg: builder.query({
+      query: (params = {}) => ({
+        url: "/allpg",
+        method: "GET",
+        params, // 👈 send everything dynamically
+      }),
+      providesTags: ["Pg"],
+      keepUnusedDataFor: 60,
+    }),
+    getAllhotelsroom: builder.query({
+      query: () => ({
+        url: "/allhotelrooms",
+        method: "GET"
       })
+    }),
+
+    getRecomendedPg: builder.query({
+      query: ({lng,lat}) => ({
+        url: `/getRecomendedPg?lat=${lat}&lng=${lng}`,
+        method: "GET",
+      }),
+      providesTags: ["Pg"],
+      keepUnusedDataFor: 60,
     }),
 
     /* =======================
@@ -95,6 +104,7 @@ export const {
   useGetservicesareaQuery,
   useGetMapPgQuery,
   useGetPgByIdQuery,
+  useGetRecomendedPgQuery,
 } = user_PgApi;
 
 export default user_PgApi;
