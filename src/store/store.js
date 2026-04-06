@@ -17,6 +17,7 @@ import user_complaints from "../backend-routes/userroutes/complaints";
 import user_filter from "../backend-routes/userroutes/filter";
 import user_payment from "../backend-routes/userroutes/payment";
 import user_review from "../backend-routes/userroutes/review";
+import certificateApi from "../backend-routes/userroutes/certificate";
 
 /* =======================
    RTK QUERY APIs (OWNER)
@@ -43,6 +44,7 @@ const appReducer = combineReducers({
   [owner_payment.reducerPath]: owner_payment.reducer,
   [owner_room.reducerPath]: owner_room.reducer,
   [owner_tenant.reducerPath]: owner_tenant.reducer,
+  [certificateApi.reducerPath]: certificateApi.reducer,
 
   [user_complaints.reducerPath]: user_complaints.reducer,
   [user_filter.reducerPath]: user_filter.reducer,
@@ -86,7 +88,8 @@ export const appStore = configureStore({
       user_complaints.middleware,
       user_filter.middleware,
       user_payment.middleware,
-      user_review.middleware
+      user_review.middleware,
+      certificateApi.middleware,
     ),
 });
 

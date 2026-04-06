@@ -54,9 +54,8 @@ const ReportIssue = lazy(() => import("./user/reportanissue.jsx"));
 const MissionVision = lazy(() => import("./user/missionandvision.jsx"));
 const WhyRoomgi = lazy(() => import("./user/why-roomgi.jsx"));
 const SafetyGuidelinesPage = lazy(() => import("./user/safetyguidlinepage.jsx"));
-const HotelBookingForm=lazy(()=>import("./user/hoteldatebooking"))
-
-// Admin
+const HotelBookingForm = lazy(() => import("./user/hoteldatebooking"))
+const CertificateVerify = lazy(() => import("./user/certificate"))
 const AdminApp = lazy(() => import("./owner/AdminApp"));
 
 // Loading Component
@@ -141,7 +140,7 @@ function App() {
             <Route path="/safety-guidelines" element={<SafetyGuidelinesPage />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/forgotpasswordpage/:token" element={<ResetPassword />} />
-
+            <Route path="/certificates" element={<CertificateVerify />} />
 
 
             {/* 🛠 ADMIN */}
