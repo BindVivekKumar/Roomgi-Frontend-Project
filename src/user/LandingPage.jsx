@@ -106,7 +106,8 @@ export default function LandingPage() {
     }
   }, [pgApiData]);
   const filterOptions = [
-    { key: "All", label: "All Stays", count: pgData.length },
+    { key: "owner", label: "property Registered", count: pgApiData?.property || 0 },
+    { key: "All", label: "All Stays", count: pgApiData?.count || 0 },
     { key: "Newest", label: "Newest", count: pgData.filter(p => p.createdAt > Date.now() - 30 * 24 * 60 * 60 * 1000).length },
 
   ];
@@ -346,23 +347,28 @@ export default function LandingPage() {
               const isActive = activeFilter === option.key;
 
               return (
-                <button
+                <div
                   key={option.key}
-                  onClick={() => setActiveFilter(option.key)}
-                  aria-pressed={isActive}
-                  className={`flex items-center gap-2 px-5 sm:px-6 py-3 rounded-2xl font-bold text-sm transition-all duration-300 shadow-lg ${isActive
-                    ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-indigo-500/50"
-                    : "bg-white/80 text-slate-600 border-2 border-slate-200 hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700 hover:shadow-xl"
-                    }`}
+                  className={`flex items-center gap-2 px-5 sm:px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow-sm cursor-default select-none
+        ${isActive
+                      ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-indigo-400/40"
+                      : "bg-white text-slate-600 border border-slate-200"
+                    }
+      `}
                 >
                   {option.label}
+
                   <span
-                    className={`px-2 py-1 rounded-xl text-xs font-black ${isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-700"
-                      }`}
+                    className={`px-2 py-1 rounded-xl text-xs font-bold
+          ${isActive
+                        ? "bg-white/20 text-white"
+                        : "bg-slate-100 text-slate-700"
+                      }
+        `}
                   >
                     {option.count}
                   </span>
-                </button>
+                </div>
               );
             })}
           </nav>
