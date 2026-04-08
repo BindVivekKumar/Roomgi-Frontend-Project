@@ -120,15 +120,7 @@ export default function CertificateVerify() {
               <p><strong>📌 Type:</strong> {data.data.type}</p>
             </div>
 
-            {/* Link */}
-            <a
-              href={data.data.qrLink}
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-600 underline text-xs block text-center"
-            >
-              🔗 View Official Certificate
-            </a>
+        
 
             {/* Download */}
             <button

@@ -155,7 +155,7 @@ export default function LandingPage() {
         </h2>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-8 lg:gap-12 mb-16 sm:mb-20">
+     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 mb-16 sm:mb-20">
           {[
             {
               icon: ShieldCheck,
