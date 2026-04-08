@@ -102,7 +102,7 @@ function App() {
               <Route path="/hotelbookingform/:id" element={<HotelBookingForm />} />
               <Route path="/pgmap/:branchId" element={<PGMap />} />
               <Route path="/branch-rooms/:id" element={<BranchRoomsPage />} />
-              <Route path="/allpotos/:id" element={<AllPotos />} />
+              <Route path="/allphotos/:id" element={<AllPotos />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/wishlistdetails" element={<WishlistPage />} />
               <Route path="/wishlistdetails/:id" element={<TenantDashboard />} />

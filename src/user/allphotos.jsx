@@ -15,7 +15,7 @@ export default function AllPotos() {
 
   if (isLoading) return <p className="text-center mt-10">Loading...</p>;
 
-  const images = data?.room?.roomImages || [];
+  const images = data?.room?.rooms[0]?.roomImages || [];
 
   return (
     <div className="max-w-6xl mx-auto px-4 pb-10">
