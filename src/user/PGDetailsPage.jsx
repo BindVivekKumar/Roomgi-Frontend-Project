@@ -21,7 +21,8 @@ export default function PGDetailsPage() {
 
   const { data, isLoading, isError, error } = useGetPgByIdQuery(id);
  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const pg = data?.room?.rooms[0];
+ console.log("data",data)
+  const pg = data?.room
   console.log("pg",pg)
   const coord = data?.room?.location;
   const phoneNumber = data?.room.phoneNumber;
