@@ -21,12 +21,12 @@ export default function PGDetailsPage() {
 
   const { data, isLoading, isError, error } = useGetPgByIdQuery(id);
  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
- console.log("data",data)
-  const pg = data?.room
+   const pg = data?.room?.rooms?.[0]
   console.log("pg",pg)
   const coord = data?.room?.location;
   const phoneNumber = data?.room.phoneNumber;
   console.log("coord",phoneNumber)
+  
 
   const { data: recomendedPg } = useGetRecomendedPgQuery({ lng: coord?.coordinates ? coord?.coordinates[0] : undefined, lat: coord?.coordinates ? coord?.coordinates[1] : undefined },
     { skip: !coord }
