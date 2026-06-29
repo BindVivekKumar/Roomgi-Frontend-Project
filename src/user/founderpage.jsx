@@ -161,42 +161,101 @@ const CEO = () => {
         </section>
 
         {/* ABES SECTION */}
-        <section className="mt-32 p-12 bg-slate-900 rounded-[3rem] text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <section className="mt-32 bg-gradient-to-br from-slate-950 via-slate-900 to-black rounded-[3rem] p-12 lg:p-16 text-white">
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Left */}
             <div>
-              <h3 className="text-4xl font-black mb-4">
-                From Labs to <span className="text-green-400">Industry</span>
-              </h3>
-              <p className="text-slate-300">
-                As final year students at <b>ABES Engineering College</b>, we build scalable, real-world systems.
+
+              <span className="inline-flex items-center rounded-full border border-green-500/30 bg-green-500/10 px-4 py-2 text-sm font-semibold text-green-400">
+                Founder & Vision
+              </span>
+
+              <h2 className="mt-6 text-5xl lg:text-6xl font-black leading-tight">
+                Building Companies
+                <br />
+                That Create
+                <span className="text-green-400"> Lasting Impact.</span>
+              </h2>
+
+              <p className="mt-8 text-lg leading-8 text-slate-300">
+                Great businesses are built on clarity of vision, relentless execution,
+                and a commitment to solving real-world challenges. Our mission is to
+                transform ambitious ideas into scalable digital products that create
+                measurable value for organizations, communities, and the people who use them.
               </p>
-              <button className="mt-6 flex items-center gap-2 font-black uppercase text-xs">
-                Learn More <ChevronRight size={16} />
-              </button>
+
+              <p className="mt-6 text-slate-400 leading-8">
+                We believe innovation is not about following trends—it's about
+                understanding problems deeply, designing thoughtful solutions, and
+                delivering products that remain valuable for years to come. Every
+                decision we make is driven by quality, trust, and long-term thinking.
+              </p>
+
+              <div className="flex gap-4 mt-10">
+                <button className="rounded-full bg-green-500 px-8 py-4 font-semibold hover:bg-green-600 transition">
+                  Our Vision
+                </button>
+
+                <button className="rounded-full border border-white/15 px-8 py-4 font-semibold hover:bg-white/10 transition">
+                  Founder Journey
+                </button>
+              </div>
+
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              {["2026", "AIML", "CSE", "100%"].map((val, i) => (
-                <div key={i} className="bg-white/5 p-6 rounded-2xl">
-                  <p className="text-3xl font-black text-green-400">{val}</p>
+            {/* Right */}
+            <div className="grid grid-cols-2 gap-5">
+
+              {[
+                {
+                  title: "Vision",
+                  value: "Purpose-Driven",
+                  desc: "Building meaningful products that solve genuine business and human challenges."
+                },
+                {
+                  title: "Leadership",
+                  value: "Innovation First",
+                  desc: "Creating an environment where creativity, ownership, and excellence thrive."
+                },
+                {
+                  title: "Commitment",
+                  value: "Quality Always",
+                  desc: "Every solution is designed with performance, scalability, and reliability in mind."
+                },
+                {
+                  title: "Future",
+                  value: "Global Impact",
+                  desc: "Growing sustainable businesses that deliver long-term value across industries."
+                }
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-green-400/40 hover:bg-white/10"
+                >
+                  <p className="text-sm uppercase tracking-[3px] text-green-400">
+                    {item.title}
+                  </p>
+
+                  <h3 className="mt-3 text-2xl font-bold">
+                    {item.value}
+                  </h3>
+
+                  <p className="mt-4 text-sm leading-7 text-slate-400">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
+
             </div>
+
           </div>
+
         </section>
       </main>
 
-      {/* FOOTER */}
-      <footer className="py-12 border-t text-center">
-        <div className="flex justify-center gap-10 text-xs uppercase tracking-widest text-slate-400 mb-4">
-          <a href="/about">Our Vision</a>
-          <a href="/career">Careers</a>
-          <a href="/support">Support</a>
-        </div>
-        <p className="text-slate-400 text-xs flex justify-center items-center gap-2">
-          <Library size={12} /> RoomGi Pvt Ltd • 2026
-        </p>
-      </footer>
+
     </div>
   );
 };
