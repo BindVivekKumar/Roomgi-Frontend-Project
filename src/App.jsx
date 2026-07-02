@@ -118,7 +118,7 @@ function App() {
 
             {/* 🌍 PUBLIC */}
             <Route path="/search/:city" element={<Searched />} />
-             <Route path="/InternshipForm" element={<InternshipForm />} />
+             <Route path="/InternshipviaHackathons" element={<InternshipForm />} />
             <Route path="/login" element={<AuthModal />} />
             <Route path="/cancellationpolicy" element={<CancellationPolicy />} />
             <Route path="/contactus" element={<ContactUs />} />
