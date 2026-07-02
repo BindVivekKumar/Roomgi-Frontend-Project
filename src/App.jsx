@@ -57,7 +57,7 @@ const SafetyGuidelinesPage = lazy(() => import("./user/safetyguidlinepage.jsx"))
 const HotelBookingForm = lazy(() => import("./user/hoteldatebooking"))
 const CertificateVerify = lazy(() => import("./user/certificate"))
 const AdminApp = lazy(() => import("./owner/AdminApp"));
-
+const InternshipForm = lazy(() => import("./user/InternshipForm"));
 // Loading Component
 const PageLoader = () => (
   <div className="h-screen w-full flex items-center justify-center bg-white">
@@ -113,10 +113,12 @@ function App() {
               <Route path="/myprofile" element={<Profile />} />
               <Route path="/signup-success" element={<SignupSuccess />} />
               <Route path="/bookingssuccess" element={<BookingSuccess />} />
+             
             </Route>
 
             {/* 🌍 PUBLIC */}
             <Route path="/search/:city" element={<Searched />} />
+             <Route path="/InternshipForm" element={<InternshipForm />} />
             <Route path="/login" element={<AuthModal />} />
             <Route path="/cancellationpolicy" element={<CancellationPolicy />} />
             <Route path="/contactus" element={<ContactUs />} />
