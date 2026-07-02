@@ -101,19 +101,35 @@ export default function Footer() {
             <div className="grid grid-cols-2 gap-8 sm:grid-cols-2">
               <div className="space-y-10">
                 {/* Company Section */}
-                <nav>
-                  <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-white">Company</h3>
-                  <ul className="mt-6 space-y-4 text-sm font-medium">
-                    {["about", "Mission","certificates", "Career","InternshipviaHackathons"].map((item) => (
-                      <li key={item}>
-                        <Link to={`/${item.toLowerCase().replace(' ', '')}`} className="hover:text-indigo-400 transition-all flex items-center group">
-                          <span className="h-[2px] w-0 bg-indigo-500 transition-all group-hover:w-3 group-hover:mr-2" />
-                          {item}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
+               {/* Company Section */}
+<nav>
+  <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-white">
+    Company
+  </h3>
+
+  <ul className="mt-6 space-y-4 text-sm font-medium">
+    {[
+      { label: "About", path: "/about" },
+      { label: "Mission", path: "/mission" },
+      { label: "Certificates", path: "/certificates" },
+      { label: "Career", path: "/career" },
+      {
+        label: "Roomgi Campus Internship Program",
+        path: "/internshipviahackathons",
+      },
+    ].map((item) => (
+      <li key={item.label}>
+        <Link
+          to={item.path}
+          className="hover:text-indigo-400 transition-all flex items-center group"
+        >
+          <span className="h-[2px] w-0 bg-indigo-500 transition-all group-hover:w-3 group-hover:mr-2" />
+          {item.label}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</nav>
                 {/* Leadership Section */}
                 <nav>
                   <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-white">Leadership</h3>
