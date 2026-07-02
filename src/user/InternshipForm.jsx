@@ -151,16 +151,72 @@ const InternshipForm = () => {
     e.preventDefault();
     setLoading(true);
  
-    // NOTE: This demo intentionally leaves the submission handler as a stub.
-    // Do not hardcode bot tokens or other secrets in client-side code — anyone
-    // viewing page source (or the browser network tab) can read them. Route
-    // submissions through your own backend endpoint, which then talks to
-    // Telegram (or any other service) using a token stored server-side.
+    // Bot credentials live here for now — anyone who views page source or the
+    // network tab can read them. Fine for testing, but before this goes live
+    // move this call behind a small backend endpoint so the token isn't shipped
+    // to the browser.
+    const TELEGRAM_BOT_TOKEN = "8913075639:AAFgAXAN4GVNtJoFb72xINOL5lcpxM3NvCk";
+    const TELEGRAM_CHAT_ID = "8615218309";
+ 
+    const textMessage = `
+New Internship Application
+----------------------------------
+Name: ${formData.fullName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+College: ${formData.college}
+Degree: ${formData.degree} (${formData.year})
+Role: ${formData.role}
+Skills: ${formData.skills}
+Availability: ${formData.availability}
+ 
+Profiles:
+LinkedIn: ${formData.linkedin || "N/A"}
+GitHub: ${formData.github || "N/A"}
+Portfolio: ${formData.portfolio || "N/A"}
+ 
+Why join Roomgi:
+${formData.whyJoin}
+----------------------------------
+    `;
+ 
     try {
-      // Example: await fetch("/api/submit-application", {
-      //   method: "POST",
-      //   body: buildFormPayload(formData),
-      // });
+      const textRes = await fetch(
+        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: textMessage,
+          }),
+        }
+      );
+ 
+      if (!textRes.ok) {
+        const errBody = await textRes.text();
+        throw new Error(`Telegram sendMessage failed (${textRes.status}): ${errBody}`);
+      }
+ 
+      if (formData.resume) {
+        const fileData = new FormData();
+        fileData.append("chat_id", TELEGRAM_CHAT_ID);
+        fileData.append("document", formData.resume);
+        fileData.append("caption", `Resume of ${formData.fullName}`);
+ 
+        const fileRes = await fetch(
+          `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument`,
+          {
+            method: "POST",
+            body: fileData,
+          }
+        );
+ 
+        if (!fileRes.ok) {
+          const errBody = await fileRes.text();
+          throw new Error(`Telegram sendDocument failed (${fileRes.status}): ${errBody}`);
+        }
+      }
  
       const ref = `ROOMGI-INT-${new Date().getFullYear()}-${Math.floor(
         1000 + Math.random() * 9000
@@ -168,7 +224,7 @@ const InternshipForm = () => {
       setReferenceId(ref);
       setSubmitted(true);
     } catch (error) {
-      console.error("Error submitting application:", error);
+      console.error("Error sending data to Telegram:", error);
       alert("We couldn't submit your application. Please try again.");
     } finally {
       setLoading(false);
