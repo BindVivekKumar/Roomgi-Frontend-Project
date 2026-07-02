@@ -39,6 +39,71 @@ const SECTIONS = [
   },
 ];
  
+const RESPONSIVE_CSS = `
+  /* Laptop / small desktop */
+  @media (max-width: 1100px) {
+    .rg-topbar-inner,
+    .rg-hero,
+    .rg-body,
+    .rg-footer-inner { max-width: 100% !important; }
+    .rg-body { padding: 0 24px 56px !important; gap: 24px !important; }
+    .rg-sidebar { padding: 18px 16px !important; }
+  }
+ 
+  /* Tablet */
+  @media (max-width: 900px) {
+    .rg-body { grid-template-columns: 1fr !important; }
+    .rg-sidebar { position: static !important; top: auto !important; }
+    .rg-sidebar-list { display: flex !important; flex-wrap: wrap !important; gap: 6px !important; }
+    .rg-sidebar-item { margin-bottom: 0 !important; }
+    .rg-sidebar-link { padding: 6px 4px !important; }
+    .rg-sidebar-note { display: none !important; }
+    .rg-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .rg-hero-title { font-size: 32px !important; }
+  }
+ 
+  /* Large phone / small tablet */
+  @media (max-width: 768px) {
+    .rg-section { padding: 24px 20px !important; }
+    .rg-section-body { padding-left: 0 !important; }
+    .rg-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  }
+ 
+  /* Mobile */
+  @media (max-width: 640px) {
+    .rg-topbar-inner { padding: 14px 18px !important; }
+    .rg-logo { font-size: 18px !important; }
+    .rg-hero { padding: 32px 18px 24px !important; }
+    .rg-hero-title { font-size: 27px !important; }
+    .rg-hero-sub { font-size: 14px !important; }
+    .rg-body { padding: 0 18px 40px !important; gap: 20px !important; }
+    .rg-sidebar { padding: 14px !important; }
+    .rg-section { padding: 22px 18px !important; }
+    .rg-section-header { gap: 10px !important; margin-bottom: 16px !important; }
+    .rg-section-number { font-size: 17px !important; min-width: 24px !important; }
+    .rg-section-title { font-size: 15.5px !important; }
+    .rg-section-body { padding-left: 0 !important; }
+    .rg-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+    .rg-declaration { padding: 18px !important; }
+    .rg-submit-row { flex-direction: column !important; align-items: stretch !important; padding: 18px !important; }
+    .rg-submit-note { max-width: none !important; order: 2 !important; }
+    .rg-submit-btn { width: 100% !important; order: 1 !important; }
+    .rg-footer-inner { padding: 16px 18px !important; }
+    .rg-confirm-wrap { padding: 40px 18px !important; }
+    .rg-confirm-card { padding: 28px 20px !important; }
+    .rg-confirm-title { font-size: 21px !important; }
+  }
+ 
+  /* Small phone */
+  @media (max-width: 400px) {
+    .rg-hero-title { font-size: 24px !important; }
+    .rg-section { padding: 18px 14px !important; }
+    .rg-sidebar-text { font-size: 12.5px !important; }
+  }
+`;
+ 
+const ResponsiveStyles = () => <style>{RESPONSIVE_CSS}</style>;
+ 
 const InternshipForm = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -86,54 +151,16 @@ const InternshipForm = () => {
     e.preventDefault();
     setLoading(true);
  
-    // Bot credentials should be moved to a backend service before going live —
-    // any string here is visible to anyone who views page source.
-    const TELEGRAM_BOT_TOKEN = "8913075639:AAFgAXAN4GVNtJoFb72xINOL5lcpxM3NvCk";
-    const TELEGRAM_CHAT_ID = "8615218309";
- 
-    const textMessage = `
-New Internship Application
-----------------------------------
-Name: ${formData.fullName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-College: ${formData.college}
-Degree: ${formData.degree} (${formData.year})
-Role: ${formData.role}
-Skills: ${formData.skills}
-Availability: ${formData.availability}
- 
-Profiles:
-LinkedIn: ${formData.linkedin || "N/A"}
-GitHub: ${formData.github || "N/A"}
-Portfolio: ${formData.portfolio || "N/A"}
- 
-Why join Roomgi:
-${formData.whyJoin}
-----------------------------------
-    `;
- 
+    // NOTE: This demo intentionally leaves the submission handler as a stub.
+    // Do not hardcode bot tokens or other secrets in client-side code — anyone
+    // viewing page source (or the browser network tab) can read them. Route
+    // submissions through your own backend endpoint, which then talks to
+    // Telegram (or any other service) using a token stored server-side.
     try {
-      await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: textMessage,
-        }),
-      });
- 
-      if (formData.resume) {
-        const fileData = new FormData();
-        fileData.append("chat_id", TELEGRAM_CHAT_ID);
-        fileData.append("document", formData.resume);
-        fileData.append("caption", `Resume of ${formData.fullName}`);
- 
-        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument`, {
-          method: "POST",
-          body: fileData,
-        });
-      }
+      // Example: await fetch("/api/submit-application", {
+      //   method: "POST",
+      //   body: buildFormPayload(formData),
+      // });
  
       const ref = `ROOMGI-INT-${new Date().getFullYear()}-${Math.floor(
         1000 + Math.random() * 9000
@@ -141,7 +168,7 @@ ${formData.whyJoin}
       setReferenceId(ref);
       setSubmitted(true);
     } catch (error) {
-      console.error("Error sending data to Telegram:", error);
+      console.error("Error submitting application:", error);
       alert("We couldn't submit your application. Please try again.");
     } finally {
       setLoading(false);
@@ -151,11 +178,14 @@ ${formData.whyJoin}
   if (submitted) {
     return (
       <div style={styles.page}>
+        <ResponsiveStyles />
         <TopBar />
-        <div style={styles.confirmWrap}>
-          <div style={styles.confirmCard}>
+        <div style={styles.confirmWrap} className="rg-confirm-wrap">
+          <div style={styles.confirmCard} className="rg-confirm-card">
             <div style={styles.confirmBadge}>Application received</div>
-            <h1 style={styles.confirmTitle}>Thank you, {formData.fullName.split(" ")[0] || "applicant"}.</h1>
+            <h1 style={styles.confirmTitle} className="rg-confirm-title">
+              Thank you, {formData.fullName.split(" ")[0] || "applicant"}.
+            </h1>
             <p style={styles.confirmText}>
               Your application for the {formData.role || "internship"} position has been
               submitted to the Roomgi Talent Acquisition team. A confirmation has been
@@ -178,24 +208,25 @@ ${formData.whyJoin}
  
   return (
     <div style={styles.page}>
+      <ResponsiveStyles />
       <TopBar />
  
-      <div style={styles.hero}>
+      <div style={styles.hero} className="rg-hero">
         <span style={styles.heroEyebrow}>Careers · Internship Program</span>
-        <h1 style={styles.heroTitle}>Internship application</h1>
-        <p style={styles.heroSub}>
+        <h1 style={styles.heroTitle} className="rg-hero-title">Internship application</h1>
+        <p style={styles.heroSub} className="rg-hero-sub">
           Complete every section below to be considered for the Roomgi Internship
           Program. Fields marked required must be filled before submission.
         </p>
       </div>
  
-      <div style={styles.body}>
-        <aside style={styles.sidebar}>
+      <div style={styles.body} className="rg-body">
+        <aside style={styles.sidebar} className="rg-sidebar">
           <div style={styles.sidebarLabel}>Application sections</div>
-          <ol style={styles.sidebarList}>
+          <ol style={styles.sidebarList} className="rg-sidebar-list">
             {sectionStatus.map((s) => (
-              <li key={s.id} style={styles.sidebarItem}>
-                <a href={`#${s.id}`} style={styles.sidebarLink}>
+              <li key={s.id} style={styles.sidebarItem} className="rg-sidebar-item">
+                <a href={`#${s.id}`} style={styles.sidebarLink} className="rg-sidebar-link">
                   <span
                     style={{
                       ...styles.sidebarBadge,
@@ -204,7 +235,7 @@ ${formData.whyJoin}
                   >
                     {s.complete ? "✓" : s.number}
                   </span>
-                  <span style={styles.sidebarText}>
+                  <span style={styles.sidebarText} className="rg-sidebar-text">
                     {s.title}
                     {s.optional && <span style={styles.sidebarOptional}> · optional</span>}
                   </span>
@@ -212,10 +243,10 @@ ${formData.whyJoin}
               </li>
             ))}
           </ol>
-          <div style={styles.sidebarNote}>
+          <div style={styles.sidebarNote} className="rg-sidebar-note">
             <div style={styles.sidebarNoteTitle}>Need help?</div>
             <div style={styles.sidebarNoteText}>
-              Contact support@roomgi.com for questions about this application.
+              Contact careers@roomgi.com for questions about this application.
             </div>
           </div>
         </aside>
@@ -309,81 +340,16 @@ ${formData.whyJoin}
                     required
                   >
                     <option value="">Select a role</option>
-
-{/* Technology */}
-<option>Software Development Engineer (SDE)</option>
-<option>Frontend Developer</option>
-<option>Backend Developer</option>
-<option>Full Stack Developer</option>
-<option>React.js Developer</option>
-<option>Node.js Developer</option>
-<option>Java Developer</option>
-<option>Python Developer</option>
-<option>Mobile App Developer (Android/iOS)</option>
-<option>AI / Machine Learning Engineer</option>
-<option>Data Science Intern</option>
-<option>Data Analyst</option>
-<option>Cyber Security Analyst</option>
-<option>Cloud Computing Intern</option>
-<option>DevOps Engineer</option>
-<option>UI/UX Designer</option>
-<option>QA / Software Testing</option>
-
-{/* Business */}
-<option>Business Development Executive</option>
-<option>Business Analyst</option>
-<option>Operations Executive</option>
-<option>Project Coordinator</option>
-<option>Product Management Intern</option>
-<option>Sales Executive</option>
-<option>Inside Sales Executive</option>
-<option>Customer Success Executive</option>
-<option>Customer Support Associate</option>
-
-{/* Marketing */}
-<option>Digital Marketing</option>
-<option>Performance Marketing</option>
-<option>Social Media Marketing</option>
-<option>Content Marketing</option>
-<option>SEO Executive</option>
-<option>Brand Marketing</option>
-
-{/* HR */}
-<option>Human Resources (HR)</option>
-<option>Talent Acquisition</option>
-<option>Recruitment Executive</option>
-
-{/* Finance */}
-<option>Finance & Accounts</option>
-<option>Accounting Intern</option>
-<option>Financial Analyst</option>
-<option>Investment Research Intern</option>
-
-{/* Commerce */}
-<option>Business Operations</option>
-<option>Supply Chain & Logistics</option>
-<option>Procurement Executive</option>
-
-{/* Design */}
-<option>Graphic Designer</option>
-<option>Video Editor</option>
-<option>Motion Graphics Designer</option>
-
-{/* Content */}
-<option>Content Writer</option>
-<option>Technical Writer</option>
-<option>Copywriter</option>
-
-{/* Research */}
-<option>Research Analyst</option>
-<option>Market Research Intern</option>
-
-{/* Others */}
-<option>Campus Ambassador</option>
-<option>Public Relations (PR)</option>
-<option>Legal Intern</option>
-<option>Administrative Executive</option>
-<option>General Internship</option>
+                    <option>Frontend Developer</option>
+                    <option>Backend Developer</option>
+                    <option>Full Stack Developer</option>
+                    <option>React Developer</option>
+                    <option>Node.js Developer</option>
+                    <option>AI / ML</option>
+                    <option>UI/UX Designer</option>
+                    <option>Marketing</option>
+                    <option>Business Development</option>
+                    <option>Campus Ambassador</option>
                   </select>
                 </Field>
                 <Field label="Technical skills" required full>
@@ -477,7 +443,7 @@ ${formData.whyJoin}
               </Field>
             </Section>
  
-            <div style={styles.declaration}>
+            <div style={styles.declaration} className="rg-declaration">
               <input type="checkbox" required style={styles.checkbox} id="declare" />
               <label htmlFor="declare" style={styles.declarationText}>
                 I confirm that the information provided in this application is accurate
@@ -485,12 +451,12 @@ ${formData.whyJoin}
               </label>
             </div>
  
-            <div style={styles.submitRow}>
-              <span style={styles.submitNote}>
+            <div style={styles.submitRow} className="rg-submit-row">
+              <span style={styles.submitNote} className="rg-submit-note">
                 By submitting, you agree to be contacted by Roomgi regarding this
                 application.
               </span>
-              <button type="submit" disabled={loading} style={styles.submitBtn}>
+              <button type="submit" disabled={loading} style={styles.submitBtn} className="rg-submit-btn">
                 {loading ? "Submitting…" : "Submit application"}
               </button>
             </div>
@@ -505,8 +471,8 @@ ${formData.whyJoin}
  
 const TopBar = () => (
   <header style={styles.topbar}>
-    <div style={styles.topbarInner}>
-      <div style={styles.logo}>
+    <div style={styles.topbarInner} className="rg-topbar-inner">
+      <div style={styles.logo} className="rg-logo">
         ROOMGI<span style={styles.logoMark}>®</span>
       </div>
       <div style={styles.topbarRight}>Careers Portal</div>
@@ -516,26 +482,27 @@ const TopBar = () => (
  
 const Footer = () => (
   <footer style={styles.footer}>
-    <div style={styles.footerInner}>
-      © {new Date().getFullYear()} Roomgi Pvt. Ltd. is building the future of accommodation through technology, innovation, and a team passionate about solving real-world problems.
+    <div style={styles.footerInner} className="rg-footer-inner">
+      © {new Date().getFullYear()} Roomgi Technologies Pvt. Ltd. All rights reserved.
+      This application is confidential and intended solely for recruitment purposes.
     </div>
   </footer>
 );
  
 const Section = ({ id, number, title, subtitle, children }) => (
-  <section id={id} style={styles.section}>
-    <div style={styles.sectionHeader}>
-      <span style={styles.sectionNumber}>{number}</span>
+  <section id={id} style={styles.section} className="rg-section">
+    <div style={styles.sectionHeader} className="rg-section-header">
+      <span style={styles.sectionNumber} className="rg-section-number">{number}</span>
       <div>
-        <h2 style={styles.sectionTitle}>{title}</h2>
+        <h2 style={styles.sectionTitle} className="rg-section-title">{title}</h2>
         {subtitle && <span style={styles.sectionSubtitle}>{subtitle}</span>}
       </div>
     </div>
-    <div style={styles.sectionBody}>{children}</div>
+    <div style={styles.sectionBody} className="rg-section-body">{children}</div>
   </section>
 );
  
-const Grid = ({ children }) => <div style={styles.grid}>{children}</div>;
+const Grid = ({ children }) => <div style={styles.grid} className="rg-grid">{children}</div>;
  
 const Field = ({ label, required, full, hint, children }) => (
   <div style={full ? styles.fieldFull : styles.field}>
@@ -774,6 +741,8 @@ const styles = {
     color: "#16233D",
     outline: "none",
     fontFamily: "inherit",
+    width: "100%",
+    boxSizing: "border-box",
   },
   select: {
     height: 40,
@@ -785,6 +754,8 @@ const styles = {
     color: "#16233D",
     outline: "none",
     fontFamily: "inherit",
+    width: "100%",
+    boxSizing: "border-box",
   },
   textarea: {
     padding: 12,
@@ -796,6 +767,8 @@ const styles = {
     outline: "none",
     fontFamily: "inherit",
     resize: "vertical",
+    width: "100%",
+    boxSizing: "border-box",
   },
   fileDrop: {
     position: "relative",
