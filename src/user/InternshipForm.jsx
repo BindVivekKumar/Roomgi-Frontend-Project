@@ -1,14 +1,12 @@
-
-
 // import React, { useState, useMemo } from "react";
 // import axios from "axios";
-
+ 
 import React, { useState, useMemo, useEffect } from "react";
 import axios from "axios";
-
-
-
-
+ 
+ 
+ 
+ 
 const SECTIONS = [
   { id: "personal", number: "01", title: "Personal information", required: ["fullName", "email", "phone"] },
   { id: "academic", number: "02", title: "Academic background", required: ["college", "degree", "year"] },
@@ -17,7 +15,7 @@ const SECTIONS = [
   { id: "documents", number: "05", title: "Documents", required: ["resume"] },
   { id: "statement", number: "06", title: "Statement of interest", required: ["whyJoin"] },
 ];
-
+ 
 const RESPONSIVE_CSS = `
   @media (max-width: 1100px) {
     .rg-topbar-inner, .rg-hero, .rg-body, .rg-footer-inner { max-width: 100% !important; }
@@ -68,12 +66,12 @@ const RESPONSIVE_CSS = `
     .rg-sidebar-text { font-size: 12.5px !important; }
   }
 `;
-
+ 
 const ResponsiveStyles = () => <style>{RESPONSIVE_CSS}</style>;
-
+ 
 const API_BASE = "https://roomgi-backend-project-7pjg.onrender.com/api/v1/payment/user";
 const RAZORPAY_KEY_ID = "rzp_live_Rn8nwfw3Hdmb8E"; // public key_id, safe to expose client-side
-
+ 
 const loadRazorpay = () => {
   return new Promise((resolve) => {
     if (window.Razorpay) return resolve(true);
@@ -84,16 +82,16 @@ const loadRazorpay = () => {
     document.body.appendChild(script);
   });
 };
-
-
-
+ 
+ 
+ 
 const InternshipForm = () => {
-
+ 
   useEffect(() => {
   loadRazorpay();
 }, []);
-
-
+ 
+ 
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -110,13 +108,14 @@ const InternshipForm = () => {
     whyJoin: "",
     availability: "",
   });
-
+ 
   const [loading, setLoading] = useState(false);
   const [loadingLabel, setLoadingLabel] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [referenceId, setReferenceId] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-
+  const [showApplicationForm, setShowApplicationForm] = useState(false);
+ 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData((prev) => ({
@@ -124,7 +123,7 @@ const InternshipForm = () => {
       [name]: files ? files[0] : value,
     }));
   };
-
+ 
   const sectionStatus = useMemo(() => {
     return SECTIONS.map((section) => {
       const optional = section.required.length === 0;
@@ -137,12 +136,21 @@ const InternshipForm = () => {
       return { ...section, optional, complete };
     });
   }, [formData]);
-
+ 
+  const handleApplyNow = () => {
+    setShowApplicationForm(true);
+    // Give the new section a moment to mount, then scroll to it
+    setTimeout(() => {
+      const el = document.getElementById("personal");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  };
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg("");
     setLoading(true);
-
+ 
     try {
       // 1. Load Razorpay checkout script
       // setLoadingLabel("Preparing checkout…");
@@ -150,25 +158,25 @@ const InternshipForm = () => {
       // if (!razorpayLoaded) {
       //   throw new Error("Unable to load Razorpay. Check your internet connection.");
       // }
-
+ 
       // 2. Upload resume first, get back a URL to store
       // setLoadingLabel("Uploading resume…");
       // const uploadForm = new FormData();
       // uploadForm.append("resume", formData.resume);
-
+ 
       // const { data: uploadRes } = await axios.post(
       //   `${API_BASE}/upload-resume`,
       //   uploadForm,
       //   { headers: { "Content-Type": "multipart/form-data" } }
       // );
-
+ 
       // if (!uploadRes?.success || !uploadRes?.url) {
       //   throw new Error("Resume upload failed. Please try again.");
       // }
       // const resumeUrl = uploadRes.url;
-
+ 
       const resumeUrl = "";
-
+ 
       // 3. Create Razorpay order
       setLoadingLabel("Creating order…");
     const { data: order } = await axios.post(
@@ -177,7 +185,7 @@ const InternshipForm = () => {
     amount: 7900,
   }
 );
-
+ 
       // 4. Open Razorpay checkout
       const options = {
         key: RAZORPAY_KEY_ID,
@@ -199,7 +207,7 @@ const InternshipForm = () => {
         razorpay_order_id: response.razorpay_order_id,
         razorpay_payment_id: response.razorpay_payment_id,
         razorpay_signature: response.razorpay_signature,
-
+ 
         fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
@@ -215,16 +223,16 @@ const InternshipForm = () => {
         availability: formData.availability,
       }
     );
-
+ 
     console.log(data);
-
+ 
    if (data.success) {
     setReferenceId(
       data.referenceId || `RMG-${Date.now()}`
     );
-
+ 
     setSubmitted(true);
-
+ 
     setLoading(false);
     setLoadingLabel("");
 }
@@ -240,7 +248,7 @@ const InternshipForm = () => {
           },
         },
       };
-
+ 
       const rzp = new window.Razorpay(options);
       rzp.on("payment.failed", (resp) => {
         console.error("Payment failed:", resp.error);
@@ -258,7 +266,7 @@ const InternshipForm = () => {
       setLoadingLabel("");
     }
   };
-
+ 
   if (submitted) {
     return (
       <div style={styles.page}>
@@ -289,15 +297,15 @@ const InternshipForm = () => {
       </div>
     );
   }
-
-
+ 
+ 
   
-
+ 
   return (
     <div style={styles.page}>
       <ResponsiveStyles />
       <TopBar />
-
+ 
       <div style={styles.hero} className="rg-hero">
         <span style={styles.heroEyebrow}>Careers · Internship Program</span>
         <h1 style={styles.heroTitle} className="rg-hero-title">Hack to Hire</h1>
@@ -306,44 +314,52 @@ const InternshipForm = () => {
           Program. Fields marked required must be filled before submission.
         </p>
       </div>
-
-      <div style={styles.body} className="rg-body">
-        <aside style={styles.sidebar} className="rg-sidebar">
-          <div style={styles.sidebarLabel}>Application sections</div>
-          <ol style={styles.sidebarList} className="rg-sidebar-list">
-            {sectionStatus.map((s) => (
-              <li key={s.id} style={styles.sidebarItem} className="rg-sidebar-item">
-                <a href={`#${s.id}`} style={styles.sidebarLink} className="rg-sidebar-link">
-                  <span
-                    style={{
-                      ...styles.sidebarBadge,
-                      ...(s.complete ? styles.sidebarBadgeDone : {}),
-                    }}
-                  >
-                    {s.complete ? "✓" : s.number}
-                  </span>
-                  <span style={styles.sidebarText} className="rg-sidebar-text">
-                    {s.title}
-                    {s.optional && <span style={styles.sidebarOptional}> · optional</span>}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ol>
-          <div style={styles.sidebarNote} className="rg-sidebar-note">
-            <div style={styles.sidebarNoteTitle}>Need help?</div>
-            <div style={styles.sidebarNoteText}>
-              Contact careers@roomgi.com for questions about this application.
+ 
+      <div
+        style={
+          showApplicationForm
+            ? styles.body
+            : { ...styles.body, gridTemplateColumns: "1fr" }
+        }
+        className="rg-body"
+      >
+        {showApplicationForm && (
+          <aside style={styles.sidebar} className="rg-sidebar">
+            <div style={styles.sidebarLabel}>Application sections</div>
+            <ol style={styles.sidebarList} className="rg-sidebar-list">
+              {sectionStatus.map((s) => (
+                <li key={s.id} style={styles.sidebarItem} className="rg-sidebar-item">
+                  <a href={`#${s.id}`} style={styles.sidebarLink} className="rg-sidebar-link">
+                    <span
+                      style={{
+                        ...styles.sidebarBadge,
+                        ...(s.complete ? styles.sidebarBadgeDone : {}),
+                      }}
+                    >
+                      {s.complete ? "✓" : s.number}
+                    </span>
+                    <span style={styles.sidebarText} className="rg-sidebar-text">
+                      {s.title}
+                      {s.optional && <span style={styles.sidebarOptional}> · optional</span>}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+            <div style={styles.sidebarNote} className="rg-sidebar-note">
+              <div style={styles.sidebarNoteTitle}>Need help?</div>
+              <div style={styles.sidebarNoteText}>
+                Contact careers@roomgi.com for questions about this application.
+              </div>
             </div>
-          </div>
-        </aside>
-
+          </aside>
+        )}
+ 
         <main style={styles.main}>
-          <form onSubmit={handleSubmit}>
-
+ 
             
             {/* ================= COMPANY OVERVIEW ================= */}
-
+ 
 <Section
   id="company"
   number="00"
@@ -375,7 +391,7 @@ const InternshipForm = () => {
     >
       Internship Program 2026
     </span>
-
+ 
     <h2
       style={{
         margin: "18px 0 12px",
@@ -387,7 +403,7 @@ const InternshipForm = () => {
       Build Products.<br />
       Build Your Career.
     </h2>
-
+ 
     <p
       style={{
         color: "rgba(255,255,255,.85)",
@@ -403,7 +419,7 @@ const InternshipForm = () => {
       on real customer problems, and gain practical industry experience while
       building solutions used by thousands of users.
     </p>
-
+ 
     <div
       style={{
         display: "grid",
@@ -437,7 +453,7 @@ const InternshipForm = () => {
           >
             {title}
           </div>
-
+ 
           <div
             style={{
               fontSize: 22,
@@ -450,7 +466,7 @@ const InternshipForm = () => {
       ))}
     </div>
   </div>
-
+ 
   <div
     style={{
       display: "grid",
@@ -474,7 +490,7 @@ const InternshipForm = () => {
       >
         What You'll Work On
       </h3>
-
+ 
       <ul
         style={{
           color: "#5B6B84",
@@ -490,7 +506,7 @@ const InternshipForm = () => {
         <li>Real Estate Technology Platform</li>
       </ul>
     </div>
-
+ 
     <div
       style={{
         background: "#FFFFFF",
@@ -507,7 +523,7 @@ const InternshipForm = () => {
       >
         Why Join Roomgi?
       </h3>
-
+ 
       <ul
         style={{
           color: "#5B6B84",
@@ -523,7 +539,7 @@ const InternshipForm = () => {
         <li>Fast learning startup environment</li>
       </ul>
     </div>
-
+ 
     <div
       style={{
         background: "#FFFFFF",
@@ -540,7 +556,7 @@ const InternshipForm = () => {
       >
         Our Hiring Philosophy
       </h3>
-
+ 
       <p
         style={{
           color: "#5B6B84",
@@ -556,9 +572,9 @@ const InternshipForm = () => {
     </div>
   </div>
 </Section>
-
+ 
 {/* ================= TECHNICAL TRACKS ================= */}
-
+ 
 <Section
   id="career"
   number="00A"
@@ -574,7 +590,7 @@ const InternshipForm = () => {
   }}
 >
   {/* ================= Alpha ================= */}
-
+ 
   <div
     style={{
       borderRadius: 18,
@@ -605,11 +621,11 @@ const InternshipForm = () => {
       >
         TOP 5% PERFORMERS
       </span>
-
+ 
       <h2 style={{ margin: "16px 0 8px" }}>
         Alpha Tier
       </h2>
-
+ 
       <div
         style={{
           fontSize: 34,
@@ -619,7 +635,7 @@ const InternshipForm = () => {
         ₹6.90 LPA
       </div>
     </div>
-
+ 
     <div style={{ padding: 24 }}>
       <p
         style={{
@@ -631,7 +647,7 @@ const InternshipForm = () => {
         outstanding engineering capability, leadership, ownership,
         innovation and product impact throughout the internship.
       </p>
-
+ 
       <div
         style={{
           display: "flex",
@@ -664,9 +680,9 @@ const InternshipForm = () => {
       </div>
     </div>
   </div>
-
+ 
   {/* ================= Delta ================= */}
-
+ 
   <div
     style={{
       borderRadius: 18,
@@ -695,11 +711,11 @@ const InternshipForm = () => {
       >
         HIGH PERFORMERS
       </span>
-
+ 
       <h2 style={{ margin: "16px 0 8px" }}>
         Delta Tier
       </h2>
-
+ 
       <div
         style={{
           fontSize: 34,
@@ -709,7 +725,7 @@ const InternshipForm = () => {
         ₹5.30 LPA
       </div>
     </div>
-
+ 
     <div style={{ padding: 24 }}>
       <p
         style={{
@@ -721,7 +737,7 @@ const InternshipForm = () => {
         solutions, collaborate effectively, solve complex problems and
         maintain high professional standards.
       </p>
-
+ 
       <div
         style={{
           display: "flex",
@@ -754,9 +770,9 @@ const InternshipForm = () => {
       </div>
     </div>
   </div>
-
+ 
   {/* ================= Nova ================= */}
-
+ 
   <div
     style={{
       borderRadius: 18,
@@ -785,11 +801,11 @@ const InternshipForm = () => {
       >
         SUCCESSFUL INTERNS
       </span>
-
+ 
       <h2 style={{ margin: "16px 0 8px" }}>
         Nova Tier
       </h2>
-
+ 
       <div
         style={{
           fontSize: 34,
@@ -799,7 +815,7 @@ const InternshipForm = () => {
         ₹3.80 LPA
       </div>
     </div>
-
+ 
     <div style={{ padding: 24 }}>
       <p
         style={{
@@ -811,7 +827,7 @@ const InternshipForm = () => {
         demonstrating strong learning ability, professionalism, teamwork
         and continuous technical growth.
       </p>
-
+ 
       <div
         style={{
           display: "flex",
@@ -845,9 +861,9 @@ const InternshipForm = () => {
     </div>
   </div>
 </div>
-
+ 
   <br />
-
+ 
  <h3
   style={{
     color: "#0A1F44",
@@ -859,7 +875,7 @@ const InternshipForm = () => {
 >
   Business & Non-Technical Career Progression
 </h3>
-
+ 
 <p
   style={{
     textAlign: "center",
@@ -875,7 +891,7 @@ const InternshipForm = () => {
   Development. Full-Time employment is offered based on overall internship
   performance, business impact and leadership potential.
 </p>
-
+ 
 <div
   style={{
     display: "grid",
@@ -884,7 +900,7 @@ const InternshipForm = () => {
   }}
 >
   {/* Alpha */}
-
+ 
   <div
     style={{
       borderRadius: 18,
@@ -913,11 +929,11 @@ const InternshipForm = () => {
       >
         TOP BUSINESS TALENT
       </span>
-
+ 
       <h2 style={{ margin: "16px 0 8px" }}>
         Alpha Tier
       </h2>
-
+ 
       <div
         style={{
           fontSize: 34,
@@ -927,7 +943,7 @@ const InternshipForm = () => {
         ₹6.60 LPA
       </div>
     </div>
-
+ 
     <div style={{ padding: 24 }}>
       <p
         style={{
@@ -939,7 +955,7 @@ const InternshipForm = () => {
         leadership, strategic thinking, business growth, client management
         and measurable impact throughout the internship.
       </p>
-
+ 
       <div
         style={{
           display: "flex",
@@ -972,9 +988,9 @@ const InternshipForm = () => {
       </div>
     </div>
   </div>
-
+ 
   {/* Delta */}
-
+ 
   <div
     style={{
       borderRadius: 18,
@@ -1003,11 +1019,11 @@ const InternshipForm = () => {
       >
         HIGH PERFORMERS
       </span>
-
+ 
       <h2 style={{ margin: "16px 0 8px" }}>
         Delta Tier
       </h2>
-
+ 
       <div
         style={{
           fontSize: 34,
@@ -1017,7 +1033,7 @@ const InternshipForm = () => {
         ₹5.00 LPA
       </div>
     </div>
-
+ 
     <div style={{ padding: 24 }}>
       <p
         style={{
@@ -1029,7 +1045,7 @@ const InternshipForm = () => {
         communicate effectively, collaborate with teams and execute
         responsibilities with professionalism.
       </p>
-
+ 
       <div
         style={{
           display: "flex",
@@ -1062,9 +1078,9 @@ const InternshipForm = () => {
       </div>
     </div>
   </div>
-
+ 
   {/* Nova */}
-
+ 
   <div
     style={{
       borderRadius: 18,
@@ -1093,11 +1109,11 @@ const InternshipForm = () => {
       >
         SUCCESSFUL INTERNS
       </span>
-
+ 
       <h2 style={{ margin: "16px 0 8px" }}>
         Nova Tier
       </h2>
-
+ 
       <div
         style={{
           fontSize: 34,
@@ -1107,7 +1123,7 @@ const InternshipForm = () => {
         ₹3.50 LPA
       </div>
     </div>
-
+ 
     <div style={{ padding: 24 }}>
       <p
         style={{
@@ -1119,7 +1135,7 @@ const InternshipForm = () => {
         demonstrating professionalism, adaptability, continuous learning and
         strong collaboration.
       </p>
-
+ 
       <div
         style={{
           display: "flex",
@@ -1153,9 +1169,9 @@ const InternshipForm = () => {
     </div>
   </div>
 </div>
-
+ 
 {/* ================= Selection Process ================= */}
-
+ 
 <div
   style={{
     marginTop: 40,
@@ -1175,7 +1191,7 @@ const InternshipForm = () => {
     <h2 style={{ margin: 0 }}>
       Internship Selection Process
     </h2>
-
+ 
     <p
       style={{
         marginTop: 8,
@@ -1186,7 +1202,7 @@ const InternshipForm = () => {
       process.
     </p>
   </div>
-
+ 
   <div
     style={{
       padding: 28,
@@ -1228,7 +1244,7 @@ const InternshipForm = () => {
         >
           {step}
         </div>
-
+ 
         <h4
           style={{
             margin: 0,
@@ -1240,7 +1256,7 @@ const InternshipForm = () => {
       </div>
     ))}
   </div>
-
+ 
   <div
     style={{
       background: "#F8FAFC",
@@ -1260,9 +1276,66 @@ const InternshipForm = () => {
     the company's evaluation criteria.
   </div>
 </div>
+ 
+{!showApplicationForm && (
+  <div
+    style={{
+      marginTop: 40,
+      textAlign: "center",
+      padding: "36px 24px",
+      background:
+        "linear-gradient(135deg,#0A1F44 0%, #163E7A 55%, #2455A4 100%)",
+      borderRadius: 16,
+      boxShadow: "0 20px 45px rgba(10,31,68,.15)",
+    }}
+  >
+    <h3
+      style={{
+        margin: "0 0 10px",
+        color: "#fff",
+        fontSize: 22,
+        fontWeight: 700,
+      }}
+    >
+      Ready to apply?
+    </h3>
+    <p
+      style={{
+        margin: "0 auto 22px",
+        color: "rgba(255,255,255,.85)",
+        maxWidth: 560,
+        lineHeight: 1.7,
+        fontSize: 14.5,
+      }}
+    >
+      Click below to open the application form and submit your details for
+      the Roomgi Internship Program.
+    </p>
+    <button
+      type="button"
+      onClick={handleApplyNow}
+      style={{
+        height: 52,
+        padding: "0 36px",
+        border: "none",
+        borderRadius: 10,
+        background: "#fff",
+        color: "#0A1F44",
+        fontSize: 16,
+        fontWeight: 700,
+        cursor: "pointer",
+        boxShadow: "0 15px 35px rgba(0,0,0,.2)",
+      }}
+    >
+      Apply Now
+    </button>
+  </div>
+)}
 </Section>
-
-
+ 
+{showApplicationForm && (
+  <form onSubmit={handleSubmit}>
+ 
             <Section
   id="personal"
   number="01"
@@ -1287,7 +1360,7 @@ const InternshipForm = () => {
     >
       Candidate Profile
     </h3>
-
+ 
     <p
       style={{
         margin: 0,
@@ -1301,7 +1374,7 @@ const InternshipForm = () => {
       verification and internship records.
     </p>
   </div>
-
+ 
   <Grid>
     <Field
       label="Full Name"
@@ -1320,7 +1393,7 @@ const InternshipForm = () => {
         >
           👤
         </span>
-
+ 
         <input
           style={{
             ...styles.input,
@@ -1334,7 +1407,7 @@ const InternshipForm = () => {
         />
       </div>
     </Field>
-
+ 
     <Field
       label="Email Address"
       required
@@ -1352,7 +1425,7 @@ const InternshipForm = () => {
         >
           📧
         </span>
-
+ 
         <input
           type="email"
           style={{
@@ -1367,7 +1440,7 @@ const InternshipForm = () => {
         />
       </div>
     </Field>
-
+ 
     <Field
       label="Mobile Number"
       required
@@ -1385,7 +1458,7 @@ const InternshipForm = () => {
         >
           📱
         </span>
-
+ 
         <input
           style={{
             ...styles.input,
@@ -1399,7 +1472,7 @@ const InternshipForm = () => {
         />
       </div>
     </Field>
-
+ 
     <Field
       label="Current City"
       required
@@ -1416,7 +1489,7 @@ const InternshipForm = () => {
     </Field>
   </Grid>
 </Section>
-
+ 
             <Section
   id="academic"
   number="02"
@@ -1441,7 +1514,7 @@ const InternshipForm = () => {
     >
       Academic Details
     </h3>
-
+ 
     <p
       style={{
         margin: 0,
@@ -1453,9 +1526,9 @@ const InternshipForm = () => {
       help us understand your academic background and eligibility.
     </p>
   </div>
-
+ 
   <Grid>
-
+ 
     <Field label="College / University" required>
       <input
         style={styles.input}
@@ -1466,7 +1539,7 @@ const InternshipForm = () => {
         required
       />
     </Field>
-
+ 
     <Field label="Degree" required>
       <select
         style={styles.select}
@@ -1491,7 +1564,7 @@ const InternshipForm = () => {
         <option>Other</option>
       </select>
     </Field>
-
+ 
     <Field label="Specialization / Branch" required>
       <input
         style={styles.input}
@@ -1502,7 +1575,7 @@ const InternshipForm = () => {
         required
       />
     </Field>
-
+ 
     <Field label="Current Academic Year" required>
       <select
         style={styles.select}
@@ -1519,7 +1592,7 @@ const InternshipForm = () => {
         <option>Graduate</option>
       </select>
     </Field>
-
+ 
     <Field label="Current CGPA">
       <input
         style={styles.input}
@@ -1529,7 +1602,7 @@ const InternshipForm = () => {
         placeholder="8.25"
       />
     </Field>
-
+ 
     <Field label="Graduation Percentage (If Completed)">
       <input
         style={styles.input}
@@ -1539,7 +1612,7 @@ const InternshipForm = () => {
         placeholder="78%"
       />
     </Field>
-
+ 
     <Field label="Diploma Percentage (If Applicable)">
       <input
         style={styles.input}
@@ -1549,7 +1622,7 @@ const InternshipForm = () => {
         placeholder="82%"
       />
     </Field>
-
+ 
     <Field label="Class XII Percentage">
       <input
         style={styles.input}
@@ -1559,7 +1632,7 @@ const InternshipForm = () => {
         placeholder="85%"
       />
     </Field>
-
+ 
     <Field label="Class X Percentage">
       <input
         style={styles.input}
@@ -1569,7 +1642,7 @@ const InternshipForm = () => {
         placeholder="90%"
       />
     </Field>
-
+ 
     <Field label="Current Active Backlogs">
       <select
         style={styles.select}
@@ -1584,10 +1657,10 @@ const InternshipForm = () => {
         <option>3+</option>
       </select>
     </Field>
-
+ 
   </Grid>
 </Section>
-
+ 
             <Section
   id="role"
   number="03"
@@ -1612,7 +1685,7 @@ const InternshipForm = () => {
     >
       Career Preferences
     </h3>
-
+ 
     <p
       style={{
         margin: 0,
@@ -1624,9 +1697,9 @@ const InternshipForm = () => {
       technical skills, experience and availability.
     </p>
   </div>
-
+ 
   <Grid>
-
+ 
     <Field label="Preferred Internship Role" required full>
       <select
         style={styles.select}
@@ -1636,7 +1709,7 @@ const InternshipForm = () => {
         required
       >
         <option value="">Select a Role</option>
-
+ 
         <optgroup label="Software Development">
           <option>Frontend Developer</option>
           <option>Backend Developer</option>
@@ -1647,33 +1720,33 @@ const InternshipForm = () => {
           <option>Java Developer</option>
           <option>C++ Developer</option>
         </optgroup>
-
+ 
         <optgroup label="Mobile Development">
           <option>Android Developer</option>
           <option>Flutter Developer</option>
           <option>React Native Developer</option>
         </optgroup>
-
+ 
         <optgroup label="Artificial Intelligence">
           <option>AI / ML Engineer</option>
           <option>Data Scientist</option>
           <option>Data Analyst</option>
           <option>Computer Vision</option>
         </optgroup>
-
+ 
         <optgroup label="Infrastructure">
           <option>Cloud Engineer</option>
           <option>DevOps Engineer</option>
           <option>Cyber Security</option>
           <option>QA Engineer</option>
         </optgroup>
-
+ 
         <optgroup label="Design">
           <option>UI/UX Designer</option>
           <option>Graphic Designer</option>
           <option>Product Designer</option>
         </optgroup>
-
+ 
         <optgroup label="Business Roles">
           <option>Business Development</option>
           <option>Sales</option>
@@ -1687,11 +1760,11 @@ const InternshipForm = () => {
           <option>Project Management</option>
           <option>Product Management</option>
         </optgroup>
-
+ 
         <option>Other</option>
       </select>
     </Field>
-
+ 
     <Field
       label="Primary Technical Skills"
       required
@@ -1708,7 +1781,7 @@ const InternshipForm = () => {
         required
       />
     </Field>
-
+ 
     <Field label="Experience Level" required>
       <select
         style={styles.select}
@@ -1725,7 +1798,7 @@ const InternshipForm = () => {
         <option>2+ Years</option>
       </select>
     </Field>
-
+ 
     <Field label="Internship Availability" required>
       <select
         style={styles.select}
@@ -1741,7 +1814,7 @@ const InternshipForm = () => {
         <option>Within 60 Days</option>
       </select>
     </Field>
-
+ 
     <Field label="Preferred Work Mode">
       <select
         style={styles.select}
@@ -1756,7 +1829,7 @@ const InternshipForm = () => {
         <option>Flexible</option>
       </select>
     </Field>
-
+ 
     <Field label="Preferred Work Location">
       <input
         style={styles.input}
@@ -1766,7 +1839,7 @@ const InternshipForm = () => {
         placeholder="Delhi NCR / Bengaluru / Remote"
       />
     </Field>
-
+ 
     <Field label="Have you completed any internships?">
       <select
         style={styles.select}
@@ -1779,7 +1852,7 @@ const InternshipForm = () => {
         <option>No</option>
       </select>
     </Field>
-
+ 
     <Field label="GitHub Contributions / Coding Profile">
       <input
         style={styles.input}
@@ -1789,10 +1862,10 @@ const InternshipForm = () => {
         placeholder="LeetCode / CodeChef / HackerRank Profile URL"
       />
     </Field>
-
+ 
   </Grid>
 </Section>
-
+ 
            <Section
   id="links"
   number="04"
@@ -1817,7 +1890,7 @@ const InternshipForm = () => {
     >
       Online Professional Presence
     </h3>
-
+ 
     <p
       style={{
         margin: 0,
@@ -1830,9 +1903,9 @@ const InternshipForm = () => {
       achievements and overall professional experience.
     </p>
   </div>
-
+ 
   <Grid>
-
+ 
     <Field
       label="LinkedIn Profile"
       hint="Professional networking profile"
@@ -1845,7 +1918,7 @@ const InternshipForm = () => {
         placeholder="https://linkedin.com/in/yourname"
       />
     </Field>
-
+ 
     <Field
       label="GitHub Profile"
       hint="Source code & open-source contributions"
@@ -1858,7 +1931,7 @@ const InternshipForm = () => {
         placeholder="https://github.com/username"
       />
     </Field>
-
+ 
     <Field
       label="Portfolio Website"
       hint="Personal website or portfolio"
@@ -1871,7 +1944,7 @@ const InternshipForm = () => {
         placeholder="https://yourportfolio.com"
       />
     </Field>
-
+ 
     <Field
       label="Resume Website / Linktree"
       hint="Optional"
@@ -1884,7 +1957,7 @@ const InternshipForm = () => {
         placeholder="https://linktr.ee/username"
       />
     </Field>
-
+ 
     <Field
       label="LeetCode Profile"
       hint="Coding profile"
@@ -1897,7 +1970,7 @@ const InternshipForm = () => {
         placeholder="https://leetcode.com/username"
       />
     </Field>
-
+ 
     <Field
       label="Codeforces / CodeChef / HackerRank"
       hint="Competitive programming profile"
@@ -1910,7 +1983,7 @@ const InternshipForm = () => {
         placeholder="https://codeforces.com/profile/username"
       />
     </Field>
-
+ 
     <Field
       label="Behance / Dribbble"
       hint="For UI/UX & Graphic Designers"
@@ -1923,7 +1996,7 @@ const InternshipForm = () => {
         placeholder="https://behance.net/username"
       />
     </Field>
-
+ 
     <Field
       label="Other Relevant Profile"
       hint="Medium, Kaggle, YouTube, Dev.to, etc."
@@ -1936,10 +2009,10 @@ const InternshipForm = () => {
         placeholder="https://..."
       />
     </Field>
-
+ 
   </Grid>
 </Section>
-
+ 
            <Section
   id="documents"
   number="05"
@@ -1964,7 +2037,7 @@ const InternshipForm = () => {
     >
       Document Submission
     </h3>
-
+ 
     <p
       style={{
         margin: 0,
@@ -1976,11 +2049,11 @@ const InternshipForm = () => {
       used for recruitment and verification purposes.
     </p>
   </div>
-
+ 
   <Grid>
-
+ 
     {/* Resume */}
-
+ 
     <Field
       label="Resume / CV"
       required
@@ -1995,21 +2068,21 @@ const InternshipForm = () => {
           required
           style={styles.fileInput}
         />
-
+ 
         <span style={styles.fileDropText}>
           {formData.resume
             ? formData.resume.name
             : "Upload your latest Resume"}
         </span>
-
+ 
         <span style={styles.fileDropButton}>
           Browse
         </span>
       </label>
     </Field>
-
+ 
     {/* Cover Letter */}
-
+ 
     <Field
       label="Cover Letter (Optional)"
       hint="PDF or DOC"
@@ -2022,21 +2095,21 @@ const InternshipForm = () => {
           onChange={handleChange}
           style={styles.fileInput}
         />
-
+ 
         <span style={styles.fileDropText}>
           {formData.coverLetter
             ? formData.coverLetter.name
             : "Upload Cover Letter"}
         </span>
-
+ 
         <span style={styles.fileDropButton}>
           Browse
         </span>
       </label>
     </Field>
-
+ 
     {/* Certificates */}
-
+ 
     <Field
       label="Certificates (Optional)"
       hint="Internship, Training, Hackathon, etc."
@@ -2049,21 +2122,21 @@ const InternshipForm = () => {
           onChange={handleChange}
           style={styles.fileInput}
         />
-
+ 
         <span style={styles.fileDropText}>
           {formData.certificate
             ? formData.certificate.name
             : "Upload Certificates"}
         </span>
-
+ 
         <span style={styles.fileDropButton}>
           Browse
         </span>
       </label>
     </Field>
-
+ 
     {/* ID Proof */}
-
+ 
     <Field
       label="Government ID (Optional)"
       hint="Aadhaar / PAN / Driving Licence"
@@ -2076,21 +2149,21 @@ const InternshipForm = () => {
           onChange={handleChange}
           style={styles.fileInput}
         />
-
+ 
         <span style={styles.fileDropText}>
           {formData.idProof
             ? formData.idProof.name
             : "Upload ID Proof"}
         </span>
-
+ 
         <span style={styles.fileDropButton}>
           Browse
         </span>
       </label>
     </Field>
-
+ 
   </Grid>
-
+ 
   <div
     style={{
       marginTop: 25,
@@ -2103,7 +2176,7 @@ const InternshipForm = () => {
     <strong style={{ color: "#0A1F44" }}>
       Upload Guidelines
     </strong>
-
+ 
     <ul
       style={{
         marginTop: 12,
@@ -2119,7 +2192,7 @@ const InternshipForm = () => {
     </ul>
   </div>
 </Section>
-
+ 
             <Section
   id="statement"
   number="06"
@@ -2144,7 +2217,7 @@ const InternshipForm = () => {
     >
       Tell Us About Yourself
     </h3>
-
+ 
     <p
       style={{
         margin: 0,
@@ -2156,9 +2229,9 @@ const InternshipForm = () => {
       achievements and why you believe you are a good fit for Roomgi.
     </p>
   </div>
-
+ 
   <Grid>
-
+ 
     <Field
       label="Why do you want to join Roomgi?"
       required
@@ -2175,7 +2248,7 @@ const InternshipForm = () => {
         required
       />
     </Field>
-
+ 
     <Field
       label="Career Goal (Optional)"
       full
@@ -2189,7 +2262,7 @@ const InternshipForm = () => {
         placeholder="Where do you see yourself in the next 3-5 years?"
       />
     </Field>
-
+ 
     <Field
       label="Greatest Achievement (Optional)"
       full
@@ -2203,7 +2276,7 @@ const InternshipForm = () => {
         placeholder="Share a project, internship, hackathon, competition, leadership role or any achievement you are proud of."
       />
     </Field>
-
+ 
     <Field
       label="What makes you different from other candidates?"
       full
@@ -2217,7 +2290,7 @@ const InternshipForm = () => {
         placeholder="Highlight your strengths, skills, attitude, leadership, creativity or any unique qualities."
       />
     </Field>
-
+ 
     <Field label="Are you willing to relocate if required?">
       <select
         style={styles.select}
@@ -2231,7 +2304,7 @@ const InternshipForm = () => {
         <option>Remote Preferred</option>
       </select>
     </Field>
-
+ 
     <Field label="How did you hear about Roomgi?">
       <select
         style={styles.select}
@@ -2250,9 +2323,9 @@ const InternshipForm = () => {
         <option>Other</option>
       </select>
     </Field>
-
+ 
   </Grid>
-
+ 
   <div
     style={{
       marginTop: 25,
@@ -2269,7 +2342,7 @@ const InternshipForm = () => {
       Candidate Note
     </strong>
     <br /><br />
-
+ 
     We value curiosity, ownership, continuous learning and teamwork above
     everything else. Academic scores are only one aspect of our evaluation.
     We encourage applicants to showcase their real skills, projects,
@@ -2302,7 +2375,7 @@ const InternshipForm = () => {
     >
       Candidate Declaration
     </h3>
-
+ 
     <p
       style={{
         margin: "8px 0 0",
@@ -2315,7 +2388,7 @@ const InternshipForm = () => {
       application.
     </p>
   </div>
-
+ 
   <div
     style={{
       padding: "24px",
@@ -2340,7 +2413,7 @@ const InternshipForm = () => {
           cursor: "pointer",
         }}
       />
-
+ 
       <label
         htmlFor="declare"
         style={{
@@ -2354,24 +2427,24 @@ const InternshipForm = () => {
         including my educational qualifications, professional experience,
         projects, achievements and supporting documents, is true, complete and
         accurate to the best of my knowledge.
-
+ 
         <br /><br />
-
+ 
         I understand that any false, misleading or incomplete information may
         result in the rejection of my application, withdrawal of any internship
         offer or termination of employment if discovered at any stage of the
         recruitment process.
-
+ 
         <br /><br />
-
+ 
         I authorize <strong>Roomgi Pvt. Ltd.</strong> to verify
         the information provided in this application and agree to the
         processing of my personal information solely for recruitment,
         verification and employment-related purposes in accordance with the
         company's privacy practices.
-
+ 
         <br /><br />
-
+ 
         I acknowledge that submission of this application does not guarantee an
         interview, internship offer or full-time employment, and that all
         selection decisions are based on merit, performance and organizational
@@ -2380,7 +2453,7 @@ const InternshipForm = () => {
     </div>
   </div>
 </div>
-
+ 
            {errorMsg && (
   <div
     style={{
@@ -2399,7 +2472,7 @@ const InternshipForm = () => {
     {errorMsg}
   </div>
 )}
-
+ 
 <div
   style={{
     marginTop: 35,
@@ -2427,7 +2500,7 @@ const InternshipForm = () => {
       >
         Final Review
       </h3>
-
+ 
       <p
         style={{
           margin: 0,
@@ -2439,32 +2512,32 @@ const InternshipForm = () => {
         Please review your application carefully before submitting.
         Once submitted, your application will be reviewed by our
         Talent Acquisition Team.
-
+ 
         <br /><br />
-
+ 
         <strong>Selection Timeline:</strong>
-
+ 
         <br />
-
+ 
         • Application Review
-
+ 
         <br />
-
+ 
         • Online Assessment
-
+ 
         <br />
-
+ 
         • Technical / HR Interview
-
+ 
         <br />
-
+ 
         • Internship Offer
-
+ 
         <br />
-
+ 
         • Performance Evaluation & PPO
       </p>
-
+ 
       <div
         style={{
           marginTop: 20,
@@ -2495,7 +2568,7 @@ const InternshipForm = () => {
         ))}
       </div>
     </div>
-
+ 
     <div
       style={{
         minWidth: 280,
@@ -2526,7 +2599,7 @@ const InternshipForm = () => {
           ? (loadingLabel || "Submitting Application...")
           : "Submit Application"}
       </button>
-
+ 
       <p
         style={{
           marginTop: 15,
@@ -2538,24 +2611,25 @@ const InternshipForm = () => {
         By clicking <strong>"Submit Application"</strong>, you agree to
         Roomgi's recruitment process, privacy policy and candidate
         declaration.
-
+ 
         <br /><br />
-
+ 
         Expected review time:
         <strong> 5–7 Business Days</strong>
       </p>
     </div>
   </div>
 </div>
-          </form>
+  </form>
+)}
         </main>
       </div>
-
+ 
       <Footer />
     </div>
   );
 };
-
+ 
 const TopBar = () => (
   <header style={styles.topbar}>
     <div style={styles.topbarInner} className="rg-topbar-inner">
@@ -2566,7 +2640,7 @@ const TopBar = () => (
     </div>
   </header>
 );
-
+ 
 const Footer = () => (
   <footer style={styles.footer}>
     <div style={styles.footerInner} className="rg-footer-inner">
@@ -2575,7 +2649,7 @@ const Footer = () => (
     </div>
   </footer>
 );
-
+ 
 const Section = ({ id, number, title, subtitle, children }) => (
   <section id={id} style={styles.section} className="rg-section">
     <div style={styles.sectionHeader} className="rg-section-header">
@@ -2588,9 +2662,9 @@ const Section = ({ id, number, title, subtitle, children }) => (
     <div style={styles.sectionBody} className="rg-section-body">{children}</div>
   </section>
 );
-
+ 
 const Grid = ({ children }) => <div style={styles.grid} className="rg-grid">{children}</div>;
-
+ 
 const Field = ({ label, required, full, hint, children }) => (
   <div style={full ? styles.fieldFull : styles.field}>
     <label style={styles.label}>
@@ -2600,7 +2674,7 @@ const Field = ({ label, required, full, hint, children }) => (
     {hint && <span style={styles.hint}>{hint}</span>}
   </div>
 );
-
+ 
 const styles = {
   page: { minHeight: "100vh", background: "#F3F5F8", fontFamily: "'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", color: "#16233D" },
   topbar: { background: "#0A1F44", borderBottom: "1px solid #0A1F44" },
@@ -2664,5 +2738,5 @@ const styles = {
   refValue: { fontFamily: "'IBM Plex Mono', monospace", fontSize: 18, fontWeight: 600, color: "#0A1F44" },
   confirmSub: { fontSize: 12.5, color: "#8493A9", lineHeight: 1.6, margin: 0 },
 };
-
+ 
 export default InternshipForm;
