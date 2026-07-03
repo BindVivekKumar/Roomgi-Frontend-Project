@@ -1490,7 +1490,7 @@ const InternshipForm = () => {
   </Grid>
 </Section>
  
-            <Section
+          <Section
   id="academic"
   number="02"
   title="Academic Background"
@@ -1514,7 +1514,7 @@ const InternshipForm = () => {
     >
       Academic Details
     </h3>
- 
+
     <p
       style={{
         margin: 0,
@@ -1522,13 +1522,12 @@ const InternshipForm = () => {
         lineHeight: 1.7,
       }}
     >
-      Please provide your educational qualifications accurately. These details
-      help us understand your academic background and eligibility.
+      Provide your current academic information to help us assess your eligibility.
     </p>
   </div>
- 
+
   <Grid>
- 
+
     <Field label="College / University" required>
       <input
         style={styles.input}
@@ -1539,7 +1538,7 @@ const InternshipForm = () => {
         required
       />
     </Field>
- 
+
     <Field label="Degree" required>
       <select
         style={styles.select}
@@ -1564,7 +1563,7 @@ const InternshipForm = () => {
         <option>Other</option>
       </select>
     </Field>
- 
+
     <Field label="Specialization / Branch" required>
       <input
         style={styles.input}
@@ -1575,7 +1574,7 @@ const InternshipForm = () => {
         required
       />
     </Field>
- 
+
     <Field label="Current Academic Year" required>
       <select
         style={styles.select}
@@ -1592,58 +1591,18 @@ const InternshipForm = () => {
         <option>Graduate</option>
       </select>
     </Field>
- 
-    <Field label="Current CGPA">
+
+    <Field label="Current CGPA / Percentage">
       <input
         style={styles.input}
         name="cgpa"
         value={formData.cgpa || ""}
         onChange={handleChange}
-        placeholder="8.25"
+        placeholder="8.25 or 82%"
       />
     </Field>
- 
-    <Field label="Graduation Percentage (If Completed)">
-      <input
-        style={styles.input}
-        name="graduationPercentage"
-        value={formData.graduationPercentage || ""}
-        onChange={handleChange}
-        placeholder="78%"
-      />
-    </Field>
- 
-    <Field label="Diploma Percentage (If Applicable)">
-      <input
-        style={styles.input}
-        name="diplomaPercentage"
-        value={formData.diplomaPercentage || ""}
-        onChange={handleChange}
-        placeholder="82%"
-      />
-    </Field>
- 
-    <Field label="Class XII Percentage">
-      <input
-        style={styles.input}
-        name="class12"
-        value={formData.class12 || ""}
-        onChange={handleChange}
-        placeholder="85%"
-      />
-    </Field>
- 
-    <Field label="Class X Percentage">
-      <input
-        style={styles.input}
-        name="class10"
-        value={formData.class10 || ""}
-        onChange={handleChange}
-        placeholder="90%"
-      />
-    </Field>
- 
-    <Field label="Current Active Backlogs">
+
+    <Field label="Active Backlogs">
       <select
         style={styles.select}
         name="backlogs"
@@ -1657,7 +1616,7 @@ const InternshipForm = () => {
         <option>3+</option>
       </select>
     </Field>
- 
+
   </Grid>
 </Section>
  
@@ -1866,11 +1825,11 @@ const InternshipForm = () => {
   </Grid>
 </Section>
  
-           <Section
+          <Section
   id="links"
   number="04"
   title="Professional Profiles"
-  subtitle="Showcase your work and professional presence"
+  subtitle="Share your professional profiles and portfolio"
 >
   <div
     style={{
@@ -1888,9 +1847,9 @@ const InternshipForm = () => {
         fontSize: 20,
       }}
     >
-      Online Professional Presence
+      Professional Profiles
     </h3>
- 
+
     <p
       style={{
         margin: 0,
@@ -1898,14 +1857,13 @@ const InternshipForm = () => {
         lineHeight: 1.7,
       }}
     >
-      Share your professional profiles and project portfolios. Strong online
-      profiles help us better understand your technical skills, projects,
-      achievements and overall professional experience.
+      Share your professional profiles to help us evaluate your projects,
+      coding skills, and experience.
     </p>
   </div>
- 
+
   <Grid>
- 
+
     <Field
       label="LinkedIn Profile"
       hint="Professional networking profile"
@@ -1918,10 +1876,10 @@ const InternshipForm = () => {
         placeholder="https://linkedin.com/in/yourname"
       />
     </Field>
- 
+
     <Field
       label="GitHub Profile"
-      hint="Source code & open-source contributions"
+      hint="Source code & projects"
     >
       <input
         style={styles.input}
@@ -1931,10 +1889,10 @@ const InternshipForm = () => {
         placeholder="https://github.com/username"
       />
     </Field>
- 
+
     <Field
       label="Portfolio Website"
-      hint="Personal website or portfolio"
+      hint="Personal website or portfolio (Optional)"
     >
       <input
         style={styles.input}
@@ -1944,23 +1902,10 @@ const InternshipForm = () => {
         placeholder="https://yourportfolio.com"
       />
     </Field>
- 
-    <Field
-      label="Resume Website / Linktree"
-      hint="Optional"
-    >
-      <input
-        style={styles.input}
-        name="resumeWebsite"
-        value={formData.resumeWebsite || ""}
-        onChange={handleChange}
-        placeholder="https://linktr.ee/username"
-      />
-    </Field>
- 
+
     <Field
       label="LeetCode Profile"
-      hint="Coding profile"
+      hint="Coding profile (Optional)"
     >
       <input
         style={styles.input}
@@ -1970,46 +1915,7 @@ const InternshipForm = () => {
         placeholder="https://leetcode.com/username"
       />
     </Field>
- 
-    <Field
-      label="Codeforces / CodeChef / HackerRank"
-      hint="Competitive programming profile"
-    >
-      <input
-        style={styles.input}
-        name="codingPlatform"
-        value={formData.codingPlatform || ""}
-        onChange={handleChange}
-        placeholder="https://codeforces.com/profile/username"
-      />
-    </Field>
- 
-    <Field
-      label="Behance / Dribbble"
-      hint="For UI/UX & Graphic Designers"
-    >
-      <input
-        style={styles.input}
-        name="designPortfolio"
-        value={formData.designPortfolio || ""}
-        onChange={handleChange}
-        placeholder="https://behance.net/username"
-      />
-    </Field>
- 
-    <Field
-      label="Other Relevant Profile"
-      hint="Medium, Kaggle, YouTube, Dev.to, etc."
-    >
-      <input
-        style={styles.input}
-        name="otherProfile"
-        value={formData.otherProfile || ""}
-        onChange={handleChange}
-        placeholder="https://..."
-      />
-    </Field>
- 
+
   </Grid>
 </Section>
  
@@ -2051,118 +1957,36 @@ const InternshipForm = () => {
   </div>
  
   <Grid>
- 
-    {/* Resume */}
- 
-    <Field
-      label="Resume / CV"
-      required
-      hint="PDF, DOC or DOCX (Maximum 5 MB)"
-    >
-      <label style={styles.fileDrop}>
-        <input
-          type="file"
-          name="resume"
-          accept=".pdf,.doc,.docx"
-          onChange={handleChange}
-          required
-          style={styles.fileInput}
-        />
- 
-        <span style={styles.fileDropText}>
-          {formData.resume
-            ? formData.resume.name
-            : "Upload your latest Resume"}
-        </span>
- 
-        <span style={styles.fileDropButton}>
-          Browse
-        </span>
-      </label>
-    </Field>
- 
-    {/* Cover Letter */}
- 
-    <Field
-      label="Cover Letter (Optional)"
-      hint="PDF or DOC"
-    >
-      <label style={styles.fileDrop}>
-        <input
-          type="file"
-          name="coverLetter"
-          accept=".pdf,.doc,.docx"
-          onChange={handleChange}
-          style={styles.fileInput}
-        />
- 
-        <span style={styles.fileDropText}>
-          {formData.coverLetter
-            ? formData.coverLetter.name
-            : "Upload Cover Letter"}
-        </span>
- 
-        <span style={styles.fileDropButton}>
-          Browse
-        </span>
-      </label>
-    </Field>
- 
-    {/* Certificates */}
- 
-    <Field
-      label="Certificates (Optional)"
-      hint="Internship, Training, Hackathon, etc."
-    >
-      <label style={styles.fileDrop}>
-        <input
-          type="file"
-          name="certificate"
-          accept=".pdf,.jpg,.jpeg,.png"
-          onChange={handleChange}
-          style={styles.fileInput}
-        />
- 
-        <span style={styles.fileDropText}>
-          {formData.certificate
-            ? formData.certificate.name
-            : "Upload Certificates"}
-        </span>
- 
-        <span style={styles.fileDropButton}>
-          Browse
-        </span>
-      </label>
-    </Field>
- 
-    {/* ID Proof */}
- 
-    <Field
-      label="Government ID (Optional)"
-      hint="Aadhaar / PAN / Driving Licence"
-    >
-      <label style={styles.fileDrop}>
-        <input
-          type="file"
-          name="idProof"
-          accept=".pdf,.jpg,.jpeg,.png"
-          onChange={handleChange}
-          style={styles.fileInput}
-        />
- 
-        <span style={styles.fileDropText}>
-          {formData.idProof
-            ? formData.idProof.name
-            : "Upload ID Proof"}
-        </span>
- 
-        <span style={styles.fileDropButton}>
-          Browse
-        </span>
-      </label>
-    </Field>
- 
-  </Grid>
+
+  {/* Resume */}
+  <Field
+    label="Resume / CV"
+    required
+    hint="PDF, DOC or DOCX (Maximum 5 MB)"
+  >
+    <label style={styles.fileDrop}>
+      <input
+        type="file"
+        name="resume"
+        accept=".pdf,.doc,.docx"
+        onChange={handleChange}
+        required
+        style={styles.fileInput}
+      />
+
+      <span style={styles.fileDropText}>
+        {formData.resume
+          ? formData.resume.name
+          : "Upload your latest Resume"}
+      </span>
+
+      <span style={styles.fileDropButton}>
+        Browse
+      </span>
+    </label>
+  </Field>
+
+</Grid>
  
   <div
     style={{
@@ -2193,11 +2017,11 @@ const InternshipForm = () => {
   </div>
 </Section>
  
-            <Section
+           <Section
   id="statement"
   number="06"
   title="Personal Statement"
-  subtitle="Help us understand your motivation and career aspirations"
+  subtitle="Help us understand your motivation"
 >
   <div
     style={{
@@ -2217,7 +2041,7 @@ const InternshipForm = () => {
     >
       Tell Us About Yourself
     </h3>
- 
+
     <p
       style={{
         margin: 0,
@@ -2225,13 +2049,12 @@ const InternshipForm = () => {
         lineHeight: 1.7,
       }}
     >
-      This section helps us understand your motivation, career goals,
-      achievements and why you believe you are a good fit for Roomgi.
+      Tell us why you're interested in joining Roomgi and how you learned about this opportunity.
     </p>
   </div>
- 
+
   <Grid>
- 
+
     <Field
       label="Why do you want to join Roomgi?"
       required
@@ -2244,53 +2067,11 @@ const InternshipForm = () => {
         name="whyJoin"
         value={formData.whyJoin}
         onChange={handleChange}
-        placeholder="Describe why you are interested in joining Roomgi, what excites you about this internship, and how you can contribute to our team."
+        placeholder="Describe why you're interested in joining Roomgi, what excites you about this opportunity, and how you can contribute."
         required
       />
     </Field>
- 
-    <Field
-      label="Career Goal (Optional)"
-      full
-    >
-      <textarea
-        style={styles.textarea}
-        rows={4}
-        name="careerGoal"
-        value={formData.careerGoal || ""}
-        onChange={handleChange}
-        placeholder="Where do you see yourself in the next 3-5 years?"
-      />
-    </Field>
- 
-    <Field
-      label="Greatest Achievement (Optional)"
-      full
-    >
-      <textarea
-        style={styles.textarea}
-        rows={4}
-        name="achievement"
-        value={formData.achievement || ""}
-        onChange={handleChange}
-        placeholder="Share a project, internship, hackathon, competition, leadership role or any achievement you are proud of."
-      />
-    </Field>
- 
-    <Field
-      label="What makes you different from other candidates?"
-      full
-    >
-      <textarea
-        style={styles.textarea}
-        rows={4}
-        name="strengths"
-        value={formData.strengths || ""}
-        onChange={handleChange}
-        placeholder="Highlight your strengths, skills, attitude, leadership, creativity or any unique qualities."
-      />
-    </Field>
- 
+
     <Field label="Are you willing to relocate if required?">
       <select
         style={styles.select}
@@ -2304,7 +2085,7 @@ const InternshipForm = () => {
         <option>Remote Preferred</option>
       </select>
     </Field>
- 
+
     <Field label="How did you hear about Roomgi?">
       <select
         style={styles.select}
@@ -2323,31 +2104,8 @@ const InternshipForm = () => {
         <option>Other</option>
       </select>
     </Field>
- 
+
   </Grid>
- 
-  <div
-    style={{
-      marginTop: 25,
-      background: "#EEF5FF",
-      border: "1px solid #C8D9F8",
-      borderRadius: 10,
-      padding: 18,
-      color: "#5B6B84",
-      lineHeight: 1.8,
-      fontSize: 14,
-    }}
-  >
-    <strong style={{ color: "#0A1F44" }}>
-      Candidate Note
-    </strong>
-    <br /><br />
- 
-    We value curiosity, ownership, continuous learning and teamwork above
-    everything else. Academic scores are only one aspect of our evaluation.
-    We encourage applicants to showcase their real skills, projects,
-    achievements and passion for learning throughout the application.
-  </div>
 </Section>
            <div
   style={{
