@@ -69,7 +69,7 @@ export default function Header() {
   };
 
   const navLinks = [
-    { label: "Explore PG", path: "/?category=Pg", icon: <Home size={18} /> },
+    { label: "Explore Flat & PG", path: "/?category=Pg", icon: <Home size={18} /> },
     { label: "About", path: "/about", icon: <User size={18} /> },
     { label: "Contact", path: "/contact", icon: <MessageSquare size={18} /> },
     // { label: "Explore Hotel", path: "/?category=Hotel", icon: <MessageSquare size={18} /> },
