@@ -2173,41 +2173,46 @@ const InternshipForm = () => {
       />
  
       <label
-        htmlFor="declare"
-        style={{
-          color: "#4B5563",
-          lineHeight: 1.9,
-          fontSize: 14,
-          cursor: "pointer",
-        }}
-      >
-        I hereby certify that all information submitted in this application,
-        including my educational qualifications, professional experience,
-        projects, achievements and supporting documents, is true, complete and
-        accurate to the best of my knowledge.
- 
-        <br /><br />
- 
-        I understand that any false, misleading or incomplete information may
-        result in the rejection of my application, withdrawal of any internship
-        offer or termination of employment if discovered at any stage of the
-        recruitment process.
- 
-        <br /><br />
- 
-        I authorize <strong>Roomgi Pvt. Ltd.</strong> to verify
-        the information provided in this application and agree to the
-        processing of my personal information solely for recruitment,
-        verification and employment-related purposes in accordance with the
-        company's privacy practices.
- 
-        <br /><br />
- 
-        I acknowledge that submission of this application does not guarantee an
-        interview, internship offer or full-time employment, and that all
-        selection decisions are based on merit, performance and organizational
-        requirements.
-      </label>
+  htmlFor="declare"
+  style={{
+    color: "#4B5563",
+    lineHeight: 1.9,
+    fontSize: 14,
+    cursor: "pointer",
+  }}
+>
+  I hereby certify that all information submitted in this application,
+  including my educational qualifications, professional experience,
+  projects, achievements, and supporting documents, is true, complete,
+  and accurate to the best of my knowledge.
+
+  <br /><br />
+
+  I understand that any false, misleading, or incomplete information may
+  result in the rejection of my application, withdrawal of any internship
+  offer, or termination of employment if discovered at any stage of the
+  recruitment process.
+
+  <br /><br />
+
+  I authorize <strong>Roomgi Pvt. Ltd.</strong> to verify the information
+  provided in this application and agree to the processing of my personal
+  information solely for recruitment, verification, and employment-related
+  purposes in accordance with the company's privacy practices.
+
+  <br /><br />
+
+  I acknowledge that a one-time <strong>₹59 onboarding fee</strong> is
+  applicable for application processing and will be
+  <strong> 100% refunded after successful internship onboarding.</strong>
+
+  <br /><br />
+
+  I acknowledge that submission of this application does not guarantee an
+  interview, internship offer, or full-time employment, and that all
+  selection decisions are based on merit, performance, and organizational
+  requirements.
+</label>
     </div>
   </div>
 </div>
