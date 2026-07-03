@@ -290,6 +290,9 @@ const InternshipForm = () => {
     );
   }
 
+
+  
+
   return (
     <div style={styles.page}>
       <ResponsiveStyles />
@@ -297,7 +300,7 @@ const InternshipForm = () => {
 
       <div style={styles.hero} className="rg-hero">
         <span style={styles.heroEyebrow}>Careers · Internship Program</span>
-        <h1 style={styles.heroTitle} className="rg-hero-title">Internship application</h1>
+        <h1 style={styles.heroTitle} className="rg-hero-title">Hack to Hire</h1>
         <p style={styles.heroSub} className="rg-hero-sub">
           Complete every section below to be considered for the Roomgi Internship
           Program. Fields marked required must be filled before submission.
@@ -337,141 +340,2213 @@ const InternshipForm = () => {
 
         <main style={styles.main}>
           <form onSubmit={handleSubmit}>
-            <Section id="personal" number="01" title="Personal information">
-              <Grid>
-                <Field label="Full name" required>
-                  <input style={styles.input} name="fullName" value={formData.fullName} onChange={handleChange} placeholder="As it appears on official documents" required />
-                </Field>
-                <Field label="Email address" required>
-                  <input style={styles.input} type="email" name="email" value={formData.email} onChange={handleChange} placeholder="name@example.com" required />
-                </Field>
-                <Field label="Phone number" required>
-                  <input style={styles.input} name="phone" value={formData.phone} onChange={handleChange} placeholder="+91 00000 00000" required />
-                </Field>
-              </Grid>
-            </Section>
 
-            <Section id="academic" number="02" title="Academic background">
-              <Grid>
-                <Field label="College / university" required>
-                  <input style={styles.input} name="college" value={formData.college} onChange={handleChange} required />
-                </Field>
-                <Field label="Degree" required>
-                  <input style={styles.input} name="degree" value={formData.degree} onChange={handleChange} placeholder="e.g. B.Tech Computer Science" required />
-                </Field>
-                <Field label="Current year" required>
-                  <select style={styles.select} name="year" value={formData.year} onChange={handleChange} required>
-                    <option value="">Select</option>
-                    <option>1st Year</option>
-                    <option>2nd Year</option>
-                    <option>3rd Year</option>
-                    <option>Final Year</option>
-                    <option>Graduate</option>
-                  </select>
-                </Field>
-              </Grid>
-            </Section>
+            
+            {/* ================= COMPANY OVERVIEW ================= */}
 
-            <Section id="role" number="03" title="Role and skills">
-              <Grid>
-                <Field label="Preferred internship role" required full>
-                  <select style={styles.select} name="role" value={formData.role} onChange={handleChange} required>
-                    <option value="">Select a role</option>
-                    <option>Frontend Developer</option>
-                    <option>Backend Developer</option>
-                    <option>Full Stack Developer</option>
-                    <option>React Developer</option>
-                    <option>Node.js Developer</option>
-                    <option>AI / ML</option>
-                    <option>UI/UX Designer</option>
-                    <option>Marketing</option>
-                    <option>Business Development</option>
-                    <option>Campus Ambassador</option>
-                  </select>
-                </Field>
-                <Field label="Technical skills" required full>
-                  <input style={styles.input} name="skills" value={formData.skills} onChange={handleChange} placeholder="React, Node.js, Java, Python..." required />
-                </Field>
-                <Field label="Availability" required>
-                  <select style={styles.select} name="availability" value={formData.availability} onChange={handleChange} required>
-                    <option value="">Select</option>
-                    <option>Part Time</option>
-                    <option>Full Time</option>
-                  </select>
-                </Field>
-              </Grid>
-            </Section>
+<Section
+  id="company"
+  number="00"
+  title="About Roomgi Pvt. Ltd."
+  subtitle="Building the Future of Smart Living"
+>
+  <div
+    style={{
+      background:
+        "linear-gradient(135deg,#0A1F44 0%, #163E7A 55%, #2455A4 100%)",
+      color: "#fff",
+      borderRadius: 14,
+      padding: "34px",
+      marginBottom: 30,
+      boxShadow: "0 20px 45px rgba(10,31,68,.15)",
+    }}
+  >
+    <span
+      style={{
+        display: "inline-block",
+        background: "rgba(255,255,255,.12)",
+        padding: "6px 14px",
+        borderRadius: 30,
+        fontSize: 12,
+        letterSpacing: "1px",
+        fontWeight: 600,
+        textTransform: "uppercase",
+      }}
+    >
+      Internship Program 2026
+    </span>
 
-            <Section id="links" number="04" title="Professional links" subtitle="Optional">
-              <Grid>
-                <Field label="LinkedIn profile">
-                  <input style={styles.input} name="linkedin" value={formData.linkedin} onChange={handleChange} placeholder="linkedin.com/in/username" />
-                </Field>
-                <Field label="GitHub profile">
-                  <input style={styles.input} name="github" value={formData.github} onChange={handleChange} placeholder="github.com/username" />
-                </Field>
-                <Field label="Portfolio website">
-                  <input style={styles.input} name="portfolio" value={formData.portfolio} onChange={handleChange} placeholder="yourdomain.com" />
-                </Field>
-              </Grid>
-            </Section>
+    <h2
+      style={{
+        margin: "18px 0 12px",
+        fontSize: 34,
+        fontWeight: 700,
+        lineHeight: 1.2,
+      }}
+    >
+      Build Products.<br />
+      Build Your Career.
+    </h2>
 
-            <Section id="documents" number="05" title="Documents">
-              <Field label="Resume" required full hint="Accepted formats: PDF, DOC, DOCX">
-                <label style={styles.fileDrop}>
-                  <input
-                    type="file"
-                    name="resume"
-                    accept=".pdf,.doc,.docx"
-                    onChange={handleChange}
-                    required
-                    style={styles.fileInput}
-                  />
-                  <span style={styles.fileDropText}>
-                    {formData.resume ? formData.resume.name : "Choose file or drag here"}
-                  </span>
-                  <span style={styles.fileDropButton}>Browse</span>
-                </label>
-              </Field>
-            </Section>
+    <p
+      style={{
+        color: "rgba(255,255,255,.85)",
+        fontSize: 16,
+        lineHeight: 1.8,
+        maxWidth: 850,
+        marginBottom: 28,
+      }}
+    >
+      At <strong>Roomgi Pvt. Ltd.</strong>, interns are treated as
+      engineers and business professionals—not observers. You'll contribute to
+      production-ready applications, collaborate with experienced mentors, work
+      on real customer problems, and gain practical industry experience while
+      building solutions used by thousands of users.
+    </p>
 
-            <Section id="statement" number="06" title="Statement of interest">
-              <Field label="Why do you want to join Roomgi?" required full>
-                <textarea
-                  style={styles.textarea}
-                  rows={6}
-                  name="whyJoin"
-                  value={formData.whyJoin}
-                  onChange={handleChange}
-                  placeholder="Tell us about your motivation and relevant experience..."
-                  required
-                />
-              </Field>
-            </Section>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
+        gap: 18,
+      }}
+    >
+      {[
+        ["Internship", "3 Months"],
+        ["Monthly Stipend", "₹13,000"],
+        ["Work Mode", "Hybrid / Remote"],
+        ["PPO", "Performance Based"],
+      ].map(([title, value]) => (
+        <div
+          key={title}
+          style={{
+            background: "rgba(255,255,255,.08)",
+            border: "1px solid rgba(255,255,255,.12)",
+            borderRadius: 12,
+            padding: 18,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 12,
+              color: "#D8E6FF",
+              marginBottom: 6,
+              textTransform: "uppercase",
+              letterSpacing: ".08em",
+            }}
+          >
+            {title}
+          </div>
 
-            <div style={styles.declaration} className="rg-declaration">
-              <input type="checkbox" required style={styles.checkbox} id="declare" />
-              <label htmlFor="declare" style={styles.declarationText}>
-                I confirm that the information provided in this application is accurate
-                and complete to the best of my knowledge.
-              </label>
-            </div>
+          <div
+            style={{
+              fontSize: 22,
+              fontWeight: 700,
+            }}
+          >
+            {value}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
 
-            {errorMsg && (
-              <div style={styles.errorBox}>
-                {errorMsg}
-              </div>
-            )}
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
+      gap: 20,
+    }}
+  >
+    <div
+      style={{
+        background: "#FFFFFF",
+        border: "1px solid #E6EBF2",
+        borderRadius: 12,
+        padding: 22,
+      }}
+    >
+      <h3
+        style={{
+          marginTop: 0,
+          color: "#0A1F44",
+        }}
+      >
+        What You'll Work On
+      </h3>
 
-            <div style={styles.submitRow} className="rg-submit-row">
-              <span style={styles.submitNote} className="rg-submit-note">
-                By submitting, you agree to be contacted by Roomgi regarding this
-                application.
-              </span>
-              <button type="submit" disabled={loading} style={styles.submitBtn} className="rg-submit-btn">
-                {loading ? (loadingLabel || "Submitting…") : "Submit application"}
-              </button>
-            </div>
+      <ul
+        style={{
+          color: "#5B6B84",
+          lineHeight: 2,
+          paddingLeft: 18,
+          marginBottom: 0,
+        }}
+      >
+        <li>Production-grade Web Applications</li>
+        <li>Artificial Intelligence Solutions</li>
+        <li>Cloud & Backend Systems</li>
+        <li>Mobile Applications</li>
+        <li>Real Estate Technology Platform</li>
+      </ul>
+    </div>
+
+    <div
+      style={{
+        background: "#FFFFFF",
+        border: "1px solid #E6EBF2",
+        borderRadius: 12,
+        padding: 22,
+      }}
+    >
+      <h3
+        style={{
+          marginTop: 0,
+          color: "#0A1F44",
+        }}
+      >
+        Why Join Roomgi?
+      </h3>
+
+      <ul
+        style={{
+          color: "#5B6B84",
+          lineHeight: 2,
+          paddingLeft: 18,
+          marginBottom: 0,
+        }}
+      >
+        <li>Real-world project experience</li>
+        <li>Experienced mentor guidance</li>
+        <li>Weekly technical reviews</li>
+        <li>Performance-based PPO opportunity</li>
+        <li>Fast learning startup environment</li>
+      </ul>
+    </div>
+
+    <div
+      style={{
+        background: "#FFFFFF",
+        border: "1px solid #E6EBF2",
+        borderRadius: 12,
+        padding: 22,
+      }}
+    >
+      <h3
+        style={{
+          marginTop: 0,
+          color: "#0A1F44",
+        }}
+      >
+        Our Hiring Philosophy
+      </h3>
+
+      <p
+        style={{
+          color: "#5B6B84",
+          lineHeight: 1.8,
+          marginBottom: 0,
+        }}
+      >
+        We believe talent is built through curiosity, ownership, consistency,
+        and execution—not just academic scores. We look for candidates who are
+        willing to learn, solve problems, collaborate effectively, and take
+        responsibility for delivering meaningful results.
+      </p>
+    </div>
+  </div>
+</Section>
+
+{/* ================= TECHNICAL TRACKS ================= */}
+
+<Section
+  id="career"
+  number="00A"
+  title="Technical Career Tracks"
+  subtitle="Performance Based PPO"
+>
+  <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
+    gap: 24,
+    marginTop: 25,
+  }}
+>
+  {/* ================= Alpha ================= */}
+
+  <div
+    style={{
+      borderRadius: 18,
+      overflow: "hidden",
+      background: "#fff",
+      border: "1px solid #DCE3EE",
+      boxShadow: "0 15px 35px rgba(10,31,68,.08)",
+      transition: ".3s",
+    }}
+  >
+    <div
+      style={{
+        background: "linear-gradient(135deg,#0A1F44,#1E4E8C)",
+        color: "#fff",
+        padding: 24,
+      }}
+    >
+      <span
+        style={{
+          display: "inline-block",
+          background: "rgba(255,255,255,.15)",
+          padding: "6px 14px",
+          borderRadius: 30,
+          fontSize: 11,
+          fontWeight: 600,
+          letterSpacing: ".08em",
+        }}
+      >
+        TOP 5% PERFORMERS
+      </span>
+
+      <h2 style={{ margin: "16px 0 8px" }}>
+        Alpha Tier
+      </h2>
+
+      <div
+        style={{
+          fontSize: 34,
+          fontWeight: 700,
+        }}
+      >
+        ₹6.90 LPA
+      </div>
+    </div>
+
+    <div style={{ padding: 24 }}>
+      <p
+        style={{
+          color: "#5B6B84",
+          lineHeight: 1.8,
+        }}
+      >
+        Reserved for exceptional interns who consistently demonstrate
+        outstanding engineering capability, leadership, ownership,
+        innovation and product impact throughout the internship.
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 8,
+          marginTop: 18,
+        }}
+      >
+        {[
+          "Leadership",
+          "Innovation",
+          "System Design",
+          "Ownership",
+          "Mentorship",
+        ].map((item) => (
+          <span
+            key={item}
+            style={{
+              background: "#EEF4FF",
+              color: "#2455A4",
+              padding: "6px 12px",
+              borderRadius: 20,
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* ================= Delta ================= */}
+
+  <div
+    style={{
+      borderRadius: 18,
+      overflow: "hidden",
+      background: "#fff",
+      border: "1px solid #DCE3EE",
+      boxShadow: "0 15px 35px rgba(10,31,68,.08)",
+    }}
+  >
+    <div
+      style={{
+        background: "linear-gradient(135deg,#2455A4,#4B8DFF)",
+        color: "#fff",
+        padding: 24,
+      }}
+    >
+      <span
+        style={{
+          display: "inline-block",
+          background: "rgba(255,255,255,.15)",
+          padding: "6px 14px",
+          borderRadius: 30,
+          fontSize: 11,
+          fontWeight: 600,
+        }}
+      >
+        HIGH PERFORMERS
+      </span>
+
+      <h2 style={{ margin: "16px 0 8px" }}>
+        Delta Tier
+      </h2>
+
+      <div
+        style={{
+          fontSize: 34,
+          fontWeight: 700,
+        }}
+      >
+        ₹5.30 LPA
+      </div>
+    </div>
+
+    <div style={{ padding: 24 }}>
+      <p
+        style={{
+          color: "#5B6B84",
+          lineHeight: 1.8,
+        }}
+      >
+        Awarded to interns who consistently deliver quality engineering
+        solutions, collaborate effectively, solve complex problems and
+        maintain high professional standards.
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 8,
+          marginTop: 18,
+        }}
+      >
+        {[
+          "Problem Solving",
+          "Coding",
+          "Teamwork",
+          "Execution",
+          "Communication",
+        ].map((item) => (
+          <span
+            key={item}
+            style={{
+              background: "#EEF4FF",
+              color: "#2455A4",
+              padding: "6px 12px",
+              borderRadius: 20,
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* ================= Nova ================= */}
+
+  <div
+    style={{
+      borderRadius: 18,
+      overflow: "hidden",
+      background: "#fff",
+      border: "1px solid #DCE3EE",
+      boxShadow: "0 15px 35px rgba(10,31,68,.08)",
+    }}
+  >
+    <div
+      style={{
+        background: "linear-gradient(135deg,#138A5E,#29B675)",
+        color: "#fff",
+        padding: 24,
+      }}
+    >
+      <span
+        style={{
+          display: "inline-block",
+          background: "rgba(255,255,255,.15)",
+          padding: "6px 14px",
+          borderRadius: 30,
+          fontSize: 11,
+          fontWeight: 600,
+        }}
+      >
+        SUCCESSFUL INTERNS
+      </span>
+
+      <h2 style={{ margin: "16px 0 8px" }}>
+        Nova Tier
+      </h2>
+
+      <div
+        style={{
+          fontSize: 34,
+          fontWeight: 700,
+        }}
+      >
+        ₹3.80 LPA
+      </div>
+    </div>
+
+    <div style={{ padding: 24 }}>
+      <p
+        style={{
+          color: "#5B6B84",
+          lineHeight: 1.8,
+        }}
+      >
+        Offered to interns who successfully complete the internship while
+        demonstrating strong learning ability, professionalism, teamwork
+        and continuous technical growth.
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 8,
+          marginTop: 18,
+        }}
+      >
+        {[
+          "Learning",
+          "Professionalism",
+          "Growth",
+          "Collaboration",
+          "Adaptability",
+        ].map((item) => (
+          <span
+            key={item}
+            style={{
+              background: "#E9F9F1",
+              color: "#138A5E",
+              padding: "6px 12px",
+              borderRadius: 20,
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+  <br />
+
+ <h3
+  style={{
+    color: "#0A1F44",
+    fontSize: 28,
+    fontWeight: 700,
+    textAlign: "center",
+    margin: "45px 0 10px",
+  }}
+>
+  Business & Non-Technical Career Progression
+</h3>
+
+<p
+  style={{
+    textAlign: "center",
+    color: "#5B6B84",
+    maxWidth: 760,
+    margin: "0 auto 35px",
+    lineHeight: 1.8,
+    fontSize: 15,
+  }}
+>
+  Our Business Internship Program is designed for candidates passionate about
+  Sales, Marketing, Human Resources, Finance, Operations and Business
+  Development. Full-Time employment is offered based on overall internship
+  performance, business impact and leadership potential.
+</p>
+
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
+    gap: 24,
+  }}
+>
+  {/* Alpha */}
+
+  <div
+    style={{
+      borderRadius: 18,
+      overflow: "hidden",
+      background: "#fff",
+      border: "1px solid #DCE3EE",
+      boxShadow: "0 15px 35px rgba(10,31,68,.08)",
+    }}
+  >
+    <div
+      style={{
+        background: "linear-gradient(135deg,#5B2BE0,#8B5CF6)",
+        color: "#fff",
+        padding: 24,
+      }}
+    >
+      <span
+        style={{
+          display: "inline-block",
+          background: "rgba(255,255,255,.15)",
+          padding: "6px 14px",
+          borderRadius: 20,
+          fontSize: 11,
+          fontWeight: 600,
+        }}
+      >
+        TOP BUSINESS TALENT
+      </span>
+
+      <h2 style={{ margin: "16px 0 8px" }}>
+        Alpha Tier
+      </h2>
+
+      <div
+        style={{
+          fontSize: 34,
+          fontWeight: 700,
+        }}
+      >
+        ₹6.60 LPA
+      </div>
+    </div>
+
+    <div style={{ padding: 24 }}>
+      <p
+        style={{
+          color: "#5B6B84",
+          lineHeight: 1.8,
+        }}
+      >
+        Reserved for exceptional interns who consistently demonstrate
+        leadership, strategic thinking, business growth, client management
+        and measurable impact throughout the internship.
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 8,
+          marginTop: 18,
+        }}
+      >
+        {[
+          "Leadership",
+          "Sales",
+          "Business Growth",
+          "Negotiation",
+          "Ownership",
+        ].map((item) => (
+          <span
+            key={item}
+            style={{
+              background: "#F4EEFF",
+              color: "#6D28D9",
+              padding: "6px 12px",
+              borderRadius: 20,
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* Delta */}
+
+  <div
+    style={{
+      borderRadius: 18,
+      overflow: "hidden",
+      background: "#fff",
+      border: "1px solid #DCE3EE",
+      boxShadow: "0 15px 35px rgba(10,31,68,.08)",
+    }}
+  >
+    <div
+      style={{
+        background: "linear-gradient(135deg,#2563EB,#3B82F6)",
+        color: "#fff",
+        padding: 24,
+      }}
+    >
+      <span
+        style={{
+          display: "inline-block",
+          background: "rgba(255,255,255,.15)",
+          padding: "6px 14px",
+          borderRadius: 20,
+          fontSize: 11,
+          fontWeight: 600,
+        }}
+      >
+        HIGH PERFORMERS
+      </span>
+
+      <h2 style={{ margin: "16px 0 8px" }}>
+        Delta Tier
+      </h2>
+
+      <div
+        style={{
+          fontSize: 34,
+          fontWeight: 700,
+        }}
+      >
+        ₹5.00 LPA
+      </div>
+    </div>
+
+    <div style={{ padding: 24 }}>
+      <p
+        style={{
+          color: "#5B6B84",
+          lineHeight: 1.8,
+        }}
+      >
+        Awarded to interns who consistently achieve business goals,
+        communicate effectively, collaborate with teams and execute
+        responsibilities with professionalism.
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 8,
+          marginTop: 18,
+        }}
+      >
+        {[
+          "Marketing",
+          "Operations",
+          "Communication",
+          "Execution",
+          "Planning",
+        ].map((item) => (
+          <span
+            key={item}
+            style={{
+              background: "#EEF4FF",
+              color: "#2563EB",
+              padding: "6px 12px",
+              borderRadius: 20,
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* Nova */}
+
+  <div
+    style={{
+      borderRadius: 18,
+      overflow: "hidden",
+      background: "#fff",
+      border: "1px solid #DCE3EE",
+      boxShadow: "0 15px 35px rgba(10,31,68,.08)",
+    }}
+  >
+    <div
+      style={{
+        background: "linear-gradient(135deg,#138A5E,#2CC784)",
+        color: "#fff",
+        padding: 24,
+      }}
+    >
+      <span
+        style={{
+          display: "inline-block",
+          background: "rgba(255,255,255,.15)",
+          padding: "6px 14px",
+          borderRadius: 20,
+          fontSize: 11,
+          fontWeight: 600,
+        }}
+      >
+        SUCCESSFUL INTERNS
+      </span>
+
+      <h2 style={{ margin: "16px 0 8px" }}>
+        Nova Tier
+      </h2>
+
+      <div
+        style={{
+          fontSize: 34,
+          fontWeight: 700,
+        }}
+      >
+        ₹3.50 LPA
+      </div>
+    </div>
+
+    <div style={{ padding: 24 }}>
+      <p
+        style={{
+          color: "#5B6B84",
+          lineHeight: 1.8,
+        }}
+      >
+        Offered to interns who successfully complete the internship while
+        demonstrating professionalism, adaptability, continuous learning and
+        strong collaboration.
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 8,
+          marginTop: 18,
+        }}
+      >
+        {[
+          "Learning",
+          "Professionalism",
+          "Growth",
+          "Teamwork",
+          "Adaptability",
+        ].map((item) => (
+          <span
+            key={item}
+            style={{
+              background: "#EAF9F2",
+              color: "#138A5E",
+              padding: "6px 12px",
+              borderRadius: 20,
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* ================= Selection Process ================= */}
+
+<div
+  style={{
+    marginTop: 40,
+    borderRadius: 16,
+    overflow: "hidden",
+    border: "1px solid #DCE3EE",
+    boxShadow: "0 10px 30px rgba(10,31,68,.06)",
+  }}
+>
+  <div
+    style={{
+      background: "linear-gradient(135deg,#0A1F44,#2455A4)",
+      color: "#fff",
+      padding: "22px 28px",
+    }}
+  >
+    <h2 style={{ margin: 0 }}>
+      Internship Selection Process
+    </h2>
+
+    <p
+      style={{
+        marginTop: 8,
+        color: "rgba(255,255,255,.9)",
+      }}
+    >
+      Every application goes through a structured and transparent hiring
+      process.
+    </p>
+  </div>
+
+  <div
+    style={{
+      padding: 28,
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+      gap: 20,
+    }}
+  >
+    {[
+      ["01", "Application Screening"],
+      ["02", "Online Assessment"],
+      ["03", "Technical / HR Interview"],
+      ["04", "3-Month Internship"],
+      ["05", "Performance Review & PPO"],
+    ].map(([step, title]) => (
+      <div
+        key={step}
+        style={{
+          border: "1px solid #E6EBF2",
+          borderRadius: 12,
+          padding: 20,
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            width: 55,
+            height: 55,
+            borderRadius: "50%",
+            background: "#EEF4FF",
+            color: "#2455A4",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "0 auto 16px",
+            fontWeight: 700,
+            fontSize: 18,
+          }}
+        >
+          {step}
+        </div>
+
+        <h4
+          style={{
+            margin: 0,
+            color: "#0A1F44",
+          }}
+        >
+          {title}
+        </h4>
+      </div>
+    ))}
+  </div>
+
+  <div
+    style={{
+      background: "#F8FAFC",
+      padding: 22,
+      borderTop: "1px solid #E6EBF2",
+      color: "#5B6B84",
+      lineHeight: 1.8,
+      fontSize: 14,
+    }}
+  >
+    <strong style={{ color: "#0A1F44" }}>Performance Notice:</strong>{" "}
+    Full-Time offers and compensation are determined through a comprehensive
+    evaluation based on technical or business competency, ownership,
+    communication, leadership, innovation, collaboration, learning ability and
+    overall contribution during the internship. Package tiers represent
+    performance bands and are awarded only to eligible candidates who satisfy
+    the company's evaluation criteria.
+  </div>
+</div>
+</Section>
+
+
+            <Section
+  id="personal"
+  number="01"
+  title="Personal Information"
+  subtitle="Tell us a little about yourself"
+>
+  <div
+    style={{
+      background: "#F8FAFC",
+      border: "1px solid #E6EBF2",
+      borderRadius: 12,
+      padding: "18px 22px",
+      marginBottom: 25,
+    }}
+  >
+    <h3
+      style={{
+        margin: "0 0 8px",
+        color: "#0A1F44",
+        fontSize: 20,
+      }}
+    >
+      Candidate Profile
+    </h3>
+
+    <p
+      style={{
+        margin: 0,
+        color: "#5B6B84",
+        lineHeight: 1.7,
+        fontSize: 14,
+      }}
+    >
+      Please provide your basic personal details exactly as they appear on your
+      official documents. This information will be used for communication,
+      verification and internship records.
+    </p>
+  </div>
+
+  <Grid>
+    <Field
+      label="Full Name"
+      required
+      hint="Enter your full legal name"
+    >
+      <div style={{ position: "relative" }}>
+        <span
+          style={{
+            position: "absolute",
+            left: 14,
+            top: "50%",
+            transform: "translateY(-50%)",
+            fontSize: 18,
+          }}
+        >
+          👤
+        </span>
+
+        <input
+          style={{
+            ...styles.input,
+            paddingLeft: 45,
+          }}
+          name="fullName"
+          value={formData.fullName}
+          onChange={handleChange}
+          placeholder="e.g. Rahul Sharma"
+          required
+        />
+      </div>
+    </Field>
+
+    <Field
+      label="Email Address"
+      required
+      hint="We'll send updates to this email"
+    >
+      <div style={{ position: "relative" }}>
+        <span
+          style={{
+            position: "absolute",
+            left: 14,
+            top: "50%",
+            transform: "translateY(-50%)",
+            fontSize: 18,
+          }}
+        >
+          📧
+        </span>
+
+        <input
+          type="email"
+          style={{
+            ...styles.input,
+            paddingLeft: 45,
+          }}
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="name@example.com"
+          required
+        />
+      </div>
+    </Field>
+
+    <Field
+      label="Mobile Number"
+      required
+      hint="Include your active WhatsApp number"
+    >
+      <div style={{ position: "relative" }}>
+        <span
+          style={{
+            position: "absolute",
+            left: 14,
+            top: "50%",
+            transform: "translateY(-50%)",
+            fontSize: 18,
+          }}
+        >
+          📱
+        </span>
+
+        <input
+          style={{
+            ...styles.input,
+            paddingLeft: 45,
+          }}
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          placeholder="+91 98765 43210"
+          required
+        />
+      </div>
+    </Field>
+
+    <Field
+      label="Current City"
+      required
+      hint="City where you're currently residing"
+    >
+      <input
+        style={styles.input}
+        name="city"
+        value={formData.city || ""}
+        onChange={handleChange}
+        placeholder="e.g. Bengaluru"
+        required
+      />
+    </Field>
+  </Grid>
+</Section>
+
+            <Section
+  id="academic"
+  number="02"
+  title="Academic Background"
+  subtitle="Educational Qualifications"
+>
+  <div
+    style={{
+      background: "#F8FAFC",
+      border: "1px solid #E6EBF2",
+      borderRadius: 12,
+      padding: "18px 22px",
+      marginBottom: 25,
+    }}
+  >
+    <h3
+      style={{
+        margin: "0 0 8px",
+        color: "#0A1F44",
+        fontSize: 20,
+      }}
+    >
+      Academic Details
+    </h3>
+
+    <p
+      style={{
+        margin: 0,
+        color: "#5B6B84",
+        lineHeight: 1.7,
+      }}
+    >
+      Please provide your educational qualifications accurately. These details
+      help us understand your academic background and eligibility.
+    </p>
+  </div>
+
+  <Grid>
+
+    <Field label="College / University" required>
+      <input
+        style={styles.input}
+        name="college"
+        value={formData.college}
+        onChange={handleChange}
+        placeholder="ABC Institute of Technology"
+        required
+      />
+    </Field>
+
+    <Field label="Degree" required>
+      <select
+        style={styles.select}
+        name="degree"
+        value={formData.degree}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select Degree</option>
+        <option>B.Tech</option>
+        <option>B.E.</option>
+        <option>BCA</option>
+        <option>MCA</option>
+        <option>B.Sc</option>
+        <option>M.Tech</option>
+        <option>MBA</option>
+        <option>BBA</option>
+        <option>B.Com</option>
+        <option>M.Com</option>
+        <option>BA</option>
+        <option>Diploma</option>
+        <option>Other</option>
+      </select>
+    </Field>
+
+    <Field label="Specialization / Branch" required>
+      <input
+        style={styles.input}
+        name="branch"
+        value={formData.branch || ""}
+        onChange={handleChange}
+        placeholder="Computer Science Engineering"
+        required
+      />
+    </Field>
+
+    <Field label="Current Academic Year" required>
+      <select
+        style={styles.select}
+        name="year"
+        value={formData.year}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select</option>
+        <option>1st Year</option>
+        <option>2nd Year</option>
+        <option>3rd Year</option>
+        <option>Final Year</option>
+        <option>Graduate</option>
+      </select>
+    </Field>
+
+    <Field label="Current CGPA">
+      <input
+        style={styles.input}
+        name="cgpa"
+        value={formData.cgpa || ""}
+        onChange={handleChange}
+        placeholder="8.25"
+      />
+    </Field>
+
+    <Field label="Graduation Percentage (If Completed)">
+      <input
+        style={styles.input}
+        name="graduationPercentage"
+        value={formData.graduationPercentage || ""}
+        onChange={handleChange}
+        placeholder="78%"
+      />
+    </Field>
+
+    <Field label="Diploma Percentage (If Applicable)">
+      <input
+        style={styles.input}
+        name="diplomaPercentage"
+        value={formData.diplomaPercentage || ""}
+        onChange={handleChange}
+        placeholder="82%"
+      />
+    </Field>
+
+    <Field label="Class XII Percentage">
+      <input
+        style={styles.input}
+        name="class12"
+        value={formData.class12 || ""}
+        onChange={handleChange}
+        placeholder="85%"
+      />
+    </Field>
+
+    <Field label="Class X Percentage">
+      <input
+        style={styles.input}
+        name="class10"
+        value={formData.class10 || ""}
+        onChange={handleChange}
+        placeholder="90%"
+      />
+    </Field>
+
+    <Field label="Current Active Backlogs">
+      <select
+        style={styles.select}
+        name="backlogs"
+        value={formData.backlogs || ""}
+        onChange={handleChange}
+      >
+        <option value="">Select</option>
+        <option>No Active Backlogs</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3+</option>
+      </select>
+    </Field>
+
+  </Grid>
+</Section>
+
+            <Section
+  id="role"
+  number="03"
+  title="Role Preferences & Technical Skills"
+  subtitle="Help us identify the best opportunity for you"
+>
+  <div
+    style={{
+      background: "#F8FAFC",
+      border: "1px solid #E6EBF2",
+      borderRadius: 12,
+      padding: "18px 22px",
+      marginBottom: 25,
+    }}
+  >
+    <h3
+      style={{
+        margin: "0 0 8px",
+        color: "#0A1F44",
+        fontSize: 20,
+      }}
+    >
+      Career Preferences
+    </h3>
+
+    <p
+      style={{
+        margin: 0,
+        color: "#5B6B84",
+        lineHeight: 1.7,
+      }}
+    >
+      Select your preferred internship role and provide details about your
+      technical skills, experience and availability.
+    </p>
+  </div>
+
+  <Grid>
+
+    <Field label="Preferred Internship Role" required full>
+      <select
+        style={styles.select}
+        name="role"
+        value={formData.role}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select a Role</option>
+
+        <optgroup label="Software Development">
+          <option>Frontend Developer</option>
+          <option>Backend Developer</option>
+          <option>Full Stack Developer</option>
+          <option>React Developer</option>
+          <option>Node.js Developer</option>
+          <option>Python Developer</option>
+          <option>Java Developer</option>
+          <option>C++ Developer</option>
+        </optgroup>
+
+        <optgroup label="Mobile Development">
+          <option>Android Developer</option>
+          <option>Flutter Developer</option>
+          <option>React Native Developer</option>
+        </optgroup>
+
+        <optgroup label="Artificial Intelligence">
+          <option>AI / ML Engineer</option>
+          <option>Data Scientist</option>
+          <option>Data Analyst</option>
+          <option>Computer Vision</option>
+        </optgroup>
+
+        <optgroup label="Infrastructure">
+          <option>Cloud Engineer</option>
+          <option>DevOps Engineer</option>
+          <option>Cyber Security</option>
+          <option>QA Engineer</option>
+        </optgroup>
+
+        <optgroup label="Design">
+          <option>UI/UX Designer</option>
+          <option>Graphic Designer</option>
+          <option>Product Designer</option>
+        </optgroup>
+
+        <optgroup label="Business Roles">
+          <option>Business Development</option>
+          <option>Sales</option>
+          <option>Marketing</option>
+          <option>Digital Marketing</option>
+          <option>Human Resources</option>
+          <option>Finance</option>
+          <option>Operations</option>
+          <option>Content Writer</option>
+          <option>Customer Success</option>
+          <option>Project Management</option>
+          <option>Product Management</option>
+        </optgroup>
+
+        <option>Other</option>
+      </select>
+    </Field>
+
+    <Field
+      label="Primary Technical Skills"
+      required
+      full
+      hint="Separate multiple skills using commas."
+    >
+      <textarea
+        style={styles.textarea}
+        rows={3}
+        name="skills"
+        value={formData.skills}
+        onChange={handleChange}
+        placeholder="React.js, Node.js, Express.js, MongoDB, JavaScript..."
+        required
+      />
+    </Field>
+
+    <Field label="Experience Level" required>
+      <select
+        style={styles.select}
+        name="experience"
+        value={formData.experience || ""}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select</option>
+        <option>Fresher</option>
+        <option>0-6 Months</option>
+        <option>6-12 Months</option>
+        <option>1-2 Years</option>
+        <option>2+ Years</option>
+      </select>
+    </Field>
+
+    <Field label="Internship Availability" required>
+      <select
+        style={styles.select}
+        name="availability"
+        value={formData.availability}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select</option>
+        <option>Immediate</option>
+        <option>Within 15 Days</option>
+        <option>Within 30 Days</option>
+        <option>Within 60 Days</option>
+      </select>
+    </Field>
+
+    <Field label="Preferred Work Mode">
+      <select
+        style={styles.select}
+        name="workMode"
+        value={formData.workMode || ""}
+        onChange={handleChange}
+      >
+        <option value="">Select</option>
+        <option>Remote</option>
+        <option>Hybrid</option>
+        <option>On-Site</option>
+        <option>Flexible</option>
+      </select>
+    </Field>
+
+    <Field label="Preferred Work Location">
+      <input
+        style={styles.input}
+        name="preferredLocation"
+        value={formData.preferredLocation || ""}
+        onChange={handleChange}
+        placeholder="Delhi NCR / Bengaluru / Remote"
+      />
+    </Field>
+
+    <Field label="Have you completed any internships?">
+      <select
+        style={styles.select}
+        name="previousInternship"
+        value={formData.previousInternship || ""}
+        onChange={handleChange}
+      >
+        <option value="">Select</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </Field>
+
+    <Field label="GitHub Contributions / Coding Profile">
+      <input
+        style={styles.input}
+        name="codingProfile"
+        value={formData.codingProfile || ""}
+        onChange={handleChange}
+        placeholder="LeetCode / CodeChef / HackerRank Profile URL"
+      />
+    </Field>
+
+  </Grid>
+</Section>
+
+           <Section
+  id="links"
+  number="04"
+  title="Professional Profiles"
+  subtitle="Showcase your work and professional presence"
+>
+  <div
+    style={{
+      background: "#F8FAFC",
+      border: "1px solid #E6EBF2",
+      borderRadius: 12,
+      padding: "18px 22px",
+      marginBottom: 25,
+    }}
+  >
+    <h3
+      style={{
+        margin: "0 0 8px",
+        color: "#0A1F44",
+        fontSize: 20,
+      }}
+    >
+      Online Professional Presence
+    </h3>
+
+    <p
+      style={{
+        margin: 0,
+        color: "#5B6B84",
+        lineHeight: 1.7,
+      }}
+    >
+      Share your professional profiles and project portfolios. Strong online
+      profiles help us better understand your technical skills, projects,
+      achievements and overall professional experience.
+    </p>
+  </div>
+
+  <Grid>
+
+    <Field
+      label="LinkedIn Profile"
+      hint="Professional networking profile"
+    >
+      <input
+        style={styles.input}
+        name="linkedin"
+        value={formData.linkedin}
+        onChange={handleChange}
+        placeholder="https://linkedin.com/in/yourname"
+      />
+    </Field>
+
+    <Field
+      label="GitHub Profile"
+      hint="Source code & open-source contributions"
+    >
+      <input
+        style={styles.input}
+        name="github"
+        value={formData.github}
+        onChange={handleChange}
+        placeholder="https://github.com/username"
+      />
+    </Field>
+
+    <Field
+      label="Portfolio Website"
+      hint="Personal website or portfolio"
+    >
+      <input
+        style={styles.input}
+        name="portfolio"
+        value={formData.portfolio}
+        onChange={handleChange}
+        placeholder="https://yourportfolio.com"
+      />
+    </Field>
+
+    <Field
+      label="Resume Website / Linktree"
+      hint="Optional"
+    >
+      <input
+        style={styles.input}
+        name="resumeWebsite"
+        value={formData.resumeWebsite || ""}
+        onChange={handleChange}
+        placeholder="https://linktr.ee/username"
+      />
+    </Field>
+
+    <Field
+      label="LeetCode Profile"
+      hint="Coding profile"
+    >
+      <input
+        style={styles.input}
+        name="leetcode"
+        value={formData.leetcode || ""}
+        onChange={handleChange}
+        placeholder="https://leetcode.com/username"
+      />
+    </Field>
+
+    <Field
+      label="Codeforces / CodeChef / HackerRank"
+      hint="Competitive programming profile"
+    >
+      <input
+        style={styles.input}
+        name="codingPlatform"
+        value={formData.codingPlatform || ""}
+        onChange={handleChange}
+        placeholder="https://codeforces.com/profile/username"
+      />
+    </Field>
+
+    <Field
+      label="Behance / Dribbble"
+      hint="For UI/UX & Graphic Designers"
+    >
+      <input
+        style={styles.input}
+        name="designPortfolio"
+        value={formData.designPortfolio || ""}
+        onChange={handleChange}
+        placeholder="https://behance.net/username"
+      />
+    </Field>
+
+    <Field
+      label="Other Relevant Profile"
+      hint="Medium, Kaggle, YouTube, Dev.to, etc."
+    >
+      <input
+        style={styles.input}
+        name="otherProfile"
+        value={formData.otherProfile || ""}
+        onChange={handleChange}
+        placeholder="https://..."
+      />
+    </Field>
+
+  </Grid>
+</Section>
+
+           <Section
+  id="documents"
+  number="05"
+  title="Documents & Supporting Files"
+  subtitle="Upload your required documents"
+>
+  <div
+    style={{
+      background: "#F8FAFC",
+      border: "1px solid #E6EBF2",
+      borderRadius: 12,
+      padding: "18px 22px",
+      marginBottom: 25,
+    }}
+  >
+    <h3
+      style={{
+        margin: "0 0 8px",
+        color: "#0A1F44",
+        fontSize: 20,
+      }}
+    >
+      Document Submission
+    </h3>
+
+    <p
+      style={{
+        margin: 0,
+        color: "#5B6B84",
+        lineHeight: 1.7,
+      }}
+    >
+      Please upload clear and updated documents. Your information will only be
+      used for recruitment and verification purposes.
+    </p>
+  </div>
+
+  <Grid>
+
+    {/* Resume */}
+
+    <Field
+      label="Resume / CV"
+      required
+      hint="PDF, DOC or DOCX (Maximum 5 MB)"
+    >
+      <label style={styles.fileDrop}>
+        <input
+          type="file"
+          name="resume"
+          accept=".pdf,.doc,.docx"
+          onChange={handleChange}
+          required
+          style={styles.fileInput}
+        />
+
+        <span style={styles.fileDropText}>
+          {formData.resume
+            ? formData.resume.name
+            : "Upload your latest Resume"}
+        </span>
+
+        <span style={styles.fileDropButton}>
+          Browse
+        </span>
+      </label>
+    </Field>
+
+    {/* Cover Letter */}
+
+    <Field
+      label="Cover Letter (Optional)"
+      hint="PDF or DOC"
+    >
+      <label style={styles.fileDrop}>
+        <input
+          type="file"
+          name="coverLetter"
+          accept=".pdf,.doc,.docx"
+          onChange={handleChange}
+          style={styles.fileInput}
+        />
+
+        <span style={styles.fileDropText}>
+          {formData.coverLetter
+            ? formData.coverLetter.name
+            : "Upload Cover Letter"}
+        </span>
+
+        <span style={styles.fileDropButton}>
+          Browse
+        </span>
+      </label>
+    </Field>
+
+    {/* Certificates */}
+
+    <Field
+      label="Certificates (Optional)"
+      hint="Internship, Training, Hackathon, etc."
+    >
+      <label style={styles.fileDrop}>
+        <input
+          type="file"
+          name="certificate"
+          accept=".pdf,.jpg,.jpeg,.png"
+          onChange={handleChange}
+          style={styles.fileInput}
+        />
+
+        <span style={styles.fileDropText}>
+          {formData.certificate
+            ? formData.certificate.name
+            : "Upload Certificates"}
+        </span>
+
+        <span style={styles.fileDropButton}>
+          Browse
+        </span>
+      </label>
+    </Field>
+
+    {/* ID Proof */}
+
+    <Field
+      label="Government ID (Optional)"
+      hint="Aadhaar / PAN / Driving Licence"
+    >
+      <label style={styles.fileDrop}>
+        <input
+          type="file"
+          name="idProof"
+          accept=".pdf,.jpg,.jpeg,.png"
+          onChange={handleChange}
+          style={styles.fileInput}
+        />
+
+        <span style={styles.fileDropText}>
+          {formData.idProof
+            ? formData.idProof.name
+            : "Upload ID Proof"}
+        </span>
+
+        <span style={styles.fileDropButton}>
+          Browse
+        </span>
+      </label>
+    </Field>
+
+  </Grid>
+
+  <div
+    style={{
+      marginTop: 25,
+      background: "#EEF5FF",
+      border: "1px solid #C8D9F8",
+      borderRadius: 10,
+      padding: 18,
+    }}
+  >
+    <strong style={{ color: "#0A1F44" }}>
+      Upload Guidelines
+    </strong>
+
+    <ul
+      style={{
+        marginTop: 12,
+        color: "#5B6B84",
+        lineHeight: 1.8,
+      }}
+    >
+      <li>Upload your latest updated Resume.</li>
+      <li>Resume should not exceed 5 MB.</li>
+      <li>Use clear file names (e.g. Rahul_Sharma_Resume.pdf).</li>
+      <li>Only upload genuine and valid documents.</li>
+      <li>All submitted documents remain confidential.</li>
+    </ul>
+  </div>
+</Section>
+
+            <Section
+  id="statement"
+  number="06"
+  title="Personal Statement"
+  subtitle="Help us understand your motivation and career aspirations"
+>
+  <div
+    style={{
+      background: "#F8FAFC",
+      border: "1px solid #E6EBF2",
+      borderRadius: 12,
+      padding: "18px 22px",
+      marginBottom: 25,
+    }}
+  >
+    <h3
+      style={{
+        margin: "0 0 8px",
+        color: "#0A1F44",
+        fontSize: 20,
+      }}
+    >
+      Tell Us About Yourself
+    </h3>
+
+    <p
+      style={{
+        margin: 0,
+        color: "#5B6B84",
+        lineHeight: 1.7,
+      }}
+    >
+      This section helps us understand your motivation, career goals,
+      achievements and why you believe you are a good fit for Roomgi.
+    </p>
+  </div>
+
+  <Grid>
+
+    <Field
+      label="Why do you want to join Roomgi?"
+      required
+      full
+      hint="Minimum 100 words"
+    >
+      <textarea
+        style={styles.textarea}
+        rows={5}
+        name="whyJoin"
+        value={formData.whyJoin}
+        onChange={handleChange}
+        placeholder="Describe why you are interested in joining Roomgi, what excites you about this internship, and how you can contribute to our team."
+        required
+      />
+    </Field>
+
+    <Field
+      label="Career Goal (Optional)"
+      full
+    >
+      <textarea
+        style={styles.textarea}
+        rows={4}
+        name="careerGoal"
+        value={formData.careerGoal || ""}
+        onChange={handleChange}
+        placeholder="Where do you see yourself in the next 3-5 years?"
+      />
+    </Field>
+
+    <Field
+      label="Greatest Achievement (Optional)"
+      full
+    >
+      <textarea
+        style={styles.textarea}
+        rows={4}
+        name="achievement"
+        value={formData.achievement || ""}
+        onChange={handleChange}
+        placeholder="Share a project, internship, hackathon, competition, leadership role or any achievement you are proud of."
+      />
+    </Field>
+
+    <Field
+      label="What makes you different from other candidates?"
+      full
+    >
+      <textarea
+        style={styles.textarea}
+        rows={4}
+        name="strengths"
+        value={formData.strengths || ""}
+        onChange={handleChange}
+        placeholder="Highlight your strengths, skills, attitude, leadership, creativity or any unique qualities."
+      />
+    </Field>
+
+    <Field label="Are you willing to relocate if required?">
+      <select
+        style={styles.select}
+        name="relocation"
+        value={formData.relocation || ""}
+        onChange={handleChange}
+      >
+        <option value="">Select</option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>Remote Preferred</option>
+      </select>
+    </Field>
+
+    <Field label="How did you hear about Roomgi?">
+      <select
+        style={styles.select}
+        name="source"
+        value={formData.source || ""}
+        onChange={handleChange}
+      >
+        <option value="">Select</option>
+        <option>LinkedIn</option>
+        <option>Instagram</option>
+        <option>College</option>
+        <option>Campus Drive</option>
+        <option>Friend / Referral</option>
+        <option>Google Search</option>
+        <option>WhatsApp</option>
+        <option>Other</option>
+      </select>
+    </Field>
+
+  </Grid>
+
+  <div
+    style={{
+      marginTop: 25,
+      background: "#EEF5FF",
+      border: "1px solid #C8D9F8",
+      borderRadius: 10,
+      padding: 18,
+      color: "#5B6B84",
+      lineHeight: 1.8,
+      fontSize: 14,
+    }}
+  >
+    <strong style={{ color: "#0A1F44" }}>
+      Candidate Note
+    </strong>
+    <br /><br />
+
+    We value curiosity, ownership, continuous learning and teamwork above
+    everything else. Academic scores are only one aspect of our evaluation.
+    We encourage applicants to showcase their real skills, projects,
+    achievements and passion for learning throughout the application.
+  </div>
+</Section>
+           <div
+  style={{
+    margin: "30px 0",
+    border: "1px solid #D8DEE7",
+    borderRadius: 14,
+    overflow: "hidden",
+    background: "#FFFFFF",
+    boxShadow: "0 10px 25px rgba(10,31,68,.05)",
+  }}
+>
+  <div
+    style={{
+      background: "linear-gradient(135deg,#0A1F44,#2455A4)",
+      color: "#FFFFFF",
+      padding: "18px 24px",
+    }}
+  >
+    <h3
+      style={{
+        margin: 0,
+        fontSize: 20,
+        fontWeight: 600,
+      }}
+    >
+      Candidate Declaration
+    </h3>
+
+    <p
+      style={{
+        margin: "8px 0 0",
+        opacity: 0.9,
+        lineHeight: 1.6,
+        fontSize: 14,
+      }}
+    >
+      Please review the declaration carefully before submitting your
+      application.
+    </p>
+  </div>
+
+  <div
+    style={{
+      padding: "24px",
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 16,
+      }}
+    >
+      <input
+        type="checkbox"
+        id="declare"
+        required
+        style={{
+          marginTop: 4,
+          width: 18,
+          height: 18,
+          accentColor: "#0A1F44",
+          cursor: "pointer",
+        }}
+      />
+
+      <label
+        htmlFor="declare"
+        style={{
+          color: "#4B5563",
+          lineHeight: 1.9,
+          fontSize: 14,
+          cursor: "pointer",
+        }}
+      >
+        I hereby certify that all information submitted in this application,
+        including my educational qualifications, professional experience,
+        projects, achievements and supporting documents, is true, complete and
+        accurate to the best of my knowledge.
+
+        <br /><br />
+
+        I understand that any false, misleading or incomplete information may
+        result in the rejection of my application, withdrawal of any internship
+        offer or termination of employment if discovered at any stage of the
+        recruitment process.
+
+        <br /><br />
+
+        I authorize <strong>Roomgi Pvt. Ltd.</strong> to verify
+        the information provided in this application and agree to the
+        processing of my personal information solely for recruitment,
+        verification and employment-related purposes in accordance with the
+        company's privacy practices.
+
+        <br /><br />
+
+        I acknowledge that submission of this application does not guarantee an
+        interview, internship offer or full-time employment, and that all
+        selection decisions are based on merit, performance and organizational
+        requirements.
+      </label>
+    </div>
+  </div>
+</div>
+
+           {errorMsg && (
+  <div
+    style={{
+      margin: "25px 32px",
+      padding: "18px 22px",
+      background: "#FEF2F2",
+      border: "1px solid #FECACA",
+      borderRadius: 12,
+      color: "#B91C1C",
+      fontWeight: 500,
+      lineHeight: 1.6,
+    }}
+  >
+    <strong>Application Error</strong>
+    <br />
+    {errorMsg}
+  </div>
+)}
+
+<div
+  style={{
+    marginTop: 35,
+    borderTop: "1px solid #E5E7EB",
+    padding: "30px 32px",
+    background: "#FAFBFC",
+  }}
+>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: 30,
+    }}
+  >
+    <div style={{ flex: 1, minWidth: 300 }}>
+      <h3
+        style={{
+          margin: "0 0 12px",
+          color: "#0A1F44",
+          fontSize: 20,
+        }}
+      >
+        Final Review
+      </h3>
+
+      <p
+        style={{
+          margin: 0,
+          color: "#5B6B84",
+          lineHeight: 1.8,
+          fontSize: 14,
+        }}
+      >
+        Please review your application carefully before submitting.
+        Once submitted, your application will be reviewed by our
+        Talent Acquisition Team.
+
+        <br /><br />
+
+        <strong>Selection Timeline:</strong>
+
+        <br />
+
+        • Application Review
+
+        <br />
+
+        • Online Assessment
+
+        <br />
+
+        • Technical / HR Interview
+
+        <br />
+
+        • Internship Offer
+
+        <br />
+
+        • Performance Evaluation & PPO
+      </p>
+
+      <div
+        style={{
+          marginTop: 20,
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 10,
+        }}
+      >
+        {[
+          "Secure Submission",
+          "Encrypted Data",
+          "Privacy Protected",
+          "HR Reviewed",
+        ].map((item) => (
+          <span
+            key={item}
+            style={{
+              background: "#EEF4FF",
+              color: "#2455A4",
+              padding: "8px 14px",
+              borderRadius: 20,
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            ✓ {item}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <div
+      style={{
+        minWidth: 280,
+        textAlign: "center",
+      }}
+    >
+      <button
+        type="submit"
+        disabled={loading}
+        style={{
+          width: "100%",
+          height: 58,
+          border: "none",
+          borderRadius: 12,
+          background:
+            loading
+              ? "#94A3B8"
+              : "linear-gradient(135deg,#0A1F44,#2455A4)",
+          color: "#fff",
+          fontSize: 17,
+          fontWeight: 700,
+          cursor: loading ? "not-allowed" : "pointer",
+          boxShadow: "0 15px 35px rgba(36,85,164,.25)",
+          transition: ".3s",
+        }}
+      >
+        {loading
+          ? (loadingLabel || "Submitting Application...")
+          : "Submit Application"}
+      </button>
+
+      <p
+        style={{
+          marginTop: 15,
+          color: "#64748B",
+          fontSize: 12,
+          lineHeight: 1.7,
+        }}
+      >
+        By clicking <strong>"Submit Application"</strong>, you agree to
+        Roomgi's recruitment process, privacy policy and candidate
+        declaration.
+
+        <br /><br />
+
+        Expected review time:
+        <strong> 5–7 Business Days</strong>
+      </p>
+    </div>
+  </div>
+</div>
           </form>
         </main>
       </div>
@@ -495,7 +2570,7 @@ const TopBar = () => (
 const Footer = () => (
   <footer style={styles.footer}>
     <div style={styles.footerInner} className="rg-footer-inner">
-      © {new Date().getFullYear()} Roomgi Technologies Pvt. Ltd. All rights reserved.
+      © {new Date().getFullYear()} Roomgi Pvt. Ltd. All rights reserved.
       This application is confidential and intended solely for recruitment purposes.
     </div>
   </footer>
