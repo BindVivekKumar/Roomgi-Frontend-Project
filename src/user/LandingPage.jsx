@@ -15,6 +15,7 @@ import { useGetWishlistQuery } from "../backend-routes/userroutes/authapi";
 import Ads1 from "../assets/ads1.png";
 import Ads2 from "../assets/ads2.png";
 import Ads3 from "../assets/ads3.png";
+import Ads4 from "../assets/ads4.png";
 
 
 export default function LandingPage() {
@@ -53,6 +54,7 @@ export default function LandingPage() {
     Ads1,   // phir ads
     Ads2,
     Ads3,
+    Ads4,
   ];
 
 
@@ -226,7 +228,7 @@ export default function LandingPage() {
         <div
           className="relative overflow-hidden 
   bg-slate-900 rounded-[2rem] sm:rounded-[3rem] shadow-2xl
-  aspect-[4/3] sm:aspect-[16/6] lg:aspect-[16/5]"
+  h-[240px] sm:h-[320px] md:h-[380px] lg:h-[420px]"
         >
 
 
@@ -281,13 +283,21 @@ export default function LandingPage() {
               {slide !== "stats" && (
                 <div className="absolute inset-0 overflow-hidden rounded-[2rem] sm:rounded-[3rem]">
 
-                  <img
-                    src={slide}
-                    alt="Sponsored Ad"
-                    className="absolute inset-0 w-full h-full 
-                 object-cover object-center"
-                  />
+                  <div className="absolute inset-0 p-2 sm:p-3 md:p-4 lg:p-5">
+  <div className="relative w-full h-full">
+    <img
+      src={slide}
+      alt="Sponsored Ad"
+      className="w-full h-full object-contain rounded-[1.5rem] sm:rounded-[2rem]"
+    />
 
+    <div className="absolute inset-0 bg-black/20 rounded-[1.5rem] sm:rounded-[2rem]" />
+
+    <span className="absolute top-3 left-3 sm:top-5 sm:left-5 px-3 py-1 bg-white/20 backdrop-blur text-white text-xs rounded-full">
+      {/* Roomgi */}
+    </span>
+  </div>
+</div>
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black/25" />
 
@@ -298,7 +308,7 @@ export default function LandingPage() {
       text-white text-[10px] sm:text-xs font-bold 
       rounded-full"
                   >
-                    Roomgi
+                    {/* Roomgi */}
                   </span>
 
                 </div>
@@ -314,7 +324,7 @@ export default function LandingPage() {
 
 
 
-      </section>
+  </section>
 
       {/* Featured Properties - SEO Optimized */}
       <section
