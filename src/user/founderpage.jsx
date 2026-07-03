@@ -30,7 +30,7 @@ const CEO = () => {
         quote: "Turning complex code into comfortable living spaces.",
         status: "Final Year Student",
         extra: "Leading Product Strategy & Market Expansion",
-        linkedin: "https://www.linkedin.com/in/-backenddeveloper-ayush-raj/",
+       
         bio: "Ayush is the chief architect behind RoomGi's vision. A full-stack developer at heart, he started RoomGi to bridge the gap between students and verified property owners using transparent tech solutions.",
         skills: [
           { icon: <Code2 size={14} />, label: "Full Stack Dev" },
@@ -48,7 +48,7 @@ const CEO = () => {
         quote: "Intelligence is not just about data, it's about making lives easier.",
         status: "Final Year Student",
         extra: "Driving AI Automation & Data Security",
-        linkedin: "https://www.linkedin.com/in/abhinav-kumar-863359319/",
+       
         bio: "Specializing in Artificial Intelligence, Abhinav ensures RoomGi stays ahead of the curve. He leads the development of smart algorithms that detect fraudulent listings and provide personalized recommendations.",
         skills: [
           { icon: <Binary size={14} />, label: "AIML Models" },
@@ -129,9 +129,7 @@ const CEO = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all p-8 flex flex-col justify-end rounded-[2rem]">
                   <p className="text-white italic mb-4">"{leader.quote}"</p>
                   <div className="flex gap-3">
-                    <a href={leader.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 bg-green-500 rounded-xl text-white">
-                      <Linkedin size={18} />
-                    </a>
+                    
                     <a href={`mailto:${leader.email}`} className="p-3 bg-white/20 rounded-xl text-white">
                       <Mail size={18} />
                     </a>
@@ -161,98 +159,151 @@ const CEO = () => {
         </section>
 
         {/* ABES SECTION */}
-        <section className="mt-32 bg-gradient-to-br from-slate-950 via-slate-900 to-black rounded-[3rem] p-12 lg:p-16 text-white">
+       <section className="mt-36 overflow-hidden rounded-[40px] bg-gradient-to-br from-[#050505] via-slate-950 to-black text-white">
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+  <div className="max-w-7xl mx-auto px-8 lg:px-16 py-20">
 
-            {/* Left */}
-            <div>
+    <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-              <span className="inline-flex items-center rounded-full border border-green-500/30 bg-green-500/10 px-4 py-2 text-sm font-semibold text-green-400">
-                Founder & Vision
-              </span>
+      {/* LEFT CONTENT */}
+      <div>
 
-              <h2 className="mt-6 text-5xl lg:text-6xl font-black leading-tight">
-                Building Companies
-                <br />
-                That Create
-                <span className="text-green-400"> Lasting Impact.</span>
-              </h2>
+        <span className="inline-flex items-center rounded-full border border-green-500/30 bg-green-500/10 px-5 py-2 text-xs font-bold uppercase tracking-[3px] text-green-400">
+          Founder • Leadership • Vision
+        </span>
 
-              <p className="mt-8 text-lg leading-8 text-slate-300">
-                Great businesses are built on clarity of vision, relentless execution,
-                and a commitment to solving real-world challenges. Our mission is to
-                transform ambitious ideas into scalable digital products that create
-                measurable value for organizations, communities, and the people who use them.
-              </p>
+        <h2 className="mt-8 text-5xl lg:text-7xl font-black leading-[1.05] tracking-tight">
+          Building Products.
+          <br />
+          Building Trust.
+          <br />
+          <span className="text-green-400">
+            Building the Future.
+          </span>
+        </h2>
 
-              <p className="mt-6 text-slate-400 leading-8">
-                We believe innovation is not about following trends—it's about
-                understanding problems deeply, designing thoughtful solutions, and
-                delivering products that remain valuable for years to come. Every
-                decision we make is driven by quality, trust, and long-term thinking.
-              </p>
+        <p className="mt-10 text-lg leading-9 text-slate-300 max-w-xl">
+          Every transformative company begins with a clear vision and an
+          unwavering commitment to solving meaningful problems. At RoomGi,
+          we are creating technology that makes finding trusted accommodation
+          effortless while redefining how students, professionals and property
+          owners connect across India.
+        </p>
 
-              <div className="flex gap-4 mt-10">
-                <button className="rounded-full bg-green-500 px-8 py-4 font-semibold hover:bg-green-600 transition">
-                  Our Vision
-                </button>
+        <p className="mt-8 text-slate-400 leading-8 max-w-xl">
+          Our philosophy is simple — innovate with purpose, execute with
+          excellence, and build products that people genuinely rely on.
+          We don't chase trends; we build long-term solutions designed
+          to scale responsibly, inspire confidence, and create lasting value.
+        </p>
 
-                <button className="rounded-full border border-white/15 px-8 py-4 font-semibold hover:bg-white/10 transition">
-                  Founder Journey
-                </button>
-              </div>
+        <div className="mt-12 flex flex-wrap gap-5">
 
+          <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-5 backdrop-blur">
+            <p className="text-4xl font-black text-green-400">Vision</p>
+            <p className="mt-2 text-sm text-slate-400">
+              Creating technology that simplifies everyday living.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-5 backdrop-blur">
+            <p className="text-4xl font-black text-green-400">Mission</p>
+            <p className="mt-2 text-sm text-slate-400">
+              Deliver trusted experiences through innovation and execution.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* RIGHT CONTENT */}
+
+      <div className="grid grid-cols-2 gap-6">
+
+        {[
+          {
+            number: "01",
+            title: "Purpose",
+            desc: "We exist to solve real-world accommodation challenges with transparency, technology and trust."
+          },
+          {
+            number: "02",
+            title: "Leadership",
+            desc: "Lead with integrity, inspire innovation and empower every individual to create meaningful impact."
+          },
+          {
+            number: "03",
+            title: "Execution",
+            desc: "Great ideas matter only when they are executed with precision, speed and uncompromising quality."
+          },
+          {
+            number: "04",
+            title: "Legacy",
+            desc: "Our ambition extends beyond building a company—we are building a platform that creates value for generations."
+          }
+        ].map((item) => (
+
+          <div
+            key={item.number}
+            className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl transition duration-500 hover:-translate-y-3 hover:border-green-400/40 hover:bg-white/10"
+          >
+
+            <div className="absolute -right-6 -top-6 text-8xl font-black text-white/5">
+              {item.number}
             </div>
 
-            {/* Right */}
-            <div className="grid grid-cols-2 gap-5">
+            <h3 className="text-2xl font-bold">
+              {item.title}
+            </h3>
 
-              {[
-                {
-                  title: "Vision",
-                  value: "Purpose-Driven",
-                  desc: "Building meaningful products that solve genuine business and human challenges."
-                },
-                {
-                  title: "Leadership",
-                  value: "Innovation First",
-                  desc: "Creating an environment where creativity, ownership, and excellence thrive."
-                },
-                {
-                  title: "Commitment",
-                  value: "Quality Always",
-                  desc: "Every solution is designed with performance, scalability, and reliability in mind."
-                },
-                {
-                  title: "Future",
-                  value: "Global Impact",
-                  desc: "Growing sustainable businesses that deliver long-term value across industries."
-                }
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-green-400/40 hover:bg-white/10"
-                >
-                  <p className="text-sm uppercase tracking-[3px] text-green-400">
-                    {item.title}
-                  </p>
-
-                  <h3 className="mt-3 text-2xl font-bold">
-                    {item.value}
-                  </h3>
-
-                  <p className="mt-4 text-sm leading-7 text-slate-400">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-
-            </div>
+            <p className="mt-5 leading-8 text-slate-400">
+              {item.desc}
+            </p>
 
           </div>
 
-        </section>
+        ))}
+
+      </div>
+
+    </div>
+
+    {/* CEO QUOTE */}
+
+    <div className="mt-24 border-t border-white/10 pt-14">
+
+      <blockquote className="max-w-5xl text-3xl lg:text-5xl font-bold leading-tight text-slate-100">
+
+        "The strongest companies aren't built by following the market—
+        they're built by understanding people, solving meaningful problems,
+        and earning trust every single day."
+
+      </blockquote>
+
+      <div className="mt-8 flex items-center gap-4">
+
+        <div className="h-12 w-1 rounded-full bg-green-500"></div>
+
+        <div>
+
+          <p className="font-semibold text-lg">
+            Ayush Raj
+          </p>
+
+          <p className="text-slate-400">
+            Chief Executive Officer & Founder, RoomGi
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
       </main>
 
 
