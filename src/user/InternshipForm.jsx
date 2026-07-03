@@ -349,7 +349,7 @@ const InternshipForm = () => {
             <div style={styles.sidebarNote} className="rg-sidebar-note">
               <div style={styles.sidebarNoteTitle}>Need help?</div>
               <div style={styles.sidebarNoteText}>
-                Contact careers@roomgi.com for questions about this application.
+                Contact support@roomgi.com for questions about this application.
               </div>
             </div>
           </aside>
