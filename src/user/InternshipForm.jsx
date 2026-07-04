@@ -391,7 +391,7 @@ const InternshipForm = () => {
     >
       Internship Program 2026
     </span>
- 
+
     <h2
       style={{
         margin: "18px 0 12px",
@@ -400,10 +400,11 @@ const InternshipForm = () => {
         lineHeight: 1.2,
       }}
     >
-      Build Products.<br />
+      Build Products.
+      <br />
       Build Your Career.
     </h2>
- 
+
     <p
       style={{
         color: "rgba(255,255,255,.85)",
@@ -413,13 +414,13 @@ const InternshipForm = () => {
         marginBottom: 28,
       }}
     >
-      At <strong>Roomgi Pvt. Ltd.</strong>, interns are treated as
-      engineers and business professionals—not observers. You'll contribute to
-      production-ready applications, collaborate with experienced mentors, work
-      on real customer problems, and gain practical industry experience while
-      building solutions used by thousands of users.
+      At <strong>Roomgi Pvt. Ltd.</strong>, interns are treated as engineers and
+      business professionals—not observers. You'll contribute to production-ready
+      applications, collaborate with experienced mentors, work on real customer
+      problems, and gain practical industry experience while building solutions
+      used by thousands of users.
     </p>
- 
+
     <div
       style={{
         display: "grid",
@@ -453,7 +454,7 @@ const InternshipForm = () => {
           >
             {title}
           </div>
- 
+
           <div
             style={{
               fontSize: 22,
@@ -466,7 +467,258 @@ const InternshipForm = () => {
       ))}
     </div>
   </div>
- 
+
+  {/* =================== HACKATHON PRIZE SECTION =================== */}
+
+  <div
+    style={{
+      background:
+        "linear-gradient(135deg,#FFF7D6 0%,#FFE082 50%,#FFD54F 100%)",
+      border: "2px solid #F4B400",
+      borderRadius: 16,
+      padding: 34,
+      marginBottom: 30,
+      boxShadow: "0 18px 40px rgba(244,180,0,.18)",
+      textAlign: "center",
+    }}
+  >
+    <span
+      style={{
+        display: "inline-block",
+        background: "#F4B400",
+        color: "#fff",
+        padding: "8px 18px",
+        borderRadius: 50,
+        fontSize: 12,
+        fontWeight: 700,
+        letterSpacing: "1px",
+        textTransform: "uppercase",
+      }}
+    >
+      🏆 National Hiring Hackathon
+    </span>
+
+    <h2
+      style={{
+        margin: "18px 0 10px",
+        color: "#6B4500",
+        fontSize: 34,
+        fontWeight: 800,
+      }}
+    >
+      Hackathon Cash Prizes
+    </h2>
+
+    <p
+      style={{
+        color: "#6B4500",
+        maxWidth: 760,
+        margin: "0 auto 30px",
+        fontSize: 16,
+        lineHeight: 1.8,
+      }}
+    >
+      Showcase your skills, compete with talented participants from across the
+      country, and win exciting cash rewards along with internship and PPO
+      opportunities.
+    </p>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+        gap: 22,
+      }}
+    >
+      {[
+        {
+          icon: "🥇",
+          title: "First Prize",
+          amount: "$500",
+        },
+        {
+          icon: "🥈",
+          title: "Second Prize",
+          amount: "$250",
+        },
+        {
+          icon: "🥉",
+          title: "Third Prize",
+          amount: "$100",
+        },
+      ].map((prize) => (
+        <div
+          key={prize.title}
+          style={{
+            background: "#fff",
+            borderRadius: 14,
+            padding: 28,
+            border: "2px solid #F4B400",
+            boxShadow: "0 12px 28px rgba(0,0,0,.08)",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 42,
+              marginBottom: 10,
+            }}
+          >
+            {prize.icon}
+          </div>
+
+          <div
+            style={{
+              color: "#6B4500",
+              fontSize: 15,
+              fontWeight: 700,
+              marginBottom: 10,
+              textTransform: "uppercase",
+              letterSpacing: ".05em",
+            }}
+          >
+            {prize.title}
+          </div>
+
+          <div
+            style={{
+              color: "#0A1F44",
+              fontSize: 44,
+              fontWeight: 800,
+              lineHeight: 1,
+            }}
+          >
+            {prize.amount}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+{/* =================== GRAND FINALE SECTION =================== */}
+
+<div
+  style={{
+    background: "linear-gradient(135deg,#0A1F44 0%,#163E7A 100%)",
+    color: "#fff",
+    borderRadius: 16,
+    padding: "34px",
+    marginBottom: 30,
+    textAlign: "center",
+    boxShadow: "0 20px 45px rgba(10,31,68,.18)",
+  }}
+>
+  <span
+    style={{
+      display: "inline-block",
+      background: "rgba(255,255,255,.15)",
+      padding: "8px 18px",
+      borderRadius: 999,
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: "1px",
+      textTransform: "uppercase",
+      marginBottom: 16,
+    }}
+  >
+    🚀 Grand Finale
+  </span>
+
+  <h2
+    style={{
+      margin: "0 0 16px",
+      fontSize: 34,
+      fontWeight: 800,
+      lineHeight: 1.2,
+    }}
+  >
+    Top 100 Teams Will Qualify for the Final Round
+  </h2>
+
+  <p
+    style={{
+      maxWidth: 850,
+      margin: "0 auto 30px",
+      color: "rgba(255,255,255,.9)",
+      fontSize: 17,
+      lineHeight: 1.8,
+    }}
+  >
+    The highest-performing <strong>Top 100 participants/teams</strong> from the
+    online hackathon will be shortlisted for the <strong>Grand Finale</strong>.
+    Finalists will present their solutions before an expert judging panel,
+    compete for the championship, cash prizes, internship opportunities, and
+    performance-based PPO offers.
+  </p>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
+      gap: 18,
+    }}
+  >
+    {[
+      ["🏆", "Top 100", "Finalists Selected"],
+      ["💡", "Live Presentation", "Present Your Solution"],
+      ["👨‍⚖️", "Expert Jury", "Industry Evaluation"],
+      ["💼", "Internship & PPO", "For Outstanding Performers"],
+    ].map(([icon, title, desc]) => (
+      <div
+        key={title}
+        style={{
+          background: "rgba(255,255,255,.08)",
+          border: "1px solid rgba(255,255,255,.15)",
+          borderRadius: 14,
+          padding: 24,
+        }}
+      >
+        <div
+          style={{
+            fontSize: 38,
+            marginBottom: 10,
+          }}
+        >
+          {icon}
+        </div>
+
+        <div
+          style={{
+            fontWeight: 700,
+            fontSize: 18,
+            marginBottom: 6,
+          }}
+        >
+          {title}
+        </div>
+
+        <div
+          style={{
+            color: "rgba(255,255,255,.8)",
+            fontSize: 14,
+            lineHeight: 1.6,
+          }}
+        >
+          {desc}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+{/* =========================================================== */}
+
+
+
+
+
+
+
+
+
+
+
+  {/* =============================================================== */}
+
   <div
     style={{
       display: "grid",
@@ -490,7 +742,7 @@ const InternshipForm = () => {
       >
         What You'll Work On
       </h3>
- 
+
       <ul
         style={{
           color: "#5B6B84",
@@ -506,7 +758,7 @@ const InternshipForm = () => {
         <li>Real Estate Technology Platform</li>
       </ul>
     </div>
- 
+
     <div
       style={{
         background: "#FFFFFF",
@@ -523,7 +775,7 @@ const InternshipForm = () => {
       >
         Why Join Roomgi?
       </h3>
- 
+
       <ul
         style={{
           color: "#5B6B84",
@@ -539,7 +791,7 @@ const InternshipForm = () => {
         <li>Fast learning startup environment</li>
       </ul>
     </div>
- 
+
     <div
       style={{
         background: "#FFFFFF",
@@ -556,7 +808,7 @@ const InternshipForm = () => {
       >
         Our Hiring Philosophy
       </h3>
- 
+
       <p
         style={{
           color: "#5B6B84",
