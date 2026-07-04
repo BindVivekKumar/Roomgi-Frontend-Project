@@ -182,7 +182,7 @@ const InternshipForm = () => {
     const { data: order } = await axios.post(
   `${API_BASE}/internship-payment`,
   {
-    amount: 7900,
+    amount: 100,
   }
 );
  
@@ -2200,13 +2200,7 @@ const InternshipForm = () => {
   information solely for recruitment, verification, and employment-related
   purposes in accordance with the company's privacy practices.
 
-  <br /><br />
-
-  I acknowledge that a one-time <strong>₹59 onboarding fee</strong> is
-  applicable for application processing and will be
-  <strong> 100% refunded after successful internship onboarding.</strong>
-
-  <br /><br />
+ 
 
   I acknowledge that submission of this application does not guarantee an
   interview, internship offer, or full-time employment, and that all
