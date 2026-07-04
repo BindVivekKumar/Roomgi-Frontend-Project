@@ -9,6 +9,7 @@ import {
   LogOut,
   MessageSquare,
   Briefcase,
+  Trophy,
 } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -70,6 +71,11 @@ export default function Header() {
 
   const navLinks = [
     { label: "Explore Flat & PG", path: "/?category=Pg", icon: <Home size={18} /> },
+   {
+  label: "Hack2Hire by Roomgi",
+  path: "/internshipviahackathons",
+  icon: <Trophy size={18} />,
+},
     { label: "About", path: "/about", icon: <User size={18} /> },
     { label: "Contact", path: "/contact", icon: <MessageSquare size={18} /> },
     // { label: "Explore Hotel", path: "/?category=Hotel", icon: <MessageSquare size={18} /> },
