@@ -182,7 +182,7 @@ const InternshipForm = () => {
     const { data: order } = await axios.post(
   `${API_BASE}/internship-payment`,
   {
-    amount: 100,
+    amount: 5900,
   }
 );
  
