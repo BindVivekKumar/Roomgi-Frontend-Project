@@ -123,11 +123,13 @@ export default function LandingPage() {
     }
   }, [pgApiData]);
   const filterOptions = [
-    { key: "owner", label: "property Registered", count: pgApiData?.property || 0 },
+    { key: "owner", label: "Property Registered", count: pgApiData?.property || 0 },
     { key: "All", label: "All Stays", count: pgApiData?.count || 0 },
     { key: "Newest", label: "Newest", count: pgData.filter(p => p.createdAt > Date.now() - 30 * 24 * 60 * 60 * 1000).length },
 
   ];
+
+
 
   // SEO Optimized Meta Tags
   useEffect(() => {
@@ -240,11 +242,23 @@ export default function LandingPage() {
         </div>
 
         {/* Stats Row */}
-        <div
-          className="relative overflow-hidden 
-  bg-slate-900 rounded-[2rem] sm:rounded-[3rem] shadow-2xl
-  h-[240px] sm:h-[320px] md:h-[380px] lg:h-[420px]"
-        >
+    <div
+  className="
+    relative
+    w-full
+    aspect-[4/3]
+    sm:aspect-[16/9]
+    lg:aspect-[1960/640]
+    overflow-hidden
+    rounded-[2rem]
+    bg-gradient-to-br
+    from-white
+    via-slate-50
+    to-indigo-50
+    border border-slate-200
+    shadow-[0_20px_60px_rgba(15,23,42,0.08)]
+  "
+>
 
 
 
@@ -264,14 +278,14 @@ ${
               {slide.type === "stats" && (
                 <>
                   {/* Background glows */}
-                  <div className="absolute top-0 -left-16 sm:-left-20 w-48 sm:w-64 h-48 sm:h-64 bg-indigo-500/20 rounded-full blur-[90px]" />
-                  <div className="absolute bottom-0 -right-16 sm:-right-20 w-48 sm:w-64 h-48 sm:h-64 bg-purple-500/20 rounded-full blur-[90px]" />
+                 <div className="absolute -top-20 -left-20 w-72 h-72 bg-indigo-200/40 rounded-full blur-[120px]" />
+<div className="absolute -bottom-20 -right-20 w-72 h-72 bg-violet-200/40 rounded-full blur-[120px]" />
 
                   <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 w-full">
                     {[
-                      { label: "Partner Cities", value: "4", suffix: "+", icon: MapPin, color: "text-indigo-400" },
-                      { label: "Verified Properties", value: "1", suffix: "K+", icon: Star, color: "text-amber-400" },
-                      { label: "Happy Residents", value: "5", suffix: "K+", icon: Users, color: "text-emerald-400" },
+                      { label: "Partner Cities", value: "4", suffix: "+", icon: MapPin, color: "text-indigo-600" },
+                      { label: "Verified Properties", value: "1", suffix: "K+", icon: Star, color: "text-amber-500" },
+                      { label: "Happy Residents", value: "5", suffix: "K+", icon: Users, color: "text-emerald-500" },
                     ].map((stat, i) => (
                       <div key={i} className="flex flex-col items-center text-center">
 
@@ -281,15 +295,15 @@ ${
                         </div>
 
                         <div className="flex items-baseline gap-1">
-                          <span className="text-3xl sm:text-5xl lg:text-6xl font-black text-white">
-                            {stat.value}
-                          </span>
+                         <span className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900">
+  {stat.value}
+</span>
                           <span className={`text-xl sm:text-3xl font-black ${stat.color}`}>
                             {stat.suffix}
                           </span>
                         </div>
 
-                        <p className="mt-2 text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+                        <p className="mt-2 text-slate-500 font-semibold uppercase tracking-[0.2em] text-[10px] sm:text-xs">
                           {stat.label}
                         </p>
                       </div>
@@ -310,16 +324,16 @@ ${
   navigate(slide.path);
 }}
 >
-  <img
+<img
   src={slide.image}
+  alt="Sponsored Ad"
   className="
     w-full
     h-full
-    object-cover
+    object-contain
     md:object-cover
-    object-left
-    md:object-center
     rounded-[2rem]
+    bg-white
   "
 />
 </div>
@@ -352,6 +366,9 @@ ${
 
   </section>
 
+
+
+
       {/* Featured Properties - SEO Optimized */}
       <section
         aria-labelledby="featured-properties-title"
@@ -360,14 +377,27 @@ ${
         <header className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 sm:mb-20 gap-8">
           <div>
             <h2
-              id="featured-properties-title"
-              className="text-4xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 bg-clip-text text-transparent mb-6 leading-tight"
-            >
-              Featured{" "}
-              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                Properties
-              </span>
-            </h2>
+  id="featured-properties-title"
+  className="
+text-4xl
+sm:text-5xl
+lg:text-6xl
+font-black
+bg-gradient-to-r
+from-slate-900
+via-indigo-900
+to-slate-900
+bg-clip-text
+text-transparent
+mb-6
+leading-tight
+"
+>
+  Featured{" "}
+  <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+    Properties
+  </span>
+</h2>
 
             <p className="text-lg sm:text-xl text-slate-600 font-medium max-w-lg">
               Handpicked premium stays • Verified quality • Ready to move-in
