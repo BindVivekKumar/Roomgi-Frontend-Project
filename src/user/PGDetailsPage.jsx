@@ -32,7 +32,13 @@ const phoneNumber = pg?.branch?.phoneNumber;
     { skip: !coord }
   )
   console.log("recomendedPg", recomendedPg)
-  const allImages = useMemo(() => pg?.roomImages || [], [pg]);
+ const allImages = useMemo(() => {
+  return (
+    pg?.roomImages ||
+    pg?.rooms?.[0]?.roomImages ||
+    []
+  );
+}, [pg]);
 
   // Back Button Functionality
   const handleBack = () => navigate(-1);
@@ -112,7 +118,7 @@ const phoneNumber = pg?.branch?.phoneNumber;
               <img
                 src={allImages[0] || "/api/placeholder/800/600"}
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 cursor-zoom-in"
-                alt={`${pg.name} main view`}
+               alt={`${pg?.branch?.name || "Room"} main view`}
               />
             </div>
             {/* Secondary Images */}

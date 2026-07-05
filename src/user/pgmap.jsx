@@ -21,6 +21,22 @@ export default function PGMap() {
       try {
         const res = await fetch(
           `https://roomgi-backend-project-7pjg.onrender.com/api/property/location/${branchId}`
+
+
+
+
+
+
+          // `http://localhost:5000/api/property/location/${branchId}`
+
+
+
+
+          
+
+
+
+
         );
         const data = await res.json();
         if (data.success && data.branch) {
