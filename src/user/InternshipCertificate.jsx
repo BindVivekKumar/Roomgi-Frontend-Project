@@ -16,7 +16,7 @@ const InternshipCertificate = () => {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/api/certificate/verify",
+        "https://roomgi-backend-project-7pjg.onrender.com/api/certificate/verify",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -25,7 +25,7 @@ const PropertyCard = React.memo(({
 
     try {
       const res = await axios.put(
-        "http://localhost:5000/api/v1/branch/owner/update-contact",
+        "https://roomgi-backend-project-7pjg.onrender.com/api/v1/branch/owner/update-contact",
         {
           branchId: property._id,
           number: phone,
