@@ -313,7 +313,18 @@ ${
               )}
 
               {/* ================= IMAGE SLIDE ================= */}
+
+              
+
+
+
               {slide.type !== "stats" && (
+
+
+                
+
+
+
                 <div className="absolute inset-0 overflow-hidden rounded-[2rem] sm:rounded-[3rem]">
 
                   <div className="absolute inset-0 p-2 sm:p-3 md:p-4 lg:p-5">
@@ -342,14 +353,24 @@ ${
                   {/* <div className="absolute inset-0 bg-black/25" /> */}
 
                   {/* Badge */}
-                  <span
-                    className="absolute top-4 sm:top-6 left-4 sm:left-6 
-      px-3 py-1.5 bg-white/20 backdrop-blur 
-      text-white text-[10px] sm:text-xs font-bold 
-      rounded-full"
-                  >
-                    Sponsered By Hack2Hire
-                  </span>
+                 <span
+className="
+  absolute
+  top-3
+  left-3
+  px-2
+  py-0.5
+  bg-[#4F46E5]
+  text-white
+  text-[10px]
+  font-medium
+  rounded-md
+  shadow-md
+  z-20
+"
+>
+  Powered By Hack2Hire
+</span>
 
                 </div>
               )}
