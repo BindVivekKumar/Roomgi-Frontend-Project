@@ -75,8 +75,6 @@ const API_BASE = "https://roomgi-backend-project-7pjg.onrender.com/api/v1/paymen
 // const API_BASE = "http://localhost:5000/api/v1/payment/user";
 
 
-http://localhost:5000
-
 const RAZORPAY_KEY_ID = "rzp_live_Rn8nwfw3Hdmb8E"; // public key_id, safe to expose client-side
  
 

@@ -23,7 +23,7 @@ export default function PGDetailsPage() {
  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
    const pg = data?.room;
   console.log("pg",pg);
-  const coord = data?.room?.branch?.location;
+  const coord = pg?.location || pg?.branch?.location;
 const phoneNumber = pg?.branch?.phoneNumber;
   console.log("coord",phoneNumber)
   
