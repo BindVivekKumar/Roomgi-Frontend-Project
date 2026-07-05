@@ -69,7 +69,7 @@ const RESPONSIVE_CSS = `
  
 const ResponsiveStyles = () => <style>{RESPONSIVE_CSS}</style>;
  
-const API_BASE = "https://roomgi-backend-project-7pjg.onrender.com/api/v1/payment/user";
+const API_BASE = "http://localhost:5000/api/v1/payment/user";
 const RAZORPAY_KEY_ID = "rzp_live_Rn8nwfw3Hdmb8E"; // public key_id, safe to expose client-side
  
 const loadRazorpay = () => {

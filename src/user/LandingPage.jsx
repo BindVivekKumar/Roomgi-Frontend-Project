@@ -50,13 +50,28 @@ export default function LandingPage() {
 
 
   const slides = [
-    "stats",        // pehla slide → stats
-    Ads1,   // phir ads
-    Ads2,
-    Ads3,
-    Ads4,
-  ];
+    { type: "stats" },
 
+    {
+      image: Ads1,
+      path: "/login",
+    },
+
+    {
+      image: Ads2,
+      path: "/login",
+    },
+
+    {
+      image: Ads3,
+      path: "/internshipviahackathons",
+    },
+
+    {
+      image: Ads4,
+      path: "/login",
+    },
+  ];
 
   const [activeSlide, setActiveSlide] = useState(0);
 
@@ -237,12 +252,16 @@ export default function LandingPage() {
             <div
               key={index}
               className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ease-in-out
-        ${activeSlide === index ? "opacity-100 scale-100" : "opacity-0 scale-[1.02]"}
-      `}
+${
+  activeSlide === index
+    ? "opacity-100 scale-100 z-10 pointer-events-auto"
+    : "opacity-0 scale-[1.02] z-0 pointer-events-none"
+}
+`}
             >
 
               {/* ================= STATS SLIDE ================= */}
-              {slide === "stats" && (
+              {slide.type === "stats" && (
                 <>
                   {/* Background glows */}
                   <div className="absolute top-0 -left-16 sm:-left-20 w-48 sm:w-64 h-48 sm:h-64 bg-indigo-500/20 rounded-full blur-[90px]" />
@@ -280,26 +299,26 @@ export default function LandingPage() {
               )}
 
               {/* ================= IMAGE SLIDE ================= */}
-              {slide !== "stats" && (
+              {slide.type !== "stats" && (
                 <div className="absolute inset-0 overflow-hidden rounded-[2rem] sm:rounded-[3rem]">
 
                   <div className="absolute inset-0 p-2 sm:p-3 md:p-4 lg:p-5">
-  <div className="relative w-full h-full">
-    <img
-      src={slide}
-      alt="Sponsored Ad"
-      className="w-full h-full object-contain rounded-[1.5rem] sm:rounded-[2rem]"
-    />
-
-    <div className="absolute inset-0 bg-black/20 rounded-[1.5rem] sm:rounded-[2rem]" />
-
-    <span className="absolute top-3 left-3 sm:top-5 sm:left-5 px-3 py-1 bg-white/20 backdrop-blur text-white text-xs rounded-full">
-      {/* Roomgi */}
-    </span>
-  </div>
+ <div
+  className="relative w-full h-full cursor-pointer"
+ onClick={() => {
+  console.log(slide.path);
+  navigate(slide.path);
+}}
+>
+  <img
+    src={slide.image}
+    alt="Sponsored Ad"
+    className="block w-full h-full object-cover rounded-[2rem]"
+  />
+</div>
 </div>
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/25" />
+                  {/* <div className="absolute inset-0 bg-black/25" /> */}
 
                   {/* Badge */}
                   <span
@@ -308,7 +327,7 @@ export default function LandingPage() {
       text-white text-[10px] sm:text-xs font-bold 
       rounded-full"
                   >
-                    {/* Roomgi */}
+                    Sponsered By Hack2Hire
                   </span>
 
                 </div>

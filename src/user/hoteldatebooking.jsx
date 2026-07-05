@@ -26,7 +26,7 @@ export default function HotelBookingPage() {
         };
   
         const response = await axios.post(
-          "https://roomgi-backend-project-7pjg.onrender.com/api/v1/hotel/user/create-booking",
+          "http://localhost:5000/api/v1/hotel/user/create-booking",
           payload
         );
   

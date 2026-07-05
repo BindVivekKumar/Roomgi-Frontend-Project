@@ -21,10 +21,10 @@ export default function PGDetailsPage() {
 
   const { data, isLoading, isError, error } = useGetPgByIdQuery(id);
  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-   const pg = data?.room?.rooms?.[0]
-  console.log("pg",pg)
-  const coord = data?.room?.location;
-  const phoneNumber = data?.room.phoneNumber;
+   const pg = data?.room;
+  console.log("pg",pg);
+  const coord = data?.room?.branch?.location;
+const phoneNumber = pg?.branch?.phoneNumber;
   console.log("coord",phoneNumber)
   
 
@@ -96,11 +96,11 @@ export default function PGDetailsPage() {
         {/* 🟢 HEADER SECTION */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-            {data.room.name || "Premium Managed Stay"}
+           {pg?.branch?.name || "Premium Managed Stay"}
           </h1>
           <div className="flex items-center gap-1 text-slate-500 mt-2">
             <MapPin className="w-4 h-4" />
-            <span className="text-sm font-medium">{data.room.locationName || "Prime Location, City Center"}</span>
+            <span className="text-sm font-medium">{pg?.branch?.locationName || "Prime Location, City Center"}</span>
           </div>
         </div>
 
