@@ -123,7 +123,7 @@ export default function LandingPage() {
     }
   }, [pgApiData]);
   const filterOptions = [
-    { key: "owner", label: "property Registered", count: pgApiData?.property || 0 },
+    { key: "owner", label: "Property Registered", count: pgApiData?.property || 0 },
     { key: "All", label: "All Stays", count: pgApiData?.count || 0 },
     { key: "Newest", label: "Newest", count: pgData.filter(p => p.createdAt > Date.now() - 30 * 24 * 60 * 60 * 1000).length },
 
