@@ -311,10 +311,17 @@ ${
 }}
 >
   <img
-    src={slide.image}
-    alt="Sponsored Ad"
-    className="block w-full h-full object-cover rounded-[2rem]"
-  />
+  src={slide.image}
+  className="
+    w-full
+    h-full
+    object-cover
+    md:object-cover
+    object-left
+    md:object-center
+    rounded-[2rem]
+  "
+/>
 </div>
 </div>
                   {/* Overlay */}
