@@ -255,7 +255,7 @@ const InternshipForm = () => {
           },
         },
       };
- 
+      console.log(options);
       const rzp = new window.Razorpay(options);
       rzp.on("payment.failed", (resp) => {
         console.error("Payment failed:", resp.error);
