@@ -186,10 +186,13 @@ const InternshipForm = () => {
  
       // 3. Create Razorpay order
       setLoadingLabel("Creating order…");
-    const { data: order } = await axios.post(
+  const { data: order } = await axios.post(
   `${API_BASE}/internship-payment`,
   {
     amount: 7900,
+  },
+  {
+    withCredentials: true,
   }
 );
  
@@ -209,27 +212,30 @@ const InternshipForm = () => {
         handler: async function (response) {
   try {
     const { data } = await axios.post(
-      `${API_BASE}/verify-internship-payment`,
-      {
-        razorpay_order_id: response.razorpay_order_id,
-        razorpay_payment_id: response.razorpay_payment_id,
-        razorpay_signature: response.razorpay_signature,
- 
-        fullName: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        college: formData.college,
-        degree: formData.degree,
-        year: formData.year,
-        role: formData.role,
-        skills: formData.skills,
-        linkedin: formData.linkedin,
-        github: formData.github,
-        portfolio: formData.portfolio,
-        whyJoin: formData.whyJoin,
-        availability: formData.availability,
-      }
-    );
+  `${API_BASE}/verify-internship-payment`,
+  {
+    razorpay_order_id: response.razorpay_order_id,
+    razorpay_payment_id: response.razorpay_payment_id,
+    razorpay_signature: response.razorpay_signature,
+
+    fullName: formData.fullName,
+    email: formData.email,
+    phone: formData.phone,
+    college: formData.college,
+    degree: formData.degree,
+    year: formData.year,
+    role: formData.role,
+    skills: formData.skills,
+    linkedin: formData.linkedin,
+    github: formData.github,
+    portfolio: formData.portfolio,
+    whyJoin: formData.whyJoin,
+    availability: formData.availability,
+  },
+  {
+    withCredentials: true,
+  }
+);
  
     console.log(data);
  
@@ -255,7 +261,13 @@ const InternshipForm = () => {
           },
         },
       };
-      console.log(options);
+     
+
+      console.log("window.Razorpay =", window.Razorpay);
+console.log("options =", options);
+console.log("key =", options.key);
+console.log("order_id =", options.order_id);
+console.log("order =", order);
       const rzp = new window.Razorpay(options);
       rzp.on("payment.failed", (resp) => {
         console.error("Payment failed:", resp.error);
