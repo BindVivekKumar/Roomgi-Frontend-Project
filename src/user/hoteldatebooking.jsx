@@ -10,13 +10,30 @@ import { useGetPgByIdQuery } from "../backend-routes/userroutes/allpg.js";
 
 export default function HotelBookingPage() {
     const {id}=useParams();
-    const { data, isLoading, isError } = useGetPgByIdQuery(id);
-      const pg = data?.room;
-  const [form, setForm] = useState({
-    checkIn: "",
-    checkOut: "",
-    adults: 1,
-  });
+
+const { data, isLoading, isError } = useGetPgByIdQuery(id);
+
+// Raw response
+const roomData = data?.room;
+
+// If roomData contains rooms[] => PG response
+// Otherwise => Hotel response
+const pg = roomData?.rooms
+  ? roomData.rooms.find((r) => r._id === id)
+  : roomData;
+
+// Branch information
+const branch = roomData?.rooms
+  ? roomData
+  : roomData?.branch;
+
+const roomPrice = pg?.base_price || pg?.price || 0;
+
+const [form, setForm] = useState({
+  checkIn: "",
+  checkOut: "",
+  adults: 1,
+});
 
     const handleSubmit = async (amount) => {
       try {
@@ -63,7 +80,7 @@ export default function HotelBookingPage() {
     );
   };
 
-  const totalPrice = getNights() * (pg?.base_price || 0);
+ const totalPrice = getNights() * roomPrice;
 
   return (
 
@@ -75,23 +92,23 @@ export default function HotelBookingPage() {
 
         {/* IMAGE */}
         <div className="relative">
-          <img
-            src={pg?.images?.[0]}
-            className="w-full h-[380px] object-cover rounded-3xl shadow-xl"
-          />
+         <img
+  src={pg?.roomImages?.[0]}
+  className="w-full h-[380px] object-cover rounded-3xl shadow-xl"
+/>
           <div className="absolute bottom-4 left-4 bg-white/80 backdrop-blur px-4 py-2 rounded-xl shadow">
-            <p className="font-bold text-lg">{pg?.branch?.name}</p>
+            <p className="font-bold text-lg">{branch?.name}</p>
           </div>
         </div>
 
         {/* INFO */}
         <div className="bg-white p-6 rounded-3xl shadow-md">
           <h1 className="text-3xl font-extrabold text-gray-800">
-            {pg?.branch?.name}
+            {branch?.name}
           </h1>
 
           <p className="text-gray-500 mt-1">
-            📍 {pg?.branch?.city}, {pg?.branch?.state}
+            📍 {branch?.city}, {branch?.state}
           </p>
 
           <p className="mt-4 text-gray-600 leading-relaxed">
@@ -124,7 +141,7 @@ export default function HotelBookingPage() {
           {/* PRICE */}
           <div className="flex justify-between items-center mb-5">
             <h2 className="text-2xl font-extrabold text-gray-900">
-              ₹{pg?.base_price}
+              ₹{roomPrice}
               <span className="text-sm text-gray-500 font-medium"> / night</span>
             </h2>
           </div>
@@ -220,7 +237,7 @@ export default function HotelBookingPage() {
 
               <div className="flex justify-between">
                 <span>Price/night</span>
-                <span>₹{pg?.base_price}</span>
+                <span>₹{roomPrice}</span>
               </div>
 
               <div className="flex justify-between font-bold text-lg border-t pt-3">

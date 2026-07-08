@@ -21,10 +21,18 @@ export default function PGDetailsPage() {
 
   const { data, isLoading, isError, error } = useGetPgByIdQuery(id);
  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-   const pg = data?.room;
+   const roomData = data?.room;
+
+const isHotel = roomData?.category === "Hotel";
+
+const branch = isHotel ? roomData?.branch : roomData;
+
+const pg = isHotel
+  ? roomData
+  : roomData?.rooms?.find((r) => r._id === id);
   console.log("pg",pg);
-  const coord = pg?.location || pg?.branch?.location;
-const phoneNumber = pg?.branch?.phoneNumber;
+ const coord = branch?.location;
+const phoneNumber = branch?.phoneNumber;
   console.log("coord",phoneNumber)
   
 
@@ -32,13 +40,7 @@ const phoneNumber = pg?.branch?.phoneNumber;
     { skip: !coord }
   )
   console.log("recomendedPg", recomendedPg)
- const allImages = useMemo(() => {
-  return (
-    pg?.roomImages ||
-    pg?.rooms?.[0]?.roomImages ||
-    []
-  );
-}, [pg]);
+const allImages = useMemo(() => pg?.roomImages || [], [pg]);
 
   // Back Button Functionality
   const handleBack = () => navigate(-1);
@@ -102,11 +104,11 @@ const phoneNumber = pg?.branch?.phoneNumber;
         {/* 🟢 HEADER SECTION */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-           {pg?.branch?.name || "Premium Managed Stay"}
+           {branch?.name || "Premium Managed Stay"}
           </h1>
           <div className="flex items-center gap-1 text-slate-500 mt-2">
             <MapPin className="w-4 h-4" />
-            <span className="text-sm font-medium">{pg?.branch?.locationName || "Prime Location, City Center"}</span>
+            <span className="text-sm font-medium">{branch?.locationName || "Prime Location, City Center"}</span>
           </div>
         </div>
 
@@ -182,7 +184,10 @@ const phoneNumber = pg?.branch?.phoneNumber;
           <div className="lg:col-span-4 relative">
             <div className="lg:sticky lg:top-28">
               <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-slate-200/50 overflow-hidden transition-all duration-300 hover:shadow-orange-200/40">
-                <RightInformationdescription pg={pg} N={data?.room.phoneNumber} />
+               <RightInformationdescription
+    pg={pg}
+    N={branch?.phoneNumber}
+/>
                 {/* Security Badge */}
                 <div className="bg-slate-50 p-4 flex items-center justify-center gap-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest border-t border-slate-100">
                   <ShieldCheck className="w-4 h-4 text-green-500" />

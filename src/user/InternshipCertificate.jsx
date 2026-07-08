@@ -16,12 +16,12 @@ const InternshipCertificate = () => {
 
     try {
       const res = await fetch(
-        "https://roomgi-backend-project-7pjg.onrender.com/api/certificate/verify",
+        // "https://roomgi-backend-project-7pjg.onrender.com/api/certificate/verify",
 
 
 
 
-        // "http://localhost:5000/api/certificate/verify",
+        "http://localhost:5000/api/certificate/verify",
 
 
 
