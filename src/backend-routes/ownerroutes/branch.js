@@ -43,14 +43,27 @@ const owner_branch = createApi({
       providesTags: ["Branch"],
     }),
 
+    // deleteBranch: builder.mutation({
+    //   query: (id) => ({
+    //     url: "/DeleteBranch",
+    //     method: "DELETE",
+    //     body: { id },
+    //   }),
+    //   invalidatesTags: ["Branch"],
+    // }),
+
+
+
+
+
     deleteBranch: builder.mutation({
-      query: (id) => ({
-        url: "/DeleteBranch",
-        method: "DELETE",
-        body: { id },
-      }),
-      invalidatesTags: ["Branch"],
-    }),
+  query: (branchId) => ({
+    url: "DeleteBranch",
+    method: "DELETE",
+    body: { branchId },
+  }),
+  invalidatesTags: ["Branch"],
+}),
 
     getAllBranchByOwner: builder.query({
       query: () => "getalllbranchowner",
