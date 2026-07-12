@@ -100,9 +100,23 @@ export default function SearchPage() {
       return;
     }
 
-    const matchedCity = supportedCities.find((c) =>
-      searchQuery.toLowerCase().includes(c.city.toLowerCase())
-    );
+    // const matchedCity = supportedCities.find((c) =>
+    //   searchQuery.toLowerCase().includes(c.city.toLowerCase())
+    // );
+
+
+    const query = searchQuery.trim().toLowerCase();
+
+const matchedCity = supportedCities.find((c) => {
+  const city = c.city?.trim().toLowerCase();
+
+  return (
+    city?.startsWith(query) ||
+    city?.includes(query) ||
+    query.startsWith(city) ||
+    query.includes(city)
+  );
+});
 
     if (!matchedCity) {
       toast.info("Service not available in this location yet 🌏");
